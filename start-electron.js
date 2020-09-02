@@ -1,0 +1,93 @@
+const {app, BrowserWindow, globalShortcut} = require('electron');
+
+const url = require("url");
+const path = require("path");
+const isDev = require("electron-is-dev");
+const ipcMain = require("electron").ipcMain;
+
+function newApp() {
+  let win = null;
+  let loading = new BrowserWindow({
+    show: false, 
+    frame: false, 
+    resizable: false,
+    height: 500, width: 360, 
+    webPreferences:{
+      worldSafeExecuteJavaScript: true,
+    }
+  })
+
+  loading.once('show', () =>{
+    win = new BrowserWindow({
+      backgroundColor: '#3b3e43',
+      show: false,
+      frame: false,
+      minHeight: 480, minWidth: 720,
+      height: 720, width: 1280,
+      webPreferences: {
+        nodeIntegration: true,
+        enableRemoteModule: true,
+        worldSafeExecuteJavaScript: true,
+      } 
+    })
+    win.once('ready-to-show', () => {
+      win.show()
+      win.maximize()
+      loading.hide()
+      loading.close()
+    })
+    win.loadURL(
+        isDev ? "http://localhost:3000" : 'file://${path.join(__dirname, "../build/index.html")}'
+      )
+  })
+  loading.loadURL(
+    url.format({
+      pathname: "src/Loading/loading.html",
+      slashes: true
+    }))
+    loading.once('ready-to-show', () => {
+      loading.show()
+    })
+
+  globalShortcut.register('f5', function() {
+		console.log('Refresh')
+		win.reload()
+  });
+  globalShortcut.register('CommandOrControl+R', function() {
+		console.log('Opened Console')
+    win.webContents.openDevTools()
+  });
+  globalShortcut.register('Alt+Return', function(){
+    if(win.fullScreen){
+      win.setFullScreen(false)
+      console.log('min')
+    }
+    else
+    {
+      win.setFullScreen(true)
+      console.log('max')
+    }
+  })
+
+  ipcMain.handle('minimize-event', () => {
+    win.minimize()
+  })
+
+  ipcMain.handle('maximize-event', () => {
+    win.maximize()
+  })
+
+  ipcMain.handle('unmaximize-event', () => {
+    win.unmaximize()
+  })
+}
+ipcMain.handle('close-event', () => {
+  app.quit()
+})
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+      app.quit();
+  }
+})
+app.on("ready", newApp);  
