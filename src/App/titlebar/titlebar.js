@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './titlebar.css'
+import {VscChromeMinimize,VscChromeClose,VscChromeMaximize} from "react-icons/vsc"
 
 const ipcRenderer = window.require('electron').ipcRenderer
 
 const Titlebar = () => {
 
-    const [isMaximized, setIsMaximized] = useState()
+    const [isMaximized, setIsMaximized] = useState(true)
 
     ipcRenderer.on('maximized', () => {
         setIsMaximized(true)
@@ -19,42 +20,39 @@ const Titlebar = () => {
         ipcRenderer.invoke('minimize-event')
     }
 
-    const maximizeHandler = () => {
-        ipcRenderer.invoke('maximize-event')
-    }
-
-    const unmaximizeHandler = () => {
-        ipcRenderer.invoke('unmaximize-event')
-    }
-
     const closeHandler = () => {
         ipcRenderer.invoke('close-event')
     }
 
+    useEffect(() => {
+        console.log(isMaximized)
+        if(isMaximized)
+        {
+            ipcRenderer.invoke('unmaximize-event')
+        }
+        else
+        {
+            ipcRenderer.invoke('maximize-event')
+        }
+    }, [isMaximized])
+    
+
     return (
         <div className="Titlebar">
-            <div className="Title-Bar">
-                <div className="title-bar-btn">
-                    <div className= 'close-btn' onClick={closeHandler}>
-                        <i className="fas fa-times"></i>
-                    </div> 
-                    {isMaximized ?
-                        <div className="option"  onClick={unmaximizeHandler}>
-                            <i className="far fa-square"></i>
-                        </div>
-                        :
-                        <div className="option" onClick={maximizeHandler}>
-                            <i className="far fa-square"></i>
-                        </div>
-                    }
-                    <div className="option" onClick={minimizeHandler}>
-                        <i className="far fa-window-minimize"></i>
-                    </div>
+            <div className="title-bar-btn">
+                <div className= 'close-btn' onClick={closeHandler}>
+                    <VscChromeClose/>
+                </div> 
+                     <div className="option"  onClick={e => setIsMaximized(!isMaximized)}>
+                     {isMaximized ? <VscChromeMaximize/> : <VscChromeMaximize/>}
                 </div>
-                <div
-                    style={isMaximized ? { display: 'none' } : {}}
-                    className="resizer">
+                <div className="option" onClick={minimizeHandler}>
+                    <VscChromeMinimize/>
                 </div>
+            </div>
+            <div
+                style={isMaximized ? { display: 'none' } : {}}
+                className="resizer">
             </div>
         </div >
     )
