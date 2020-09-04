@@ -28,10 +28,10 @@ export function Company({ id }) {
             <img className="card-image" src={`media/${id}.png`} alt="" />
           </motion.div>
           <motion.div
-            className="title-container"
-            layoutId={`title-container-${id}`}
+            className="company-name"
+            layoutId={`company-name-${id}`}
           >
-            <div className="company-name">{name}</div>
+            <span>{name}</span>
           </motion.div>
           <motion.div className="content-container" animate>
             <LoremIpsum

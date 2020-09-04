@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 
 function Card({ id, name}) {
   return (
-    <li className="grid-item">
-      <div className="card-content-container">
-        <motion.div className="card-content" layoutId={`card-container-${id}`}>
+    /*<li className="grid-item">
+      <div className="grid-container">
+        <motion.div className="grid-content" layoutId={`grid-content-${id}`}>
           <motion.div
-            className="card-image-container"
-            layoutId={`card-image-container-${id}`}
+            className="company-logo"
+            layoutId={`company-logo-${id}`}
           >
             <img className="card-image" src={`media/${id}.png`} alt="" />
           </motion.div>
@@ -23,6 +23,16 @@ function Card({ id, name}) {
         </motion.div>
       </div>
       <Link to={id} className={`card-open-link`} />
+    </li>*/
+    <li className="grid-item">
+      <div className="grid-container">
+        <div className="company-logo">
+          <img src={`media/${id}.png`} alt=""/>
+        </div>
+        <div className="company-name">
+          <span>{name}</span>
+        </div>
+      </div>
     </li>
   );
 }
