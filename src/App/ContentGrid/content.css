@@ -34,7 +34,26 @@
     align-items: center;
   }
 
-img{
+  .grid-item img{
     max-width: 80%;
     max-height: 80%;
+}
+
+.simplebar-scrollbar:before{
+  background: linear-gradient(0deg, #fa4d4f 0%, #9a249c 53%, #4f0dcf 100%);
+  top: 2px;
+  bottom:2px;
+  left: 0;
+  right: 0;
+  margin-right: 2px;
+
+}
+
+.simplebar-scrollbar.simplebar-visible:before{
+  opacity: 1;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 8px;
+  height: 100%;
 }

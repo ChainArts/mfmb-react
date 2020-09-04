@@ -12,13 +12,11 @@ import Content from './ContentGrid/content';
 function App() {
   return (
     <div className="App">
-      <div className="Container">
-        <header>
-          <Titlebar></Titlebar>
-        </header>
-        <Navbar></Navbar>
-        <Content></Content>
-        </div>
+      <header>
+        <Titlebar></Titlebar>
+      </header>
+      <Navbar></Navbar>
+      <Content></Content>
     </div>
   );
 }

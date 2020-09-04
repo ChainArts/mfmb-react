@@ -8,35 +8,98 @@ export const companies = [
 
     {
         id: "1",
-        name: "Abstergo Industries",
+        name: "Siemens",
         backgroundColor: "#232529",
         website: "https://abstergo.org/"
     },
 
     {
         id: "2",
-        name: "Osram Continental",
+        name: "SMC",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
 
     {
         id: "3",
-        name: "Osram Continental",
+        name: "EATON",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
 
     {
         id: "4",
-        name: "Osram Continental",
+        name: "Loxone",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
 
     {
         id: "5",
-        name: "Osram Continental",
+        name: "EVN",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "6",
+        name: "Frischeis",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "7",
+        name: "Abstergo Industries",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "8",
+        name: "Altium",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "9",
+        name: "B&R Automation",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "10",
+        name: "Philips",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+    
+    {
+        id: "11",
+        name: "Pollmann International",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "12",
+        name: "AD Space",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "12",
+        name: "Ad Space",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "12",
+        name: "Ad Space",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
