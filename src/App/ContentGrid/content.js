@@ -25,7 +25,7 @@ export default function Content() {
     return(
         <AnimateSharedLayout type="crossfade">
             <div className="content-wrapper">
-              <SimpleBar autoHide={false} style={{maxHeight: '100%'}}>
+              <SimpleBar autoHide={false} style={{height: '100%'}}>
                 <Router>
                   <Route path={["/:id", "/"]} component={Companies}/>
                 </Router>

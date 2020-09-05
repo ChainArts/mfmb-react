@@ -9,21 +9,21 @@ export const companies = [
     {
         id: "1",
         name: "Siemens",
-        backgroundColor: "#232529",
+        backgroundColor: "#009999",
         website: "https://abstergo.org/"
     },
 
     {
         id: "2",
         name: "SMC",
-        backgroundColor: "#232529",
+        backgroundColor: "#1044AA",
         website: "https://www.osram-continental.com/"
     },
 
     {
         id: "3",
         name: "EATON",
-        backgroundColor: "#232529",
+        backgroundColor: "#FFFFFF",
         website: "https://www.osram-continental.com/"
     },
 

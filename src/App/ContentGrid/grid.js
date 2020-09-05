@@ -3,7 +3,8 @@ import { companies } from "./data";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function Card({ id, name}) {
+function Card({ id, name, backgroundColor}) {
+
   return (
     /*<li className="grid-item">
       <div className="grid-container">
@@ -29,8 +30,12 @@ function Card({ id, name}) {
         <div className="company-logo">
           <img src={`media/${id}.png`} alt=""/>
         </div>
-        <div className="company-name">
-          <span>{name}</span>
+        <div className="company-name" style={{backgroundColor: backgroundColor}}>
+            {(backgroundColor < '#AAAAAA') ?
+              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(85)'}}>{name}</span>)
+              :
+              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(0.3)'}}>{name}</span>)
+            }
         </div>
       </div>
     </li>
