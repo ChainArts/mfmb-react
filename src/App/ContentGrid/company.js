@@ -4,7 +4,7 @@ import { LoremIpsum } from "react-lorem-ipsum";
 import { Link } from "react-router-dom";
 import { companies } from "./data";
 
-export function Company({ id }) {
+export function Company({ id, backgroundColor }) {
   const { name } = companies.find(item => item.id === id);
 
   return (
@@ -19,7 +19,21 @@ export function Company({ id }) {
       >
         <Link to="/" />
       </motion.div>
-      <div className="card-content-container open">
+    
+      <div className="grid-container open">
+        <div className="company-logo">
+          <img src={`media/${id}`} alt=""/>
+        </div>
+        <div className="company-name" style={{backgroundColor: backgroundColor}}>
+            {(backgroundColor < '#AAAAAA') ?
+              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(85)'}}>{name}</span>)
+              :
+              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(0.3)'}}>{name}</span>)
+            }
+        </div>
+      </div>
+      </>
+   /*  <div className="card-content-container open">
         <motion.div className="card-content" layoutId={`card-container-${id}`}>
           <motion.div
             className="card-image-container"
@@ -42,6 +56,6 @@ export function Company({ id }) {
           </motion.div>
         </motion.div>
       </div>
-    </>
+    </>*/
   );
 }

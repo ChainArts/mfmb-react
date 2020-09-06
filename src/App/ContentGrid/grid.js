@@ -3,7 +3,7 @@ import { companies } from "./data";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function Card({ id, name, backgroundColor}) {
+function Card({ id, name, backgroundColor, image}) {
 
   return (
     /*<li className="grid-item">
@@ -28,7 +28,7 @@ function Card({ id, name, backgroundColor}) {
     <li className="grid-item">
       <div className="grid-container">
         <div className="company-logo">
-          <img src={`media/${id}.png`} alt=""/>
+          <img src={image} alt=""/>
         </div>
         <div className="company-name" style={{backgroundColor: backgroundColor}}>
             {(backgroundColor < '#AAAAAA') ?

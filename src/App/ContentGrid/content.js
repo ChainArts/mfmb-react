@@ -1,6 +1,7 @@
 import React from "react";
 import SimpleBar from 'simplebar-react';
-import 'simplebar-core/dist/simplebar.css';
+import 'simplebar-react/dist/simplebar.min.css';
+import 'simplebar-core/dist/simplebar-core';
 import "./content.css";
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import { Company } from "./company";
@@ -24,13 +25,11 @@ function Companies({ match }) {
 export default function Content() {
     return(
         <AnimateSharedLayout type="crossfade">
-            <div className="content-wrapper">
-              <SimpleBar autoHide={false} style={{height: '100%'}}>
-                <Router>
-                  <Route path={["/:id", "/"]} component={Companies}/>
-                </Router>
-              </SimpleBar>
-            </div>
+            <SimpleBar className="content-wrapper" autoHide={false} scrollbarMaxSize={250} style={{ maxHeight: '100%' }}>
+              <Router>
+                <Route path={["/:id", "/"]} component={Companies}/>
+              </Router>
+            </SimpleBar>
         </AnimateSharedLayout>
     );
 }

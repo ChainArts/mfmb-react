@@ -1,6 +1,7 @@
 export const companies = [
     {
         id: "0",
+        image: "media/osram.png",
         name: "Osram Continental",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -8,27 +9,31 @@ export const companies = [
 
     {
         id: "1",
+        image: "media/siemens.png",
         name: "Siemens",
         backgroundColor: "#009999",
-        website: "https://abstergo.org/"
+        website: "https://www.siemens.com/"
     },
 
     {
         id: "2",
-        name: "SMC",
-        backgroundColor: "#1044AA",
+        image: "media/smc.png",
+        name: "SMC Pneumatics",
+        backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
 
     {
         id: "3",
+        image: "media/eaton.png",
         name: "EATON",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
 
     {
         id: "4",
+        image: "media/loxone.jpg",
         name: "Loxone",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -36,6 +41,7 @@ export const companies = [
 
     {
         id: "5",
+        image: "media/evn.png",
         name: "EVN",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -43,6 +49,7 @@ export const companies = [
 
     {
         id: "6",
+        image: "media/frischeis.jpg",
         name: "Frischeis",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -50,6 +57,7 @@ export const companies = [
 
     {
         id: "7",
+        image: "media/abstergo.png",
         name: "Abstergo Industries",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -57,6 +65,7 @@ export const companies = [
 
     {
         id: "8",
+        image: "media/altium.png",
         name: "Altium",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -64,6 +73,7 @@ export const companies = [
 
     {
         id: "9",
+        image: "media/b&r.jpg",
         name: "B&R Automation",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -71,13 +81,15 @@ export const companies = [
 
     {
         id: "10",
+        image: "media/philips.png",
         name: "Philips",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
-    
+
     {
         id: "11",
+        image: "media/pollmann.png",
         name: "Pollmann International",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
@@ -85,24 +97,56 @@ export const companies = [
 
     {
         id: "12",
+        image: "media/default.png",
         name: "AD Space",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
 
     {
-        id: "12",
-        name: "Ad Space",
+        id: "13",
+        image: "media/default.png",
+        name: "AD Space",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
 
     {
-        id: "12",
-        name: "Ad Space",
+        id: "14",
+        image: "media/default.png",
+        name: "AD Space",
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
+
+    {
+        id: "15",
+        image: "media/default.png",
+        name: "AD Space",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "16",
+        image: "media/default.png",
+        name: "AD Space",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+    {
+        id: "17",
+        image: "media/default.png",
+        name: "AD Space",
+        backgroundColor: "#232529",
+        website: "https://www.osram-continental.com/"
+    },
+
+
+
+
+
 ];
 
 export const openSpring = {type: "spring", stiffness: 200, damping: 30};
