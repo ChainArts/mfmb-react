@@ -25,7 +25,7 @@ function Companies({ match }) {
 export default function Content() {
     return(
         <AnimateSharedLayout type="crossfade">
-            <SimpleBar className="content-wrapper" autoHide={false} scrollbarMaxSize={250} style={{ maxHeight: '100%' }}>
+            <SimpleBar className="content-wrapper" autoHide={false} scrollbarMaxSize={250} style={{maxHeight: '100%'}}>
               <Router>
                 <Route path={["/:id", "/"]} component={Companies}/>
               </Router>
