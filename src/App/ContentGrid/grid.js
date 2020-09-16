@@ -32,12 +32,13 @@ function Card({ id, name, backgroundColor, image}) {
         </div>
         <div className="company-name" style={{backgroundColor: backgroundColor}}>
             {(backgroundColor < '#AAAAAA') ?
-              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(85)'}}>{name}</span>)
+              (<span style={{color:  '#efefef'}}>{name}</span>)
               :
-              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(0.3)'}}>{name}</span>)
+              (<span style={{color: '#2a2a2a'}}>{name}</span>)
             }
         </div>
       </div>
+	  <Link to={id} className={`card-open-link`} />
     </li>
   );
 }

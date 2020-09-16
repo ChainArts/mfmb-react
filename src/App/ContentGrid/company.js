@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { LoremIpsum } from "react-lorem-ipsum";
+//import { LoremIpsum } from "react-lorem-ipsum";
 import { Link } from "react-router-dom";
 import { companies } from "./data";
 
@@ -26,9 +26,9 @@ export function Company({ id, backgroundColor }) {
         </div>
         <div className="company-name" style={{backgroundColor: backgroundColor}}>
             {(backgroundColor < '#AAAAAA') ?
-              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(85)'}}>{name}</span>)
+              (<span style={{color:  '#efefef'}}>{name}</span>)
               :
-              (<span style={{color: backgroundColor, WebkitFilter: 'brightness(0.3)'}}>{name}</span>)
+              (<span style={{color: '#2a2a2a'}}>{name}</span>)
             }
         </div>
       </div>

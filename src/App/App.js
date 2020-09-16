@@ -5,7 +5,7 @@
 
 import './App.css';
 import React from 'react';
-import Titlebar from './titlebar/titlebar'
+//import Titlebar from './titlebar/titlebar'
 import Navbar from './navbar/navbar'
 import Content from './ContentGrid/content';
 
@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Titlebar></Titlebar>
-      </header>
+		  {/* <Titlebar></Titlebar>*/}
+	  </header>
       <Navbar></Navbar>
       <Content></Content>
     </div>
