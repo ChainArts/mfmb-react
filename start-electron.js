@@ -13,7 +13,8 @@ function newApp() {
     resizable: false,
     height: 500, width: 360, 
     webPreferences:{
-      worldSafeExecuteJavaScript: true,
+	  worldSafeExecuteJavaScript: true,
+	  contextIsolation: true
     }
   })
 
@@ -27,7 +28,8 @@ function newApp() {
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,
-        worldSafeExecuteJavaScript: true,
+		worldSafeExecuteJavaScript: true,
+		contextIsolation: true
       } 
     })
     win.once('ready-to-show', () => {

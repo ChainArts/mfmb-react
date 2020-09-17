@@ -1,6 +1,7 @@
 import React from 'react';
 import './navbar.css';
 import {IoIosArrowBack, IoIosHome, IoIosArrowForward} from "react-icons/io";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 const Navbar = () => {
     return(
@@ -12,11 +13,13 @@ const Navbar = () => {
                     <div className="bar"></div>
                 </div>
             </div>
-			<div className="menu-toggle-extended">
-				<div className="item"><IoIosHome/></div>
-				<div className="item"><IoIosArrowBack/></div>
-				<div className="item"><IoIosArrowForward/></div>
-			</div>
+			<Router>
+				<div className="menu-toggle-extended">
+					<div className="item"><Route to="/" /><IoIosHome/></div>
+					<div className="item"><IoIosArrowBack/></div>
+					<div className="item"><IoIosArrowForward/></div>
+				</div>
+			</Router>
 		</div>
     )
 }
