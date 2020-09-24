@@ -118,6 +118,84 @@
     animation: ease-out .35s bottom-2 forwards;
   }
 
+  .menu-overlay{
+    z-index: 5;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    -webkit-box-align: center;
+    background: linear-gradient(-45deg, #fa4d4f 0%, #9a249c 53%, #4f0dcf 100%);
+    bottom:0;
+    left:0;
+    height: 100vh;
+    width:100vw;
+    transform: translateX(-100%);
+    pointer-events: none;
+    transition: transform 0.5s ease-out;
+  }
+
+.menu-overlay-open{
+    pointer-events: all;
+    transform: translateX(0%);
+  }
+
+.menu-overlay-main{
+    margin: 0 24vw;
+    width: 50vw;
+}
+
+nav.main-nav{
+    float: left;
+}
+
+ul.menu-list{
+    margin: 0;
+    color: #FFF;
+}
+
+ul.menu-list li{
+  margin-bottom: 4vh;
+  transform: translateX(-8vw);
+  opacity: 0;
+  transition: opacity .8s,transform .5s,-webkit-transform .5s, margin .5s ease-out;
+}
+
+.is-open-menu ul.menu-list li {
+  margin-bottom: 4vh;
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+ul.menu-list li::before {
+  display: none;
+}
+
+ul.menu-list li a{
+    position: relative;
+    color: #FFF;
+    font-size: 1.8rem;
+    line-height: 34px;
+    font-weight: 300;
+    margin-bottom: 2vh;
+}
+
+ul.menu-list li a::after, ul.menu-list li.current-page-item a::after{
+    width: 0;
+    margin-left: 10px;
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 2px;
+    background-color: #FFFFFF;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+}
+
+ul.menu-list li a:active::after, ul.menu-list li.current-page-item a::after{
+    width: 60px;
+}
+
   @keyframes top {
     0% {
       top: 0;

@@ -20,6 +20,18 @@ const Navbar = () => {
 					<div className="item"><IoIosArrowForward/></div>
 				</div>
 			</Router>
+            <div class="menu-overlay">
+                <div class="menu-overlay-main">
+                    <nav class="main-nav">
+                        <ul class="menu-list">
+                            <li class="menu-item current-page-item"><a href="index.html">Home </a></li>
+                            <li class="menu-item"><a href="https://orf.at/">Firmen </a></li>
+                            <li class="menu-item"><a href="jobs.html">Jobs </a></li>
+                            <li class="menu-item"><a href="about.html">About </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
 		</div>
     )
 }
