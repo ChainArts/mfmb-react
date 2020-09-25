@@ -17,7 +17,12 @@
     "react-lorem-ipsum": "^1.4.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+<<<<<<< HEAD
     "simplebar-react": "^3.0.0-beta.6"
+=======
+    "simplebar-react": "^3.0.0-beta.4",
+    "typescript": "^4.0.3"
+>>>>>>> 1d726e8... convert js into ts (typescript)
   },
   "scripts": {
     "react-start": "react-scripts start",
