@@ -4,7 +4,8 @@ export const companies = [
         image: "media/osram.png",
         name: "Osram Continental",
         backgroundColor: "#FFFFFF",
-        website: "https://www.osram-continental.com/"
+        website: "https://www.osram-continental.com/",
+        priority: "1.4i9",
     },
 
     {

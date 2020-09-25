@@ -16,18 +16,18 @@ const Navbar = () => {
 			<Router>
 				<div className="menu-toggle-extended">
 					<div className="item"><Route to="/" /><IoIosHome/></div>
-					<div className="item"><IoIosArrowBack/></div>
+					<Route to="/about"><div className="item"><IoIosArrowBack/></div></Route>
 					<div className="item"><IoIosArrowForward/></div>
 				</div>
 			</Router>
-            <div class="menu-overlay">
-                <div class="menu-overlay-main">
-                    <nav class="main-nav">
-                        <ul class="menu-list">
-                            <li class="menu-item current-page-item"><a href="index.html">Home </a></li>
-                            <li class="menu-item"><a href="https://orf.at/">Firmen </a></li>
-                            <li class="menu-item"><a href="jobs.html">Jobs </a></li>
-                            <li class="menu-item"><a href="about.html">About </a></li>
+            <div className="menu-overlay">
+                <div className="menu-overlay-main">
+                    <nav className="main-nav">
+                        <ul className="menu-list">
+                            <li className="menu-item current-page-item"><a href="index.html">Home </a></li>
+                            <li className="menu-item"><a href="https://orf.at/">Firmen </a></li>
+                            <li className="menu-item"><a href="jobs.html">Jobs </a></li>
+                            <li className="menu-item"><a href="about.html">About </a></li>
                         </ul>
                     </nav>
                 </div>

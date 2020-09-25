@@ -10,15 +10,15 @@ import Navbar from './navbar/navbar'
 import Content from './ContentGrid/content';
 
 function App() {
-  return (
-    <div className="App">
-      <header>
-		  {/* <Titlebar></Titlebar>*/}
-	  </header>
-      <Navbar></Navbar>
-      <Content></Content>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header>
+		        {/* <Titlebar></Titlebar>*/}
+	        </header>
+            <Navbar></Navbar>
+            <Content></Content>
+        </div>
+    );
 }
 
 export default App;
