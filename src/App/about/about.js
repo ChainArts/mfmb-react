@@ -2,15 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import "./about.css";
 
-const container = {
-    hidden: { opacity: 1, scale: 0 },
+const about_container = {
+    hidden: { opacity: 0, scale: .1, y: 500},
     visible: {
+      y: 0, 
       opacity: 1,
       scale: 1,
       transition: {
+        ease: "easeOut",
         delay: 0.3,
-        when: "beforeChildren",
-        staggerChildren: 0.1
+        delayChildren: 0.5,
+        staggerChildren: .1,
       }
     }
   };
@@ -24,7 +26,7 @@ const container = {
   };
 
 export const About = () => (
-    <motion.ul  className = "about-container" variants = {container} initial = "hidden" animate = "visible">
+    <motion.ul  className = "about-container" variants = {about_container} initial = "hidden" animate = "visible">
         {[0, 1, 2, 3].map(index => (
             <motion.li key={index} className = "about-item" variants = {item}/>
         ))}

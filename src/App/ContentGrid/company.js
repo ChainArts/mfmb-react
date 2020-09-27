@@ -17,7 +17,7 @@ export function Company({ id, backgroundColor }) {
         style={{ pointerEvents: "auto" }}
         className="overlay"
       >
-        <Link to="/" />
+        <Link to="/"/>
       </motion.div>
     
       <div className="grid-container open">
