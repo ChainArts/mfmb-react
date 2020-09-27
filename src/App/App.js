@@ -18,8 +18,11 @@ function App() {
 		        {/* <Titlebar></Titlebar>*/}
 	        </header>
             <Navbar></Navbar>
-            {/*<About></About>*/}
-            <Content></Content>
+            {/*<Switch>*/}
+                {/*<About></About>*/}
+                <Content></Content>
+            {/*</Switch>*/}    
+            
 
         </div>
     );
