@@ -3,8 +3,8 @@ export const companies = [
         id: "0",
         image: "media/osram.png",
         name: "Osram Continental",
-        backgroundColor: "#232529",
-        website: "https://www.osram-continental.com/"
+        backgroundColor: "#FFFFFF",
+        website: "https://www.osram-continental.com/",
     },
 
     {
