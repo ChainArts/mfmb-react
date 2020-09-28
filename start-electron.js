@@ -8,6 +8,7 @@ const ipcMain = require("electron").ipcMain;
 function newApp() {
   let win = null;
   let loading = new BrowserWindow({
+    icon: './public/MFMB_ICO.png',
     show: false, 
     frame: false, 
     resizable: false,
@@ -20,6 +21,7 @@ function newApp() {
 
   loading.once('show', () =>{
     win = new BrowserWindow({
+      icon: './public/MFMB_ICO.png',
       backgroundColor: '#3b3e43',
       show: false,
       frame: false,
