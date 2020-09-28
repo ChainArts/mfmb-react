@@ -8,20 +8,20 @@ const ipcMain = require("electron").ipcMain;
 function newApp() {
   let win = null;
   let loading = new BrowserWindow({
-    icon: './public/MFMB_ICO.png',
+    icon: './public/icons/ms-icon-150x150.png',
     show: false, 
     frame: false, 
     resizable: false,
     height: 500, width: 360, 
     webPreferences:{
 	  worldSafeExecuteJavaScript: true,
-	  contextIsolation: true
+      contextIsolation: true
     }
   })
 
   loading.once('show', () =>{
     win = new BrowserWindow({
-      icon: './public/MFMB_ICO.png',
+      icon: './public/icons/ms-icon-150x150.png',
       backgroundColor: '#3b3e43',
       show: false,
       frame: false,
