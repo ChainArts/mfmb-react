@@ -10,24 +10,16 @@
     "@testing-library/user-event": "^7.2.1",
     "cross-env": "^7.0.2",
     "electron-is-dev": "^1.2.0",
-<<<<<<< HEAD
-    "framer-motion": "^2.6.5",
     "mysql": "^2.18.1",
-=======
     "framer-motion": "^2.7.5",
->>>>>>> master
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
     "react-lorem-ipsum": "^1.4.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-<<<<<<< HEAD
-    "simplebar-react": "^3.0.0-beta.4",
-    "typescript": "^4.0.3"
-=======
+    "typescript": "^4.0.3",
     "simplebar-react": "^3.0.0-beta.6"
->>>>>>> master
   },
   "scripts": {
     "react-start": "react-scripts start",
