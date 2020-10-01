@@ -58,6 +58,12 @@
 .is-open-menu .menu-toggle{
     background: transparent;
     transition-delay: 0;
+    box-shadow: none;
+    /*width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    border-radius: none;*/
   }
   
 .menu-toggle-icon {
@@ -126,14 +132,11 @@
     left:0;
     height: 100vh;
     width:100vw;
-    transform: translateX(-100%);
-    pointer-events: none;
-    transition: transform 0.5s ease-out;
+    
   }
 
 .menu-overlay-open{
     pointer-events: all;
-    transform: translateX(0%);
   }
 
 .menu-overlay-main{
@@ -152,16 +155,7 @@ ul.menu-list{
 
 ul.menu-list li{
   margin-bottom: 4vh;
-  transform: translateX(-8vw);
-  opacity: 0;
-  transition: opacity .8s,transform .5s,-webkit-transform .5s, margin .5s ease-out;
-}
-
-.is-open-menu ul.menu-list li {
-  margin-bottom: 4vh;
-  opacity: 1;
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
+    transition: transform .5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity .8s ease-out;
 }
 
 ul.menu-list li::before {
@@ -189,7 +183,7 @@ ul.menu-list li a::after, ul.menu-list li.current-page-item a::after{
     -webkit-transition: all 0.25s ease-in-out;
 }
 
-ul.menu-list li a:active::after, ul.menu-list li.current-page-item a::after{
+ul.menu-list li a:hover::after, ul.menu-list li.current-page-item a::after{
     width: 60px;
 }
 

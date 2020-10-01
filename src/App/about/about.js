@@ -21,7 +21,7 @@ const about_container = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
+      opacity: 1,
     }
   };
 

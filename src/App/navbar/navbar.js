@@ -1,37 +1,84 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './navbar.css';
 import {IoIosArrowBack, IoIosHome, IoIosArrowForward} from "react-icons/io";
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import { motion, AnimatePresence} from 'framer-motion';
+
+const navoverlay = {
+    hidden: {x: "-100vw"},
+    open: { 
+      x: 0,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+      }
+    },
+    exit: {
+        x: "-100vw",
+        transition: {
+            duration: 0.5,
+            ease: "easeOut",
+        }
+    }
+  };
+  
+const navwrapper = {
+    hidden: {},
+    open: {
+        transition: {
+            delayChildren: 0.1,
+            staggerChildren: .1,
+        }
+    }
+  };
+
+const navitem = {
+    hidden: {opacity:0, x: "-16vw"},
+    open: {
+        opacity:1,
+        x: 0,
+        transition: {
+            duration: 0.3,
+            //ease: "easeOut",
+        }
+    }
+}
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false)
+
     return(
-        <div className="nav-bar-main">
-            <div className="menu-toggle">
-                <div className="menu-toggle-icon menu-toggle-closed">
+        <div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
+            <div className="menu-toggle" onClick={e => setIsOpen(!isOpen)}>
+                <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>
                     <div className="bar"></div>
                     <div className="bar"></div>
                     <div className="bar"></div>
                 </div>
             </div>
-			<Router>
+			{/*<Router>
 				<div className="menu-toggle-extended">
 					<div className="item"><Route to="/" /><IoIosHome/></div>
 					<Route to="/about"><div className="item"><IoIosArrowBack/></div></Route>
 					<div className="item"><IoIosArrowForward/></div>
 				</div>
-			</Router>
-            <div className="menu-overlay">
+            </Router>*/}
+            <AnimatePresence>
+            {isOpen && (
+            <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
                 <div className="menu-overlay-main">
                     <nav className="main-nav">
-                        <ul className="menu-list">
-                            <li className="menu-item current-page-item"><a href="index.html">Home </a></li>
-                            <li className="menu-item"><a href="https://orf.at/">Firmen </a></li>
-                            <li className="menu-item"><a href="jobs.html">Jobs </a></li>
-                            <li className="menu-item"><a href="about.html">About </a></li>
-                        </ul>
+                        <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
+                            <motion.li className="current-page-item" variants={navitem}><a href="none">Home </a></motion.li>
+                            <motion.li className="" variants = {navitem}><a href="none">Firmen </a></motion.li>
+                            <motion.li className="" variants = {navitem}><a href="none">Jobs </a></motion.li>
+                            <motion.li className="" variants = {navitem}><a href="none">About </a></motion.li>
+                        </motion.ul>
                     </nav>
                 </div>
-            </div>
+            </motion.div>
+            )}
+            </AnimatePresence>
 		</div>
     )
 }

@@ -9,6 +9,7 @@ import React from 'react';
 import Navbar from './navbar/navbar';
 import Content from './ContentGrid/content';
 import About from './about/about';
+import Switch from 'react-router-dom';
 
 
 function App() {
