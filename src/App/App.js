@@ -10,13 +10,14 @@ import Navbar from './navbar/navbar';
 import Content from './ContentGrid/content';
 import About from './about/about';
 import Switch from 'react-router-dom';
+import Company from './algorithm/algorithm'
 
 
 function App() {
     return (
         <div className="App">
             <header>
-		        {/* <Titlebar></Titlebar>*/}
+		        {/* <Titlebar></Titlebar>           For dev purposes*/} 
 	        </header>
             <Navbar></Navbar>
             {/*<Switch>*/}
