@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './navbar.css';
 import {IoIosArrowBack, IoIosHome, IoIosArrowForward} from "react-icons/io";
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -56,13 +56,13 @@ const Navbar = () => {
                     <div className="bar"></div>
                 </div>
             </div>
-			{/*<Router>
+			<Router>
 				<div className="menu-toggle-extended">
 					<div className="item"><Route to="/" /><IoIosHome/></div>
 					<Route to="/about"><div className="item"><IoIosArrowBack/></div></Route>
 					<div className="item"><IoIosArrowForward/></div>
 				</div>
-            </Router>*/}
+            </Router>
             <AnimatePresence>
             {isOpen && (
             <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
