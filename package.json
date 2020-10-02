@@ -12,12 +12,15 @@
     "electron-is-dev": "^1.2.0",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "framer-motion": "^2.7.7",
 =======
     "framer-motion": "^2.6.5",
     "mysql": "^2.18.1",
 >>>>>>> cba8f0d... added timestamp, money and noise calc
 =======
+=======
+>>>>>>> a5491283fe9f0708f92deba2efd14258a19453c4
     "mysql": "^2.18.1",
     "framer-motion": "^2.7.5",
 >>>>>>> a549128... changed to object oriented programming
@@ -29,6 +32,10 @@
     "react-scripts": "3.4.3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    "typescript": "^4.0.3",
+>>>>>>> a5491283fe9f0708f92deba2efd14258a19453c4
     "simplebar-react": "^3.0.0-beta.6"
 =======
     "simplebar-react": "^3.0.0-beta.4",
