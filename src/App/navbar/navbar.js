@@ -57,7 +57,7 @@ const Navbar = () => {
                 </div>
             </div>
 			<Router>
-				<div className="menu-toggle-extended">
+				<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"}>
 					<div className="item"><Route to="/" /><IoIosHome/></div>
 					<Route to="/about"><div className="item"><IoIosArrowBack/></div></Route>
 					<div className="item"><IoIosArrowForward/></div>
