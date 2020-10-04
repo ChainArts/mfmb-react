@@ -36,8 +36,8 @@ function newApp() {
     })
     win.once('ready-to-show', () => {
       win.show()
-      loading.hide()
-      loading.close()
+      //loading.hide()
+      //loading.close()
       win.maximize()
     })
     win.loadURL(
