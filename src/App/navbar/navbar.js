@@ -28,7 +28,7 @@ const navwrapper = {
         transition: {
             delayChildren: 0.1,
             staggerChildren: .1,
-        }
+        },
     }
   };
 
@@ -49,7 +49,7 @@ const Navbar = () => {
 
     return(
         <div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
-            <div className="menu-toggle" onClick={e => setIsOpen(!isOpen)}>
+            <div className="menu-toggle" onClick={e => setIsOpen(!isOpen)} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.5s"}}>
                 <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>
                     <div className="bar"></div>
                     <div className="bar"></div>
@@ -57,7 +57,7 @@ const Navbar = () => {
                 </div>
             </div>
 			<Router>
-				<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"}>
+				<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.5s"}}>
 					<div className="item"><Route to="/" /><IoIosHome/></div>
 					<Route to="/about"><div className="item"><IoIosArrowBack/></div></Route>
 					<div className="item"><IoIosArrowForward/></div>
