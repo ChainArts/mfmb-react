@@ -8,7 +8,9 @@ import React from 'react';
 //import Titlebar from './titlebar/titlebar';
 import Navbar from './navbar/navbar';
 import Content from './ContentGrid/content';
+// eslint-disable-next-line
 import About from './about/about';
+// eslint-disable-next-line
 import Switch from 'react-router-dom';
 
 function App() {
