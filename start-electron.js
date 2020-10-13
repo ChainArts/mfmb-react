@@ -10,9 +10,9 @@ function newApp() {
   let loading = new BrowserWindow({
     icon: './public/icons/ms-icon-150x150.png',
     show: false, 
-    frame: false, 
+    frame: false,
     resizable: false,
-    height: 500, width: 360, 
+    height: 480, width: 360, 
     webPreferences:{
 	  worldSafeExecuteJavaScript: true,
       contextIsolation: true
@@ -35,10 +35,11 @@ function newApp() {
       } 
     })
     win.once('ready-to-show', () => {
-      win.show()
-      //loading.hide()
-      //loading.close()
       win.maximize()
+      win.show()
+      win.focus()
+      loading.hide()
+      loading.close()
     })
     win.loadURL(
         isDev ? "http://localhost:3000" : 'file://${path.join(__dirname, "../build/index.html")}'
@@ -51,6 +52,7 @@ function newApp() {
     }))
     loading.once('ready-to-show', () => {
       loading.show()
+      loading.focus()
     })
 
   globalShortcut.register('f5', function() {
