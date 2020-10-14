@@ -3,7 +3,7 @@
     z-index: 0;
     right: 0;
     scrollbar-width: none;
-    width: 100%;
+    width: calc(100vw - 5rem);
 }
 .grid{
     margin: 2vh 5rem 2vh 0vw;
