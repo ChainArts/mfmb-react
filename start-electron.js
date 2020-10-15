@@ -22,7 +22,7 @@ function newApp() {
   loading.once('show', () =>{
     win = new BrowserWindow({
       icon: './public/icons/ms-icon-150x150.png',
-      backgroundColor: '#3b3e43',
+      backgroundColor: '#2a2b32',
       show: false,
       frame: false,
       minHeight: 480, minWidth: 720,
@@ -31,7 +31,7 @@ function newApp() {
         nodeIntegration: true,
         enableRemoteModule: true,
 		worldSafeExecuteJavaScript: true,
-		contextIsolation: true
+        contextIsolation: true
       } 
     })
     win.once('ready-to-show', () => {

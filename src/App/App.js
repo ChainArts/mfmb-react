@@ -12,6 +12,8 @@ import Content from './ContentGrid/content';
 import About from './about/about';
 // eslint-disable-next-line
 import Switch from 'react-router-dom';
+// eslint-disable-next-line
+import WebBrowser from './webBrowser/webBrowser';
 
 function App() {
     return (
@@ -20,10 +22,11 @@ function App() {
 		        {/* <Titlebar></Titlebar>           For dev purposes*/}
 	        </header>
             <Navbar></Navbar>
-            {/*<Switch>*/}
-                {/*<About></About>*/}
+            {/*<Switch>
+               <About></About>*/}
                 <Content></Content>
-            {/*</Switch>*/}    
+            {/*</Switch> 
+            <WebBrowser></WebBrowser>*/}   
             
 
         </div>

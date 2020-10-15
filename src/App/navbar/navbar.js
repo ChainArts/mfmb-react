@@ -70,7 +70,7 @@ const Navbar = () => {
                     <nav className="main-nav">
                         <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
                             <motion.li className="current-page-item" variants={navitem}><a href="none">Home </a></motion.li>
-                            <motion.li className="" variants = {navitem}><a href="none">Firmen </a></motion.li>
+                            <motion.li className="" variants = {navitem}><a href="https://www.orf.at">Firmen </a></motion.li>
                             <motion.li className="" variants = {navitem}><a href="none">Jobs </a></motion.li>
                             <motion.li className="" variants = {navitem}><a href="none">About </a></motion.li>
                         </motion.ul>

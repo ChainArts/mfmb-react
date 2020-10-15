@@ -1,0 +1,11 @@
+.browser-container{
+    margin: 2vh 5rem 2vh 0vw;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.page{
+    width: 400px;
+    height: 480px;
+}

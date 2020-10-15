@@ -27,25 +27,6 @@ const gridwrapper = {
 function Card({ id, name, backgroundColor, image}) {
 
   return (
-    /*<li className="grid-item">
-      <div className="grid-container">
-        <motion.div className="grid-content" layoutId={`grid-content-${id}`}>
-          <motion.div
-            className="company-logo"
-            layoutId={`company-logo-${id}`}
-          >
-            <img className="card-image" src={`media/${id}.png`} alt="" />
-          </motion.div>
-          <motion.div
-            className="title-container"
-            layoutId={`title-container-${id}`}
-          >
-            <span>{name}</span>
-          </motion.div>
-        </motion.div>
-      </div>
-      <Link to={id} className={`card-open-link`} />
-    </li>*/
     <motion.li className="grid-item" variants={griditem}>
       <div className="grid-container">
         <div className="company-logo">
