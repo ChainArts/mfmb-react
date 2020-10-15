@@ -29,6 +29,7 @@
   }
 
 .menu-toggle-extended{
+    background-color: #e20080;
 	display: flex;
 	position: relative;
 	flex-direction: column;
@@ -36,7 +37,6 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     transition: all .3s ease-in-out;
-    background-color: #e20080;
 }
 
 .menu-toggle-extended .item{
@@ -46,15 +46,15 @@
 	font-size: 1.4rem;
 	justify-content: center;
 	align-items: center;
-    border-bottom: solid #2a2d32 2px;
     border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
-    transition: all .3s cubic-bezier(0.7, 0, 0.84, 0);
-    box-shadow: 0 5px 8px -4px #2a2d32;
+    transition: all .3s cubic-bezier(0.7, 0, 0.84, 0), background-color 0.1s;
+    box-shadow: 0 5px 8px -3px #2a2d32;
+   
 }
 
 .item:active{
-	background-color: #a8005f;
+    background-color: #a8005f;
 }
 
 
@@ -64,8 +64,8 @@
     }
 
 .is-open-menu .menu-toggle-extended .item:nth-child(n){
-    box-shadow: none;
     border: none;
+    box-shadow: none;
     color: transparent;
     visibility: hidden;
     transform: translateY(-4rem);
