@@ -4,7 +4,7 @@ import "./webBrowser.css";
 const WebBrowser = () => {
     return(
         <div className="browser-container">
-            <webview className="page" src="https://orf.at"></webview>
+            <iframe className="page" name="webview" title="webview" src="http://orf.at"></iframe>
         </div>
     )
 
