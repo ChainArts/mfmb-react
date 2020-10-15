@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-//import { LoremIpsum } from "react-lorem-ipsum";
+import { LoremIpsum } from "react-lorem-ipsum";
 import { Link } from "react-router-dom";
 import { companies } from "./data"; 
 
@@ -21,16 +21,23 @@ export function Company({ id, backgroundColor }) {
       </motion.div>
     
       <div className="grid-container open">
-        <div className="company-logo">
+        <motion.div className="company-logo">
           <img src={`media/${id}`} alt=""/>
-        </div>
-        <div className="company-name" style={{backgroundColor: backgroundColor}}>
+        </motion.div>
+        <motion.div className="company-name" style={{backgroundColor: backgroundColor}}>
             {(backgroundColor < '#AAAAAA') ?
               (<span style={{color:  '#efefef'}}>{name}</span>)
               :
               (<span style={{color: '#2a2a2a'}}>{name}</span>)
             }
-        </div>
+        </motion.div>
+        <motion.div className="content-container" animate>
+            <LoremIpsum
+              p={6}
+              avgWordsPerSentence={6}
+              avgSentencesPerParagraph={4}
+            />
+          </motion.div>
       </div>
       </>
    /*  <div className="card-content-container open">
