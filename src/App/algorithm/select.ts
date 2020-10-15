@@ -28,6 +28,7 @@
         database: "mfmb"
     });
     
+
     con.connect(function (err) {
         if (err)
             throw err;
@@ -37,15 +38,22 @@
                 throw err;
             }
             else{
-                var i =0;
+                var i = 0;
                 
                 result.forEach(function (company) {
                     companies [i] = new Company(company.id,company.name,company.geld,company.update,playtime[i]);
                     i++;
                 });
-
                 algorithm(companies);
             }
         });
+        con.end(function(err){
+            if (err) {
+                return console.log('error:' + err.message);
+              }
+              console.log('Close the database connection.');
+        });
     });
+
+    
 

@@ -42,4 +42,10 @@ con.connect(function (err) {
             algorithm_js_1.algorithm(companies);
         }
     });
+    con.end(function (err) {
+        if (err) {
+            return console.log('error:' + err.message);
+        }
+        console.log('Close the database connection.');
+    });
 });
