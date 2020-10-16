@@ -59,7 +59,7 @@ const Navbar = () => {
 			<Router>
 				<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.5s"}}>
 					<div className="item"><Route to="/" /><IoIosHome/></div>
-					<Route to="/about"><div className="item"><IoIosArrowBack/></div></Route>
+					<div className="item"><IoIosArrowBack/></div>
 					<div className="item"><IoIosArrowForward/></div>
 				</div>
             </Router>

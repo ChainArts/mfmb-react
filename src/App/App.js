@@ -23,10 +23,10 @@ function App() {
 	        </header>
             <Navbar></Navbar>
             {/*<Switch>
-               <About></About>*/}
+               <About></About>
                 <Content></Content>
-            {/*</Switch> 
-            <WebBrowser></WebBrowser> */}  
+            {/*</Switch>  */}  
+            <WebBrowser></WebBrowser>
             
 
         </div>

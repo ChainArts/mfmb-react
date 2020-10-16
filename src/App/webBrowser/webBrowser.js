@@ -1,10 +1,26 @@
 import React from "react";
 import "./webBrowser.css";
 
-const WebBrowser = () => {
+
+const WebBrowser = ({source}) => {
+
+    if(!source){
+        return(
+         <div className="browser-container">
+            <div className="logo">
+                <img src="./loading_small.gif" alt=""/>
+                <span>Loading...</span>
+            </div>
+            
+         </div>
+        )
+    }
+
+    const src = source;
+
     return(
         <div className="browser-container">
-            <iframe className="page" name="webview" title="webview" src="http://orf.at"></iframe>
+            <iframe src={src}  className="page"></iframe>
         </div>
     )
 
