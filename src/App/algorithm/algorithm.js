@@ -1,59 +1,108 @@
-"use strict";
-exports.__esModule = true;
-exports.algorithm = void 0;
-function algorithm(companies) {
-    var selection = [];
-    var i = 0, rep = 0, prev_id = 0, id = 0;
-    function sum(total, num) {
-        return total + num;
-    }
-    function random(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    function weight(money, sum) {
-        var i = 0;
-        return (money / sum) * 10;
-    }
-    while (rep < 1000) {
-        selection = [];
-        //create selection of companies with samllest and same dispalytime
-        companies.sort(function (a, b) { return a.displaytime - b.displaytime; });
-        for (i = 0; i < companies.length; i++) {
-            if (companies[0].displaytime == companies[i].displaytime) {
-                selection[i] = companies[i].id;
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
             }
-        }
-        companies.sort(function (a, b) { return a.id - b.id; });
-        //remove previous id from the selection
-        if (prev_id != 0) {
-            for (i = 0; i < selection.length; i++) {
-                if (selection[i] == prev_id) {
-                    selection.splice(i, 1);
-                }
-            }
-        }
-        if (selection.length == 0) {
-            selection = [];
-            companies.sort(function (a, b) { return a.displaytime - b.displaytime; });
-            for (i = 1; i < companies.length; i++) {
-                if (companies[1].displaytime == companies[i].displaytime) {
-                    selection[i - 1] = companies[i].id;
-                }
-            }
-            companies.sort(function (a, b) { return a.id - b.id; });
-        }
-        id = selection[Math.floor(Math.random() * selection.length)];
-        companies[id - 1].displaytime += Math.round(companies[id - 1].playtime / weight(companies[id - 1].geld, companies.map(function (a) { return a.geld; }).reduce(sum)));
-        prev_id = id;
-        rep++;
-        //console.log(id);
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-    console.log(companies.map(function (a) { return a.displaytime; }));
-    //console.log(selection);
-    //console.log(companies); 
-    // console.log(update);
-    // console.log(money);
-    // console.log(actuality);
-    // console.log(noise, id, money.length);
+};
+var _this = this;
+var fs = require('fs');
+var data = fs.readFileSync('data.json');
+var companies = [];
+companies = JSON.parse(data);
+var selection = [];
+var i = 0, rep = 0, prev_id = 0, id = 0;
+function sum(total, num) {
+    return total + num;
 }
-exports.algorithm = algorithm;
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function weight(money, sum) {
+    var i = 0;
+    return (money / sum) * 10;
+}
+function delay(ms) {
+    return new Promise(function (resolve) { return setTimeout(resolve, ms); });
+}
+(function () { return __awaiter(_this, void 0, void 0, function () {
+    function finished(err) {
+        console.log('Data written');
+    }
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!(rep < 53)) return [3 /*break*/, 2];
+                selection = [];
+                //create selection of companies with samllest and same dispalytime
+                companies.sort(function (a, b) { return a.displaytime - b.displaytime; });
+                for (i = 0; i < companies.length; i++) {
+                    if (companies[0].displaytime == companies[i].displaytime) {
+                        selection[i] = companies[i].id;
+                    }
+                }
+                companies.sort(function (a, b) { return a.id - b.id; });
+                //remove previous id from the selection
+                if (prev_id != 0) {
+                    for (i = 0; i < selection.length; i++) {
+                        if (selection[i] == prev_id) {
+                            selection.splice(i, 1);
+                        }
+                    }
+                }
+                if (selection.length == 0) {
+                    selection = [];
+                    companies.sort(function (a, b) { return a.displaytime - b.displaytime; });
+                    for (i = 1; i < companies.length; i++) {
+                        if (companies[1].displaytime == companies[i].displaytime) {
+                            selection[i - 1] = companies[i].id;
+                        }
+                    }
+                    companies.sort(function (a, b) { return a.id - b.id; });
+                }
+                id = selection[Math.floor(Math.random() * selection.length)];
+                companies[id - 1].displaytime += Math.round(companies[id - 1].playtime / weight(companies[id - 1].geld, companies.map(function (a) { return a.geld; }).reduce(sum)));
+                prev_id = id;
+                rep++;
+                //console.log(id);
+                return [4 /*yield*/, delay(2000)];
+            case 1:
+                //console.log(id);
+                _a.sent();
+                data = JSON.stringify(companies, null, 2);
+                fs.writeFile('data.json', data, finished);
+                console.log(companies.map(function (a) { return a.displaytime; }));
+                return [3 /*break*/, 0];
+            case 2: return [2 /*return*/];
+        }
+    });
+}); })();

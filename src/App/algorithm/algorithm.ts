@@ -1,6 +1,8 @@
-export function algorithm(companies){
-     
+    var fs = require('fs');
 
+    var data = fs.readFileSync('data.json');
+    var companies = [];
+    companies = JSON.parse(data);
     var selection = [];
     var i = 0,rep = 0, prev_id = 0, id = 0;
 
@@ -17,7 +19,12 @@ export function algorithm(companies){
         return (money/sum)*10;
     }
 
-    while(rep <1000){
+    function delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+
+    (async () =>{
+    while(rep <53){
     
         selection = [];
         //create selection of companies with samllest and same dispalytime
@@ -53,6 +60,11 @@ export function algorithm(companies){
         prev_id = id;
         rep++;
         //console.log(id);
+        await delay(2000);
+        data = JSON.stringify(companies, null, 2);
+        fs.writeFile('data.json', data, finished);
+        function finished(err){
+            console.log('Data written');
     }
     
             console.log(companies.map(a => a.displaytime));
@@ -62,8 +74,9 @@ export function algorithm(companies){
             // console.log(money);
             // console.log(actuality);
             // console.log(noise, id, money.length);
-}
 
+            }
+        })();
 
 
 

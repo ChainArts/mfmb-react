@@ -1,8 +1,9 @@
 
-    import { algorithm } from './algorithm.js'
+    var fs = require('fs');
     var mysql = require('mysql');
-    var playtime = [10, 20, 30, 5, 15, 20, 25, 17, 13, 10, 9, 22], companies = [];
+    var playtime = [10, 20, 30, 5, 15, 20, 25, 17, 13, 10, 9, 22];
     var d = new Date(2020, 8, 25, 9, 5, 30, 0);
+    var companies = [];
     function Company(id, name, geld, update, playtime) {
         this.id = id;
         this.name = name;
@@ -36,7 +37,11 @@
                     companies [i] = new Company(company.id,company.name,company.geld,company.update,playtime[i]);
                     i++;
                 });
-                algorithm(companies);
+                var data = JSON.stringify(companies, null, 2);
+                fs.writeFile('data.json', data, finished);
+                function finished(err){
+                    console.log('Data written');
+                }
             }
         });
         con.end(function(err){
