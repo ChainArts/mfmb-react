@@ -12,12 +12,6 @@ function Company(id, name, geld, update, playtime) {
     this.actuality = d.getTime() - this.update;
     this.playtime = playtime;
     this.displaytime = 0;
-    this.get_displaytime = function () {
-        return this.displaytime;
-    };
-    this.set_displaytime = function (time) {
-        this.displaytime = time;
-    };
 }
 var con = mysql.createConnection({
     host: "localhost",

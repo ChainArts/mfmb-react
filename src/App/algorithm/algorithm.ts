@@ -57,7 +57,7 @@ export function algorithm(companies){
     
             console.log(companies.map(a => a.displaytime));
             //console.log(selection);
-            console.log(companies); 
+            //console.log(companies); 
             // console.log(update);
             // console.log(money);
             // console.log(actuality);

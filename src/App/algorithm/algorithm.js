@@ -50,7 +50,7 @@ function algorithm(companies) {
     }
     console.log(companies.map(function (a) { return a.displaytime; }));
     //console.log(selection);
-    console.log(companies);
+    //console.log(companies); 
     // console.log(update);
     // console.log(money);
     // console.log(actuality);
