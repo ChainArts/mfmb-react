@@ -9,7 +9,7 @@ function newApp() {
   let win = null;
   let loading = new BrowserWindow({
     icon: './public/icons/ms-icon-150x150.png',
-    show: false, 
+    show: false,
     frame: false,
     resizable: false,
     height: 480, width: 360, 
