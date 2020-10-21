@@ -1,8 +1,12 @@
 {
   "name": "mfmb-app",
+  "author": "Maximilian Roll",
+  "build":{
+      "appId": "com.mfmb-app"
+  },
   "version": "0.1.0",
   "private": true,
-  "main": "start-electron.js",
+  "main": "public/electron.js",
   "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -18,7 +22,8 @@
     "react-lorem-ipsum": "^1.4.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
-    "simplebar-react": "^3.0.0-beta.8"
+    "simplebar-react": "^3.0.0-beta.8",
+    "typescript": "^4.0.3"
   },
   "scripts": {
     "react-start": "react-scripts start",
@@ -26,6 +31,7 @@
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
+    "release": "npm react-build && electron-builder --publish=always",
     "build": "npm run react-build && npm run electron-build",
     "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
@@ -48,8 +54,6 @@
     "concurrently": "^5.3.0",
     "electron": "^10.1.4",
     "electron-builder": "^22.9.1",
-    "electron-packager": "^15.1.0",
-    "typescript": "^4.0.3",
     "wait-on": "^5.2.0"
   }
 }
