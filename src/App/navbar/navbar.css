@@ -314,4 +314,9 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
       transform: scale(1);
     }
   }
+
+@media only screen and (max-width: 720px) {
+    .mobile-hide {display: none !important}
+    .mobile-maxWidth {flex: 100 0}
+}
   

@@ -102,7 +102,7 @@ const Navbar = () => {
             <AnimatePresence>
             {isOpen && (
             <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
-                <div className="menu-overlay-main">
+                <div className="menu-overlay-main mobile-maxWidth">
                     <nav className="main-nav">
                         <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
                             <NavLink to="/" exact activeClassName="current-page-item">
@@ -120,8 +120,8 @@ const Navbar = () => {
                         </motion.ul>
                     </nav>
                 </div>
-                <motion.span className="nav-seperator" variants = {navSeperator} initial="hidden" exit="exit"></motion.span>
-                <div className="nav-header">
+                <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"></motion.span>
+                <div className="nav-header mobile-hide">
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" exit="exit">
                         <img src={`media/default.png`} alt=""/>
                         <LoremIpsum p={1} avgWordsPerSentence={6} avgSentencesPerParagraph={4}/>
