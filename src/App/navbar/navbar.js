@@ -70,8 +70,9 @@ const navHeader = {
         opacity: 1,
         x: 0,
         transition: {
-            duration: 1,
-            ease: "circOut"
+            delay: 0.2,
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1]
         }
     },
     exit: {
