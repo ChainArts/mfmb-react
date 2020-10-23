@@ -1,8 +1,8 @@
 {
   "name": "mfmb-app",
   "author": "Maximilian Roll",
-  "build":{
-      "appId": "com.mfmb-app"
+  "build": {
+    "appId": "com.mfmb-app"
   },
   "version": "0.1.0",
   "private": true,
@@ -14,7 +14,7 @@
     "@testing-library/user-event": "^7.2.1",
     "cross-env": "^7.0.2",
     "electron-is-dev": "^1.2.0",
-    "framer-motion": "^2.9.3",
+    "framer-motion": "^2.9.4",
     "mysql": "^2.18.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

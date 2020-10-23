@@ -5,25 +5,22 @@
 
 import './App.css';
 import React from 'react';
-//import Titlebar from './titlebar/titlebar';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Content from './ContentGrid/content';
 import Navbar from './navbar/navbar';
-// eslint-disable-next-line
 import About from './about/about';
-// eslint-disable-next-line
-import Switch from 'react-router-dom';
 
 function App() {
     return (
         <div className="App">
-            <header>
-		        {/* <Titlebar></Titlebar>           For dev purposes*/}
-	        </header>
-            <Navbar></Navbar>
-            {/*<Switch>
-               <About></About>*/}
-                <Content></Content>
-            {/*</Switch>*/}  
+            <header/>
+            <Router>
+            <Navbar/>
+                <Switch>
+                    <Route exact path="/" component={Content}/>
+                    <Route path="/about" component={About}/>
+                </Switch>
+            </Router>  
             
 
         </div>
