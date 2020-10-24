@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { LoremIpsum } from "react-lorem-ipsum";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { companies } from "./data"; 
 
 export function Company({ id, backgroundColor }) {
@@ -17,7 +17,7 @@ export function Company({ id, backgroundColor }) {
         style={{ pointerEvents: "auto" }}
         className="overlay"
       >
-        <Link to="/"/>
+        <NavLink to="/" activeClassName="overlay-link"/>
       </motion.div>
     
       <div className="grid-container open">

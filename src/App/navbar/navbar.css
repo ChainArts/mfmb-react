@@ -160,7 +160,6 @@
     position: fixed;
     align-items: center;
     -webkit-box-align: center;
-    /*background: linear-gradient(-45deg, #fa4d4f 0%, #9a249c 53%, #4f0dcf 100%);*/
     background: #2a2d32;
     bottom:0;
     left:0;

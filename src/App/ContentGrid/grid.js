@@ -1,6 +1,6 @@
 import React from "react";
 import { companies } from "./data";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const gridwrapper = {
@@ -28,6 +28,7 @@ function Card({ id, name, backgroundColor, image}) {
 
   return (
     <motion.li className="grid-item" variants={griditem}>
+    <NavLink to={id} className={`card-open-link`}>
       <div className="grid-container">
         <div className="company-logo">
           <img src={image} alt=""/>
@@ -40,7 +41,7 @@ function Card({ id, name, backgroundColor, image}) {
             }
         </div>
       </div>
-	  <Link to={id} className={`card-open-link`} />
+      </NavLink>
     </motion.li>
   );
 }
