@@ -4,23 +4,24 @@ import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const gridwrapper = {
-    hidden: { opacity: 1},
+    hidden: {},
     visible: { 
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: 0.1,
-        delayChildren: 0.1,
-        staggerChildren: .12,
+        transition: {
+            delay: 0.1,
+            delayChildren: 0.05,
+            staggerChildren: .10,
       }
     }
   };
   
   const griditem = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 50, opacity: 0},
     visible: {
-      y: 0,
-      opacity: 1
+        y: 0,
+        opacity: 1,
+        transition: {
+            ease: [.14,.8,.4,1]
+        }
     }
   };
 

@@ -10,7 +10,7 @@ const navoverlay = {
     open: { 
       x: 0,
       transition: {
-        ease: "easeOut",
+        ease: [.14,.8,.4,1],
         duration: 0.5,
       }
     },
@@ -18,7 +18,7 @@ const navoverlay = {
         x: "-100vw",
         transition: {
             duration: 0.5,
-            ease: "easeOut",
+            ease: [.14,.8,.4,1]
         }
     }
   };
@@ -39,7 +39,7 @@ const navitem = {
         opacity:1,
         x: 0,
         transition: {
-            duration: 0.3,
+            duration: 0.3
         }
     }
 }
@@ -51,7 +51,7 @@ const navSeperator = {
         transition: {
             delay: 0.2,
             duration: 0.8,
-            ease: "circOut"
+            ease: [.14,.8,.4,1],
         }
     },
     exit: {
