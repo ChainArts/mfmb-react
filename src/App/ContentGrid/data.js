@@ -142,11 +142,6 @@ export const companies = [
         backgroundColor: "#232529",
         website: "https://www.osram-continental.com/"
     },
-
-
-
-
-
 ];
 
 export const openSpring = {type: "spring", stiffness: 200, damping: 30};

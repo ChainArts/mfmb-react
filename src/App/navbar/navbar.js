@@ -29,6 +29,7 @@ const navwrapper = {
         transition: {
             delayChildren: 0.1,
             staggerChildren: .1,
+            ease: [.14,.8,.4,1]
         },
     }
   };
@@ -39,8 +40,9 @@ const navitem = {
         opacity:1,
         x: 0,
         transition: {
-            duration: 0.3
-        }
+            duration: 0.3,
+            ease: [.14,.8,.4,1]
+        },
     }
 }
 
@@ -100,23 +102,23 @@ const Navbar = () => {
 				<div className="item"><IoIosArrowBack/></div>
 				<div className="item"><IoIosArrowForward/></div>
 			</div>
-            <AnimatePresence>
+            <AnimatePresence exitBeforeEnter>
             {isOpen && (
             <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
                 <div className="menu-overlay-main mobile-maxWidth">
                     <nav className="main-nav">
                         <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
                             <NavLink to="/" exact activeClassName="current-page-item">
-                                <motion.li variants={navitem} onClick={e => setIsOpen(!isOpen)}>Home</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Home</motion.li>
                             </NavLink>
                             <NavLink to="/" activeClassName="">
-                                <motion.li variants={navitem} onClick={e => setIsOpen(!isOpen)}>Auto-Mode</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Auto-Mode</motion.li>
                             </NavLink>
                             <NavLink to="/" activeClassName="">
-                                <motion.li variants={navitem} onClick={e => setIsOpen(!isOpen)}>Jobs</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Jobs</motion.li>
                             </NavLink>
                             <NavLink to="/about" activeClassName="current-page-item">
-                                <motion.li variants={navitem} onClick={e => setIsOpen(!isOpen)}>About</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>About</motion.li>
                             </NavLink>
                         </motion.ul>
                     </nav>

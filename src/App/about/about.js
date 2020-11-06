@@ -28,7 +28,7 @@ const about_container = {
 export const About = () => (
     <motion.ul  className = "about-container" variants = {about_container} initial = "hidden" animate = "visible">
         {[0, 1, 2, 3].map(index => (
-            <motion.li key={index} className = "about-item" variants = {item}/>
+            <motion.li key={index} className = {"about-item" + index} variants = {item}/>
         ))}
     </motion.ul>
 )

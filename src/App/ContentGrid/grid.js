@@ -10,25 +10,26 @@ const gridwrapper = {
             delay: 0.1,
             delayChildren: 0.05,
             staggerChildren: .10,
+            ease: [.14,.8,.4,1]
       }
     }
-  };
+};
   
-  const griditem = {
+const griditem = {
     hidden: { y: 50, opacity: 0},
     visible: {
         y: 0,
         opacity: 1,
         transition: {
             ease: [.14,.8,.4,1]
-        }
-    }
-  };
+        },
+    },
+};
 
 function Card({ id, name, backgroundColor, image}) {
 
   return (
-    <motion.li className="grid-item" variants={griditem}>
+    <motion.li className="grid-item" variants={griditem} whileTap={{scale: 0.95}}>
     <NavLink to={id} className={`card-open-link`}>
       <div className="grid-container">
         <div className="company-logo">

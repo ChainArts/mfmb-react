@@ -190,7 +190,7 @@ ul.menu-list{
 
 ul.menu-list li{
     margin-bottom: 4vh;
-    transition: transform .5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity .8s ease-out;
+    transition: transform .5s cubic-bezier(.14,.8,.4,1), opacity 1s cubic-bezier(.14,.8,.4,1);
     background: linear-gradient(120deg, #e20080 50%,#9a249c 100%);
     padding: 1rem;
     border-radius: 0.5rem;
@@ -214,8 +214,8 @@ ul.menu-list li::after, ul.menu-list a.current-page-item li::after{
     vertical-align: middle;
     height: 2px;
     background-color: #FFF;
-    transition: all 0.25s ease-in-out;
-    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.5s cubic-bezier(.14,.8,.4,1);
+    -webkit-transition: all 0.5s cubic-bezier(.14,.8,.4,1);
 }
 
 ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
@@ -318,4 +318,3 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
     .mobile-hide {display: none !important}
     .mobile-maxWidth {flex: 100 0}
 }
-  

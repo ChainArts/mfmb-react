@@ -13,12 +13,12 @@ function Companies({ match }) {
     const imageHasLoaded = true;
     
     return(
-      <>
+    <>
         <Grid selectedId={id} />
-        <AnimatePresence>
-          {id && imageHasLoaded && <Company id={id} key="item"/>}
-      </AnimatePresence>
-      </>
+        <AnimatePresence exitBeforeEnter>
+            {id && imageHasLoaded && <Company id={id} key="item"/>}
+        </AnimatePresence>
+    </>
     )
   }
 
