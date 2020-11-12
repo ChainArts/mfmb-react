@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import "./about.css";
 
-const about_container = {
+const aboutContainer = {
     hidden: { opacity: 0, scale: .1, y: 500},
     visible: {
       y: 0, 
@@ -26,7 +26,7 @@ const about_container = {
   };
 
 export const About = () => (
-    <motion.ul  className = "about-container" variants = {about_container} initial = "hidden" animate = "visible">
+    <motion.ul  className = "about-container" variants = {aboutContainer} initial = "hidden" animate = "visible">
         {[0, 1, 2, 3].map(index => (
             <motion.li key={index} className = {"about-item" + index} variants = {item}/>
         ))}

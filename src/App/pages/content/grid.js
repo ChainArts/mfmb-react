@@ -1,5 +1,5 @@
 import React from "react";
-import { companies } from "./data";
+import { companies } from "../../data";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 

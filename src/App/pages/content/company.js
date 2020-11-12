@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LoremIpsum } from "react-lorem-ipsum";
 import { NavLink } from "react-router-dom";
-import { companies } from "./data"; 
+import { companies } from "../../data"; 
 
 export function Company({ id, backgroundColor }) {
   const { name } = companies.find(item => item.id === id);

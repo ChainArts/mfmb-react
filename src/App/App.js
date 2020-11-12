@@ -6,9 +6,9 @@
 import './App.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Content from './ContentGrid/content';
+import Content from './pages/content/content';
 import Navbar from './navbar/navbar';
-import About from './about/about';
+import About from './pages/about/about';
 
 function App() {
     return (
