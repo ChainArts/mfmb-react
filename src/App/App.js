@@ -16,8 +16,8 @@ function App() {
             <header/>
             <Navbar/>
                 <Switch>
-                    <Route exact path="/" component={Content}/>
                     <Route path="/about" component={About}/>
+                    <Route exact path={["/:id", "/"]} component={Content}/>
                 </Switch>
         </div>
     );

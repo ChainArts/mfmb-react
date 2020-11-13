@@ -143,5 +143,3 @@ export const companies = [
         website: "https://www.osram-continental.com/"
     },
 ];
-
-export const openSpring = {type: "spring", stiffness: 200, damping: 30};
