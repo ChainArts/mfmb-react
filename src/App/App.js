@@ -9,6 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import Content from './pages/content/content';
 import Navbar from './navbar/navbar';
 import About from './pages/about/about';
+import Jobs from './pages/jobs/jobs';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
             <Navbar/>
                 <Switch>
                     <Route path="/about" component={About}/>
+                    <Route path="/jobs" component={Jobs}/>
                     <Route exact path={["/:id", "/"]} component={Content}/>
                 </Switch>
         </div>

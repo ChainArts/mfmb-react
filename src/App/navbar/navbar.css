@@ -187,6 +187,8 @@ ul.menu-list{
     margin: 0;
     color: #FFF;
     width: 26%;
+    max-width: 50%;
+    min-width: 26% !important;
 }
 
 ul.menu-list li{
@@ -315,7 +317,7 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
     }
   }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 1440px) {
     .mobile-hide {display: none !important}
     .mobile-maxWidth {flex: 100 0}
 }

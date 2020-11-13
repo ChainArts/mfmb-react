@@ -3,7 +3,7 @@ import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import { LoremIpsum } from "react-lorem-ipsum";
 import { NavLink } from "react-router-dom";
-import { companies } from "../../data"; 
+import { companies } from "../../data";
 
 export function Company({ id }) {
     const { name, image, backgroundColor, website } = companies.find(item => item.id === id);
@@ -37,6 +37,7 @@ export function Company({ id }) {
                     <span>React-Player</span>
                 </motion.div>
                 <motion.div className="company-qr-code" animate>
+                    <span style={{display: "block"}}>{website}</span>
                     <QRCode
                         id = {id}
                         value = {website}
@@ -48,7 +49,7 @@ export function Company({ id }) {
                 </motion.div>
                 </motion.div>
                 <LoremIpsum
-                    p={6}
+                    p={10}
                     avgWordsPerSentence={6}
                     avgSentencesPerParagraph={4}
                     />
