@@ -3,7 +3,7 @@ import { companies } from "../../data";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const gridwrapper = {
+const gridWrapper = {
     hidden: {},
     visible: { 
         transition: {
@@ -15,7 +15,7 @@ const gridwrapper = {
     }
 };
   
-const griditem = {
+const gridItem = {
     hidden: { y: 50, opacity: 0},
     visible: {
         y: 0,
@@ -29,7 +29,7 @@ const griditem = {
 function Card({ id, name, backgroundColor, image}) {
 
   return (
-    <motion.li className="grid-item" variants={griditem} whileTap={{scale: 0.95}}>
+    <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.95}}>
     <NavLink to={id} className={`card-open-link`}>
       <div className="grid-container">
         <div className="company-logo">
@@ -50,7 +50,7 @@ function Card({ id, name, backgroundColor, image}) {
 
 export function Grid({ selectedId }) {
   return (
-    <motion.ul className="grid" variants = {gridwrapper} initial = "hidden" animate = "visible">
+    <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
       {companies.map(card => (
         <Card key={card.id} {...card} isSelected={card.id === selectedId} />
       ))}

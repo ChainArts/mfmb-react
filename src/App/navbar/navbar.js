@@ -98,7 +98,7 @@ const Navbar = () => {
                 </div>
             </div>
 			<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.45s"}}>
-				<div className="item"><NavLink to="/" /><IoIosHome/></div>
+				<NavLink to="/" className="item"><IoIosHome/></NavLink>
 				<div className="item"><IoIosArrowBack/></div>
 				<div className="item"><IoIosArrowForward/></div>
 			</div>

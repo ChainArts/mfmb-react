@@ -16,6 +16,7 @@
     "electron-is-dev": "^1.2.0",
     "framer-motion": "^2.9.4",
     "mysql": "^2.18.1",
+    "qrcode.react": "^1.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-icons": "^3.11.0",

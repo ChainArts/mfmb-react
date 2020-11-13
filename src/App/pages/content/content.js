@@ -6,7 +6,7 @@ import "./content.css";
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import { Company } from "./company";
 import { Grid } from "./grid";
-import { Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 function Companies({ match }) {
     let { id } = match.params;
@@ -16,7 +16,7 @@ function Companies({ match }) {
     <>
         <Grid selectedId={id} />
         <AnimatePresence exitBeforeEnter>
-            {id && imageHasLoaded && <Company id={id} key="item"/>}
+            {id && imageHasLoaded && <Company id={id} key="company"/>}
         </AnimatePresence>
     </>
     )
@@ -26,7 +26,9 @@ export default function Content() {
     return(    
         <AnimateSharedLayout type="crossfade">
             <SimpleBar className="content-wrapper" autoHide={false} scrollbarMaxSize={250} style={{maxHeight: '100%'}}>
-                <Route path={["/:id", "/"]} component={Companies}/>
+                <Router>
+                    <Route path={["/:id", "/"]} component={Companies}/>
+                </Router>
             </SimpleBar>
         </AnimateSharedLayout>
     );
