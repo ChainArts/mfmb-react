@@ -5,7 +5,7 @@
 
 import React from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
@@ -21,10 +21,14 @@ function Companies({ match }) {
     
     return(
     <>
-        <Grid selectedId={id} />
-        <AnimatePresence exitBeforeEnter>
-            {id && imageHasLoaded && <Company id={id} key="company"/>}
-        </AnimatePresence>
+        <AnimateSharedLayout type="crossfade">
+            <SimpleBar className="content-wrapper" autoHide={false} scrollbarMaxSize={300}>
+                <Grid selectedId={id} />
+                <AnimatePresence exitBeforeEnter>
+                    {id && imageHasLoaded && <Company id={id} key="company"/>}
+                </AnimatePresence>
+            </SimpleBar>
+        </AnimateSharedLayout>
     </>
     )
   }
@@ -36,13 +40,9 @@ function App() {
             <header/>
             <Navbar/>
                 <Switch>
+                    <Route exact path={["/companies/:id", "/"]} component={Companies}/>
                     <Route path="/about" component={About}/>
                     <Route path="/jobs" component={Jobs}/>
-                    <AnimateSharedLayout type="crossfade">
-                        <SimpleBar className="content-wrapper" autoHide={false} scrollbarMaxSize={300}>
-                            <Route path={["/:id", "/"]} component={Companies}/>
-                        </SimpleBar>
-                    </AnimateSharedLayout>
                 </Switch>
         </div>
     );

@@ -30,7 +30,7 @@ function Card({ id, name, backgroundColor, image}) {
 
   return (
     <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.95}}>
-    <NavLink to={id} className={`card-open-link`}>
+    <NavLink to={"companies/"+id} className={`card-open-link`}>
       <div className="grid-container">
         <div className="company-logo">
           <img src={image} alt=""/>

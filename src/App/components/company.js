@@ -21,9 +21,9 @@ export function Company({ id }) {
     
     
     <div className="grid-container open">
-        <motion.div className="company-content" layoutId= {`company-container-${id}`}>
+        <motion.div className="company-content" layoutId={`company-container-${id}`}>
             <div className="company-logo">
-                <img src={image} alt=""/>
+                <img src={"../"+image} alt=""/>
             </div>
             <div className="company-name" style={{backgroundColor: backgroundColor}}>
                 {(backgroundColor < '#AAAAAA') ?
