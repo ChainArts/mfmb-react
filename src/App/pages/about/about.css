@@ -15,7 +15,6 @@ body{
     grid-template-areas:
     "about-item0 about-item1 about-item2"
     "about-item3 about-item3 about-item3";
-    ;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 15px;

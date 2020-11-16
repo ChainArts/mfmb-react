@@ -5,6 +5,7 @@ export const companies = [
         name: "Osram Continental",
         backgroundColor: "#FFFFFF",
         website: "https://www.osram-continental.com/",
+        videolink: "video/osram.mp4",
     },
 
     {

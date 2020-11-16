@@ -24,24 +24,29 @@ const gridItem = {
             ease: [.14,.8,.4,1]
         },
     },
-};
+    exit: {
+        y: -50, opacity: 0},
+        transition: {
+            ease: [.14,.8,.4,1]
+        },
+    }
 
 function Card({ id, name, backgroundColor, image}) {
 
   return (
-    <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.95}}>
+    <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} exit="exit" >
     <NavLink to={"companies/"+id} className={`card-open-link`}>
       <div className="grid-container">
-        <div className="company-logo">
+        <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
           <img src={image} alt=""/>
-        </div>
-        <div className="company-name" style={{backgroundColor: backgroundColor}}>
+        </motion.div>
+        <motion.div className="company-name" style={{backgroundColor: backgroundColor}} layoutId={`company-name-${id}`}>
             {(backgroundColor < '#AAAAAA') ?
               (<span style={{color:  '#efefef'}}>{name}</span>)
               :
               (<span style={{color: '#2a2a2a'}}>{name}</span>)
             }
-        </div>
+        </motion.div>
       </div>
       </NavLink>
     </motion.li>
