@@ -25,16 +25,16 @@ const overlayBackdrop = {
 };
 
 const overlayShadow = {
-    hidden: {boxShadow: "none"},
-    visible: { boxShadow: "0px 2px 11px #111",
+    hidden: {boxShadow: "0px 0px 0px #111", scale: 1.05},
+    visible: { boxShadow: "0px 2px 11px #111", scale: 1,
         transition: {
-            duration: 0.2, delay: 0.5
+            duration: 0.4, delay: 0.2
         }
     },
     exit:{
-        boxShadow: "none",
+        boxShadow: "0px 0px 0px #111",
         transition: {
-            duration: 0.7, delay: 0, ease: [.14,.8,.4,1]
+            duration: 0.05, delay: 0, ease: [.14,.8,.4,1]
         }
     }
 };
@@ -136,11 +136,16 @@ export function Company({ id }) {
             />
         </motion.div>
         <motion.div className="content-container grid-item" variants={iframeCont} initial="hidden" animate="visible" exit="exit">
+            <div className="content-left">
             <SimpleBar className="iframe-content" scrollbarMaxSize={150}>
                 <div className="iframe-container">
-                <span>IFrame-Content</span>
+                    <span>IFrame Content</span>
                 </div>
             </SimpleBar>
+            </div>
+            <div className="content-right">
+
+            </div>
         </motion.div>
         </motion.div>
     </motion.div>

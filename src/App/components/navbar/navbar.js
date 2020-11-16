@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './navbar.css';
 import {IoIosArrowBack, IoIosHome, IoIosArrowForward} from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory} from "react-router-dom";
 import { motion, AnimatePresence} from 'framer-motion';
 import { LoremIpsum } from 'react-lorem-ipsum';
 
@@ -87,6 +87,7 @@ const navHeader = {
 }
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const history = useHistory();
 
     return(
         <div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
@@ -99,8 +100,8 @@ const Navbar = () => {
             </div>
 			<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.45s"}}>
 				<NavLink to="/" className="item"><IoIosHome/></NavLink>
-				<div className="item"><IoIosArrowBack/></div>
-				<div className="item"><IoIosArrowForward/></div>
+				<div className="item" onClick={()=> history.goBack()}><IoIosArrowBack/></div>
+				<div className="item" onClick={()=> history.goForward()}><IoIosArrowForward/></div>
 			</div>
             <AnimatePresence exitBeforeEnter>
             {isOpen && (
