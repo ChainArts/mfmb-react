@@ -3,24 +3,109 @@ import QRCode from 'qrcode.react';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { motion } from "framer-motion";
-import { LoremIpsum } from "react-lorem-ipsum";
 import { NavLink } from "react-router-dom";
 import { companies } from "../data";
+
+const overlayBackdrop = {
+    hidden: {scaleX: 0, originX: 0},
+    visible: {scaleX: 1,
+        transition: {
+            duration: 0.8, ease: [.14,.8,.4,1]
+        },
+        transitionEnd: {
+            originY: 1
+        }
+    },
+    exit:{
+        scaleY: 0,
+        transition: {
+            duration: 0.7, delay: 0, ease: [.14,.8,.4,1]
+        }
+    }
+};
+
+const overlayShadow = {
+    hidden: {boxShadow: "none"},
+    visible: { boxShadow: "0px 2px 11px #111",
+        transition: {
+            duration: 0.2, delay: 0.5
+        }
+    },
+    exit:{
+        boxShadow: "none",
+        transition: {
+            duration: 0.7, delay: 0, ease: [.14,.8,.4,1]
+        }
+    }
+};
+
+const reactPlayer = {
+    hidden: {x: "-37rem", opacity: 0, scale: 0},
+    visible: { x:0, opacity:1, scale: 1,
+        transition: {
+            duration: 0.5, delay: 0.15, ease: [.14,.8,.4,1]
+        },
+        transitionEnd: {
+            originY: 1
+        }
+    },
+    exit:{
+        y: "30rem", opacity: 0, scaleY: 0,
+        transition: {
+            duration: 0.3, ease: [.14,.8,.4,1]
+        }
+    }
+};
+
+const qrCode = {
+    hidden: {x: "-37rem", opacity: 0, scale: 0.5},
+    visible: { x:0, opacity:1, scale: 1,
+        transition: {
+            duration: 0.5, delay: 0.25, ease: [.14,.8,.4,1]
+        },
+        transitionEnd: {
+            originY: 1
+        }
+    },
+    exit:{
+        y: "30rem", opacity: 0, scaleY: 0,
+        transition: {
+            duration: 0.3, ease: [.14,.8,.4,1]
+        }
+    }
+};
+
+const iframeCont = {
+    hidden: {scale: 0, y: -100},
+    visible: { scale: 1, y: 0,
+        transition: {
+            duration: 0.6, delay: 0.3, ease: [.14,.8,.4,1]
+        },
+        transitionEnd:{
+            originY: 1
+        }
+    },
+    exit:{
+        scaleY: 0,
+        transition: {
+            duration: 0.5, delay: 0.05, ease: [.14,.8,.4,1]
+        },
+    }
+};
+
 
 export function Company({ id }) {
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
   return (
     <>
     <motion.div
-        initial={{ opacity: 0}}
-        animate={{ opacity: 1}}
-        exit={{ opacity: 0, transition: { duration: 0.2, ease: [.14,.8,.4,1]} }}
-        transition={{duration: 0.2, ease: [.14,.8,.4,1]}}
         className="overlay"
     >
-    <div className="grid-container open">
+    <motion.div className="grid-container open">
+    <motion.div className="overlay-backdrop" variants={overlayBackdrop} initial="hidden" animate="visible" exit="exit"/>
     <motion.div className="company-content" layoutId={`company-container-${id}`}>
-        <motion.div className="company">
+    <NavLink to="/" className="card-open-link">
+        <motion.div className="company" variants={overlayShadow} initial="hidden" animate="visible" exit="exit">
             <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
                 <img src={"../"+image} alt=""/>
             </motion.div>
@@ -32,34 +117,33 @@ export function Company({ id }) {
                 }
             </motion.div>
         </motion.div>
-        <motion.div className="react-player grid-item" animate>
+        </NavLink>
+        <motion.div className="react-player grid-item" variants={reactPlayer} initial="hidden" animate="visible" exit="exit">
             <video height="100%" width="100%" controls loop autoPlay muted>
                 <source src={"../"+videolink}/>
 
             </video>
         </motion.div>
-        <motion.div className="company-qr-code grid-item" animate>
+        <motion.div className="company-qr-code grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
             <span style={{display: "block"}}>{website}</span>
             <QRCode
                 id = {id}
                 value = {website}
-                bgColor="#2a2b32"
+                bgColor="#3b3e43"
                 fgColor="#eeeeee"
                 size={200}
                 includeMargin={true}
             />
         </motion.div>
-        <motion.div className="content-container grid-item" animate>
-            <SimpleBar className="insert-content" scrollbarMaxSize={150}>
-            <LoremIpsum
-                p={10}
-                avgWordsPerSentence={6}
-                avgSentencesPerParagraph={4}
-            />
+        <motion.div className="content-container grid-item" variants={iframeCont} initial="hidden" animate="visible" exit="exit">
+            <SimpleBar className="iframe-content" scrollbarMaxSize={150}>
+                <div className="iframe-container">
+                <span>IFrame-Content</span>
+                </div>
             </SimpleBar>
         </motion.div>
         </motion.div>
-    </div>
+    </motion.div>
     </motion.div>
     </>
   );
