@@ -96,7 +96,7 @@ header{
     "company react-player qr-code"
     "content-container content-container content-container";
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-    grid-template-rows: 21rem 42.3rem;
+    grid-template-rows: 20rem 43.3rem;
     grid-gap: 1.1rem 2.5rem;
     height: auto;
     max-width: calc(100% - 5rem);
