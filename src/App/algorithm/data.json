@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Osram Continental",
+    "geld": 1000,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 10,
+    "displaytime": 50,
+    "countedtime": 70
+  },
+  {
+    "id": 2,
+    "name": "Siemens",
+    "geld": 2000,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 20,
+    "displaytime": 100,
+    "countedtime": 70
+  },
+  {
+    "id": 3,
+    "name": "SMC Pneumatics",
+    "geld": 750,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 30,
+    "displaytime": 60,
+    "countedtime": 114
+  },
+  {
+    "id": 4,
+    "name": "EATON",
+    "geld": 450,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 5,
+    "displaytime": 20,
+    "countedtime": 64
+  },
+  {
+    "id": 5,
+    "name": "Loxone",
+    "geld": 1500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 15,
+    "displaytime": 75,
+    "countedtime": 70
+  },
+  {
+    "id": 6,
+    "name": "EVN",
+    "geld": 1200,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 20,
+    "displaytime": 60,
+    "countedtime": 72
+  },
+  {
+    "id": 7,
+    "name": "Frischeis",
+    "geld": 800,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 25,
+    "displaytime": 50,
+    "countedtime": 90
+  },
+  {
+    "id": 8,
+    "name": "Abstergo",
+    "geld": 1800,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 17,
+    "displaytime": 85,
+    "countedtime": 70
+  },
+  {
+    "id": 9,
+    "name": "Altium",
+    "geld": 2500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 13,
+    "displaytime": 130,
+    "countedtime": 70
+  },
+  {
+    "id": 10,
+    "name": "B&R Automation",
+    "geld": 1500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 10,
+    "displaytime": 70,
+    "countedtime": 70
+  },
+  {
+    "id": 11,
+    "name": "Philips",
+    "geld": 600,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 9,
+    "displaytime": 36,
+    "countedtime": 84
+  },
+  {
+    "id": 12,
+    "name": "Pollmann International",
+    "geld": 200,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 22,
+    "displaytime": 22,
+    "countedtime": 157
+  }
+]
