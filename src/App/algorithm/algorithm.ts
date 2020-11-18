@@ -1,5 +1,4 @@
     var fs = require('fs');
-
     var data = fs.readFileSync('data.json');
     var companies = [];
     companies = JSON.parse(data);
@@ -15,7 +14,6 @@
     }
 
     function weight(money,sum) {
-        var i = 0;
         return (money/sum)*10;
     }
 
@@ -27,10 +25,10 @@
     while(rep <53){
     
         selection = [];
-        //create selection of companies with samllest and same dispalytime
-        companies.sort((a, b) => a.displaytime - b.displaytime);
+        //create selection of companies with samllest and same countedtime
+        companies.sort((a, b) => a.countedtime - b.countedtime);
         for(i=0; i<companies.length; i++){
-            if(companies[0].displaytime == companies[i].displaytime){
+            if(companies[0].countedtime == companies[i].countedtime){
                 selection[i]=companies[i].id;
             }
         }
@@ -47,27 +45,28 @@
         }
         if(selection.length == 0){
             selection = [];
-            companies.sort((a, b) => a.displaytime - b.displaytime);
+            companies.sort((a, b) => a.countedtime - b.countedtime);
             for(i=1; i<companies.length; i++){
-                if(companies[1].displaytime == companies[i].displaytime){
+                if(companies[1].countedtime == companies[i].countedtime){
                     selection[i-1]=companies[i].id;
                 }
             }
             companies.sort((a, b) => a.id - b.id);
         }
         id= selection[Math.floor(Math.random() * selection.length)];
-        companies[id-1].displaytime += Math.round(companies[id-1].playtime/weight(companies[id-1].geld,companies.map(a => a.geld).reduce(sum)));
+        companies[id-1].countedtime += Math.round(companies[id-1].playtime/weight(companies[id-1].geld,companies.map(a => a.geld).reduce(sum)));
+        companies[id-1].displaytime += companies[id-1].playtime;
         prev_id = id;
         rep++;
         //console.log(id);
-        await delay(2000);
+        await delay(1000);
         data = JSON.stringify(companies, null, 2);
         fs.writeFile('data.json', data, finished);
         function finished(err){
             console.log('Data written');
     }
     
-            console.log(companies.map(a => a.displaytime));
+            console.log(companies.map(a => a.countedtime));
             //console.log(selection);
             //console.log(companies); 
             // console.log(update);

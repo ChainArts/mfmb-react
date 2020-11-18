@@ -4,7 +4,7 @@
     var playtime = [10, 20, 30, 5, 15, 20, 25, 17, 13, 10, 9, 22];
     var d = new Date(2020, 8, 25, 9, 5, 30, 0);
     var companies = [];
-    function Company(id, name, geld, update, playtime) {
+    function Company(id, name, geld, update, playtime, displaytime, countedtime) {
         this.id = id;
         this.name = name;
         this.geld = geld;
@@ -12,6 +12,7 @@
         this.actuality = d.getTime() - this.update;
         this.playtime = playtime;
         this.displaytime = 0;
+        this.countedtime = 0;
     }
     
     var con = mysql.createConnection({
@@ -34,7 +35,7 @@
                 var i = 0;
                 
                 result.forEach(function (company) {
-                    companies [i] = new Company(company.id,company.name,company.geld,company.update,playtime[i]);
+                    companies [i] = new Company(company.id,company.name,company.geld,company.update,company.playtime,company.displaytime,company.countedtime);
                     i++;
                 });
                 var data = JSON.stringify(companies, null, 2);

@@ -48,7 +48,6 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function weight(money, sum) {
-    var i = 0;
     return (money / sum) * 10;
 }
 function delay(ms) {
@@ -63,10 +62,10 @@ function delay(ms) {
             case 0:
                 if (!(rep < 53)) return [3 /*break*/, 2];
                 selection = [];
-                //create selection of companies with samllest and same dispalytime
-                companies.sort(function (a, b) { return a.displaytime - b.displaytime; });
+                //create selection of companies with samllest and same countedtime
+                companies.sort(function (a, b) { return a.countedtime - b.countedtime; });
                 for (i = 0; i < companies.length; i++) {
-                    if (companies[0].displaytime == companies[i].displaytime) {
+                    if (companies[0].countedtime == companies[i].countedtime) {
                         selection[i] = companies[i].id;
                     }
                 }
@@ -81,26 +80,27 @@ function delay(ms) {
                 }
                 if (selection.length == 0) {
                     selection = [];
-                    companies.sort(function (a, b) { return a.displaytime - b.displaytime; });
+                    companies.sort(function (a, b) { return a.countedtime - b.countedtime; });
                     for (i = 1; i < companies.length; i++) {
-                        if (companies[1].displaytime == companies[i].displaytime) {
+                        if (companies[1].countedtime == companies[i].countedtime) {
                             selection[i - 1] = companies[i].id;
                         }
                     }
                     companies.sort(function (a, b) { return a.id - b.id; });
                 }
                 id = selection[Math.floor(Math.random() * selection.length)];
-                companies[id - 1].displaytime += Math.round(companies[id - 1].playtime / weight(companies[id - 1].geld, companies.map(function (a) { return a.geld; }).reduce(sum)));
+                companies[id - 1].countedtime += Math.round(companies[id - 1].playtime / weight(companies[id - 1].geld, companies.map(function (a) { return a.geld; }).reduce(sum)));
+                companies[id - 1].displaytime += companies[id - 1].playtime;
                 prev_id = id;
                 rep++;
                 //console.log(id);
-                return [4 /*yield*/, delay(2000)];
+                return [4 /*yield*/, delay(1000)];
             case 1:
                 //console.log(id);
                 _a.sent();
                 data = JSON.stringify(companies, null, 2);
                 fs.writeFile('data.json', data, finished);
-                console.log(companies.map(function (a) { return a.displaytime; }));
+                console.log(companies.map(function (a) { return a.countedtime; }));
                 return [3 /*break*/, 0];
             case 2: return [2 /*return*/];
         }
