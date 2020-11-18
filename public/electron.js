@@ -6,46 +6,56 @@ const isDev = require("electron-is-dev");
 const ipcMain = require("electron").ipcMain;
 
 function newApp() {
-  let win = null;
-  let loading = new BrowserWindow({
+    let win = null;
+    let loading = new BrowserWindow({
     icon: './public/icons/ms-icon-150x150.png',
     show: false,
     frame: false,
     resizable: false,
     height: 480, width: 360, 
     webPreferences:{
-	  worldSafeExecuteJavaScript: true,
-      contextIsolation: true
-    }
-  })
-
-  loading.once('show', () =>{
-    win = new BrowserWindow({
-      icon: './public/icons/ms-icon-150x150.png',
-      backgroundColor: '#2a2b32',
-      show: false,
-      frame: false,
-      minHeight: 480, minWidth: 720,
-      height: 720, width: 1280,
-      webPreferences: {
-        nodeIntegration: true,
-        enableRemoteModule: true,
-		worldSafeExecuteJavaScript: true,
+	    worldSafeExecuteJavaScript: true,
         contextIsolation: true
-      } 
+    }
     })
+
+    let graph = new BrowserWindow({
+        icon: './public/icons/ms-icon-150x150.png',
+        show: false,
+        height: 720, width: 1280,
+        webPreferences:{
+            worldSafeExecuteJavaScript: true,
+            contextIsolation: true
+        }
+    })
+
+    loading.once('show', () =>{
+        win = new BrowserWindow({
+            icon: './public/icons/ms-icon-150x150.png',
+            backgroundColor: '#2a2b32',
+            show: false,
+            frame: false,
+            minHeight: 480, minWidth: 720,
+            height: 720, width: 1280,
+            webPreferences: {
+                nodeIntegration: true,
+                enableRemoteModule: true,
+		        worldSafeExecuteJavaScript: true,
+                contextIsolation: true
+            } 
+        })
     win.once('ready-to-show', () => {
-      win.maximize()
-      win.show()
-      win.focus()
-      loading.hide()
-      loading.close()
+        win.maximize()
+        win.show()
+        win.focus()
+        loading.hide()
+        loading.close()
     })
     win.loadURL(
-        isDev ? "http://localhost:3000" : 'file://${path.join(__dirname, "../build/index.html")}'
-      )
-  })
-  loading.loadURL(
+            isDev ? "http://localhost:3000" : 'file://${path.join(__dirname, "../build/index.html")}'
+        )
+    })
+    loading.loadURL(
     url.format({
       pathname: "src/Loading/loading.html",
       slashes: true
@@ -54,6 +64,17 @@ function newApp() {
       loading.show()
       loading.focus()
     })
+
+    graph.loadURL(
+        url.format({
+          pathname: "src/algorithm/chart.js",
+          slashes: true
+        }))
+        graph.once('ready-to-show', () => {
+          graph.show()
+          graph.focus()
+        })
+
 
   globalShortcut.register('f5', function() {
 		console.log('Refresh')
@@ -74,6 +95,7 @@ function newApp() {
       console.log('max')
     }
   })
+
 
   ipcMain.handle('minimize-event', () => {
     win.minimize()
