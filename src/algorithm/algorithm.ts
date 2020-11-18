@@ -1,3 +1,4 @@
+    export {}
     var fs = require('fs');
     var data = fs.readFileSync('data.json');
     var companies = [];
@@ -19,6 +20,10 @@
 
     function delay(ms: number) {
         return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+
+    function finished(err){
+        console.log('Data written');
     }
 
     (async () =>{
@@ -62,9 +67,8 @@
         await delay(1000);
         data = JSON.stringify(companies, null, 2);
         fs.writeFile('data.json', data, finished);
-        function finished(err){
-            console.log('Data written');
-    }
+        finished(finished);
+        
     
             console.log(companies.map(a => a.countedtime));
             //console.log(selection);
@@ -76,7 +80,7 @@
 
             }
         })();
-
+    
 
 
 
