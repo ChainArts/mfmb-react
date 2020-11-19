@@ -19,16 +19,6 @@ function newApp() {
     }
     })
 
-    let graph = new BrowserWindow({
-        icon: './public/icons/ms-icon-150x150.png',
-        show: false,
-        height: 720, width: 1280,
-        webPreferences:{
-            worldSafeExecuteJavaScript: true,
-            contextIsolation: true
-        }
-    })
-
     loading.once('show', () =>{
         win = new BrowserWindow({
             icon: './public/icons/ms-icon-150x150.png',
@@ -65,21 +55,18 @@ function newApp() {
       loading.focus()
     })
 
-    graph.loadURL(
-        url.format({
-          pathname: "src/algorithm/chart.js",
-          slashes: true
-        }))
-        graph.once('ready-to-show', () => {
-          graph.show()
-          graph.focus()
-        })
-
 
   globalShortcut.register('f5', function() {
 		console.log('Refresh')
 		win.reload()
   });
+
+  globalShortcut.register('CommandOrControl+f5', function() {
+      console.log('Cleared Cache')
+      win.webContents.session.clearCache();
+      win.reload()
+  })
+
   globalShortcut.register('CommandOrControl+R', function() {
 		console.log('Opened Console')
     win.webContents.openDevTools()

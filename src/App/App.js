@@ -14,6 +14,7 @@ import { Grid } from "./components/grid";
 import Navbar from './components/navbar/navbar';
 import About from './pages/about/about';
 import Jobs from './pages/jobs/jobs';
+import AutoMode from './pages/autoMode/autoMode';
 
 function Companies({ match }) {
     let { id } = match.params;
@@ -41,6 +42,7 @@ function App() {
             <Navbar/>
                 <Switch>
                     <Route exact path={["/companies/:id", "/"]} component={Companies}/>
+                    <Route path="/automode" component={AutoMode}/>
                     <Route path="/about" component={About}/>
                     <Route path="/jobs" component={Jobs}/>
                 </Switch>
