@@ -4,10 +4,10 @@ chartit();
 async function chartit() {
 const data = await getData();
 const ctx = document.getElementById('chart').getContext('2d');
-var gradientStroke1 = ctx.createLinearGradient(500, 0, 100, 0);
-gradientStroke1.addColorStop(0, "#dedede");
-gradientStroke1.addColorStop(1, "#999999");
-var gradientStroke2 = ctx.createLinearGradient(500, 0, 100, 0);
+var gradientStroke1 = ctx.createLinearGradient(1000, 0, 100, 0);
+gradientStroke1.addColorStop(0.5, "#e20080");
+gradientStroke1.addColorStop(1, "#9a249c");
+var gradientStroke2 = ctx.createLinearGradient(1000, 0, 100, 0);
 gradientStroke2.addColorStop(0, "#8c8c8c");
 gradientStroke2.addColorStop(1, "#525252");
 const myChart = new Chart(ctx, {
@@ -16,34 +16,46 @@ const myChart = new Chart(ctx, {
         datasets: [
         {
             label: 'Counted Time',
+            maxBarThickness: 8,
             data: data.ys,
             backgroundColor: gradientStroke1,
+            padding: {top: 0, bottom: 0},
+            borderRadius: 1,
         },
         {
             label: 'Displayed Time',
+            maxBarThickness: 8,
             data: data.ys_2,
             backgroundColor: gradientStroke2,
+            padding: {top: 0, bottom:0},
         }
     ],
     labels: data.xs
     },
     options: {
-        scales: {
+        scales: { 
             xAxes: [{
                 ticks: {
                     beginAtZero: true,
                     fontFamily: 'Poppins',
                     fontSize: 18,
-                    fontColor: 'white'
-                }
-                
+                    fontColor: '#eee',
+                },
+                gridLines:{
+                    color: '#ddd'
+                    
+                } 
             }],
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
                     fontFamily: 'Poppins',
                     fontSize: 18,
-                    fontColor: 'white'
+                    fontColor: '#eee',
+                    
+                },
+                gridLines:{
+                    display: false
                 }
                 
             }]
@@ -52,9 +64,9 @@ const myChart = new Chart(ctx, {
             labels: {
                 fontFamily: 'Poppins',
                 fontSize: 18,
-                fontColor: 'white'
+                fontColor: '#eee'
             }
-        }
+        },
     }
 });
 }
