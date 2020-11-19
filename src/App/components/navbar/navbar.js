@@ -112,7 +112,7 @@ const Navbar = () => {
                             <NavLink to="/" exact activeClassName="current-page-item">
                                 <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Home</motion.li>
                             </NavLink>
-                            <NavLink to="/" activeClassName="">
+                            <NavLink to="/automode" activeClassName="current-page-item">
                                 <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Auto-Mode</motion.li>
                             </NavLink>
                             <NavLink to="/jobs" activeClassName="current-page-item">
