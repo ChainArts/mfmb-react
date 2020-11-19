@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import { companies } from "../data";
 
 const overlayBackdrop = {
-    hidden: {scaleX: 0, originX: 0},
+    hidden: {scaleX: 0, originX: 0, borderRadius: 10},
     visible: {scaleX: 1,
         transition: {
             duration: 0.8, ease: [.14,.8,.4,1]
@@ -18,8 +18,9 @@ const overlayBackdrop = {
     },
     exit:{
         scaleY: 0,
+        y: 100,
         transition: {
-            duration: 0.7, delay: 0, ease: [.14,.8,.4,1]
+            duration: 0.6, delay: 0, ease: [.14,.8,.4,1]
         }
     }
 };
@@ -61,7 +62,7 @@ const qrCode = {
     hidden: {x: "-37rem", opacity: 0, scale: 0.5},
     visible: { x:0, opacity:1, scale: 1,
         transition: {
-            duration: 0.5, delay: 0.25, ease: [.14,.8,.4,1]
+            duration: 0.5, delay: 0.3, ease: [.14,.8,.4,1]
         },
         transitionEnd: {
             originY: 1
@@ -75,20 +76,35 @@ const qrCode = {
     }
 };
 
-const iframeCont = {
-    hidden: {scale: 0, y: -100},
-    visible: { scale: 1, y: 0,
+const gridSeperator ={
+    hidden: {scaleX: 0},
+    visible: {scaleX: 0.9,
         transition: {
-            duration: 0.6, delay: 0.3, ease: [.14,.8,.4,1]
+            duration: 0.5, delay: 0.5, ease: [.14,.8,.4,1]
+        }
+    },
+    exit:{
+        scaleX: 0,
+        transition: {
+            duration: 0.2, ease: [.14,.8,.4,1]
+        }
+    }
+}
+
+const iframeCont = {
+    hidden: {scaleX: 0.32, scaleY: 0, y: -100,  borderRadius: 10, originX: 0, originY: 0},
+    visible: {y: 0, scaleY: 1, scaleX: 1,
+        transition: {
+            duration: 0.6, delay: 0.2, ease: [.14,.8,.4,1],
         },
         transitionEnd:{
             originY: 1
         }
     },
     exit:{
-        scaleY: 0,
+        scaleY: 0, y: 100,
         transition: {
-            duration: 0.5, delay: 0.05, ease: [.14,.8,.4,1]
+            duration: 0.3, delay: 0.05, ease: [.14,.8,.4,1]
         },
     }
 };
@@ -96,7 +112,12 @@ const iframeCont = {
 
 export function Company({ id }) {
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
-  return (
+    var accentColor = backgroundColor;
+    if(backgroundColor === "#232529")
+    {
+        accentColor = "#e20080";   
+    }
+    return (
     <>
     <motion.div
         className="overlay"
@@ -135,14 +156,15 @@ export function Company({ id }) {
                 includeMargin={true}
             />
         </motion.div>
-        <motion.div className="content-container grid-item" variants={iframeCont} initial="hidden" animate="visible" exit="exit">
-            <div className="content-left">
+        <motion.div className="grid-seperator" style={{backgroundColor: accentColor}} variants={gridSeperator} initial="hidden" animate="visible" exit="exit"/>
+        <motion.div className="content-container grid-item" layout variants={iframeCont} initial="hidden" animate="visible" exit="exit">
+            <motion.div className="content-left" layout initial={{minWidth: "100%"}}>
             <SimpleBar className="iframe-content" scrollbarMaxSize={150}>
                 <div className="iframe-container">
                     <span>IFrame Content</span>
                 </div>
             </SimpleBar>
-            </div>
+            </motion.div>
             <div className="content-right">
 
             </div>
