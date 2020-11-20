@@ -1,3 +1,8 @@
+.react-icons{
+    vertical-align: middle;
+    margin-bottom: 4px;
+}
+
 .nav-bar-main{
     display: flex;
     flex: 5rem;
@@ -186,9 +191,9 @@ nav.main-nav{
 ul.menu-list{
     margin: 0;
     color: #FFF;
-    width: 26%;
+    width: 30%;
     max-width: 50%;
-    min-width: 26% !important;
+    min-width: 18rem !important;
 }
 
 ul.menu-list li{
@@ -243,14 +248,26 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
 }
 
 .nav-header-content img{
-    width: 75%;
-    height: 75%;
-    display: inline-block;
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
 }
 
 .nav-header-content{
     display: inline-block;
-    width: 26%;
+    min-width: 30%;
+    max-width: 50%;
+}
+
+.nav-header-content span{
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2rem;
+    display: block; 
+    text-align: center;
 }
   @keyframes top {
     0% {

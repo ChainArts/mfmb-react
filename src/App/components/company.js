@@ -109,6 +109,31 @@ const iframeCont = {
     }
 };
 
+const exitIcoCont = {
+    hidden: {scale: 0},
+    visible: {scale: 1,
+        transition: {
+            duration: 0.2, delay: 0.3, ease: [.14,.8,.4,1],
+        }
+    },
+    exit:{
+        scale: 0,
+        transition: {
+            duration: 0.15, ease: [.14,.8,.4,1]
+        }
+    }
+};
+
+const exitIcoDash = {
+    hidden: {scale: 0},
+    visible: {scale: 1},
+    exit:{
+        scale: 0,
+        transition: {
+            duration: 0.15, ease: [.14,.8,.4,1]
+        }
+    }
+};
 
 export function Company({ id }) {
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
@@ -127,6 +152,12 @@ export function Company({ id }) {
     <motion.div className="company-content" layoutId={`company-container-${id}`}>
     <NavLink to="/" className="card-open-link">
         <motion.div className="company" variants={overlayShadow} initial="hidden" animate="visible" exit="exit">
+            <motion.div className="close-ico-wrap" variants={exitIcoCont} initial="hidden" animate="visible" exit="exit">
+                <motion.div className="close-ico" initial={{scale: 1}}>
+                    <motion.div className="dash" style={{rotateZ: "-45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.6, duration: 0.4, ease:[.14,.8,.4,1]}}></motion.div>
+                    <motion.div className="dash" style={{rotateZ: "45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.65, duration: 0.4, ease:[.14,.8,.4,1]}}></motion.div>
+                </motion.div>
+            </motion.div>
             <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
                 <img src={"../"+image} alt=""/>
             </motion.div>
@@ -140,9 +171,8 @@ export function Company({ id }) {
         </motion.div>
         </NavLink>
         <motion.div className="react-player grid-item" variants={reactPlayer} initial="hidden" animate="visible" exit="exit">
-            <video height="100%" width="100%" controls loop autoPlay muted>
+            <video height="100%" width="auto" controls loop autoPlay muted style={{borderRadius: "10px"}}>
                 <source src={"../"+videolink}/>
-
             </video>
         </motion.div>
         <motion.div className="company-qr-code grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
@@ -158,16 +188,16 @@ export function Company({ id }) {
         </motion.div>
         <motion.div className="grid-seperator" style={{backgroundColor: accentColor}} variants={gridSeperator} initial="hidden" animate="visible" exit="exit"/>
         <motion.div className="content-container grid-item" layout variants={iframeCont} initial="hidden" animate="visible" exit="exit">
-            <motion.div className="content-left" layout initial={{minWidth: "100%"}}>
+            <div className="content-left" >
             <SimpleBar className="iframe-content" scrollbarMaxSize={150}>
                 <div className="iframe-container">
                     <span>IFrame Content</span>
                 </div>
             </SimpleBar>
-            </motion.div>
-            <div className="content-right">
-
             </div>
+            <motion.div className="content-right">
+
+            </motion.div>
         </motion.div>
         </motion.div>
     </motion.div>

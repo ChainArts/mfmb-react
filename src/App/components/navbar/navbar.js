@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import './navbar.css';
-import {IoIosArrowBack, IoIosHome, IoIosArrowForward} from "react-icons/io";
+import {IconContext} from 'react-icons';
+import {HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTerminal} from "react-icons/hi";
 import { NavLink, useHistory} from "react-router-dom";
 import { motion, AnimatePresence} from 'framer-motion';
-import { LoremIpsum } from 'react-lorem-ipsum';
 
 const navoverlay = {
     hidden: {x: "-100vw"},
@@ -72,6 +72,7 @@ const navHeader = {
         opacity: 1,
         x: 0,
         transition: {
+            staggerChildren: 0.1,
             delay: 0.2,
             duration: 0.8,
             ease: [0.22, 1, 0.36, 1]
@@ -82,6 +83,17 @@ const navHeader = {
         transition: {
             duration: 0.2,
             ease: "easeOut"
+        }
+    }
+}
+
+const navHeaderItem ={
+    hidden: {opacity: 0, y: 20},
+    open: {opacity: 1, y: 0,
+        transition: {
+            delay: 0.5,
+            duration: 0.8,
+            ease: [.14,.8,.4,1],
         }
     }
 }
@@ -99,42 +111,46 @@ const Navbar = () => {
                 </div>
             </div>
 			<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.45s"}}>
-				<NavLink to="/" className="item"><IoIosHome/></NavLink>
-				<div className="item" onClick={()=> history.goBack()}><IoIosArrowBack/></div>
-				<div className="item" onClick={()=> history.goForward()}><IoIosArrowForward/></div>
+				<NavLink to="/" className="item"><HiHome/></NavLink>
+				<div className="item" onClick={()=> history.goBack()}><HiChevronLeft/></div>
+				<div className="item" onClick={()=> history.goForward()}><HiChevronRight/></div>
 			</div>
             <AnimatePresence exitBeforeEnter>
             {isOpen && (
             <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
                 <div className="menu-overlay-main mobile-maxWidth">
+                <IconContext.Provider value={{ className: 'react-icons' }}>
                     <nav className="main-nav">
                         <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
                             <NavLink to="/" exact activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Home</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiHome/> Home</motion.li>
                             </NavLink>
                             <NavLink to="/automode" activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Auto-Mode</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiTerminal/> Auto-Mode</motion.li>
                             </NavLink>
                             <NavLink to="/jobs" activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>Jobs</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiCollection/> Jobs</motion.li>
                             </NavLink>
                             <NavLink to="/about" activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}>About</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiUserGroup/> About</motion.li>
                             </NavLink>
                         </motion.ul>
                     </nav>
+                </IconContext.Provider>
                 </div>
                 <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"></motion.span>
                 <div className="nav-header mobile-hide">
-                    <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" exit="exit">
+                    <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
                         <img src={`media/default.png`} alt=""/>
-                        <LoremIpsum p={1} avgWordsPerSentence={6} avgSentencesPerParagraph={4}/>
+                            <motion.span variants = {navHeaderItem} initial="hidden" animate="open">MFMB</motion.span><br/>
+                            <motion.span variants = {navHeaderItem} initial="hidden" animate="open">HTL HOLLABRUNN</motion.span>
                     </motion.div>
                 </div>
             </motion.div>
             )}
             </AnimatePresence>
 		</div>
+        
     )
 }
 
