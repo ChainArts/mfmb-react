@@ -20,24 +20,24 @@ export const companies = [
         id: "2",
         image: "media/smc.png",
         name: "SMC Pneumatics",
-        backgroundColor: "#232529",
-        website: "https://www.osram-continental.com/"
+        backgroundColor: "#2473b8",
+        website: "https://www.smc.eu/de-at"
     },
 
     {
         id: "3",
         image: "media/eaton.png",
         name: "EATON",
-        backgroundColor: "#232529",
-        website: "https://www.osram-continental.com/"
+        backgroundColor: "#005eb8",
+        website: "https://www.eaton.com/de/de-de.html"
     },
 
     {
         id: "4",
         image: "media/loxone.jpg",
         name: "Loxone",
-        backgroundColor: "#232529",
-        website: "https://www.osram-continental.com/"
+        backgroundColor: "#FFFFFF",
+        website: "https://www.loxone.com/dede/"
     },
 
     {
@@ -45,15 +45,15 @@ export const companies = [
         image: "media/evn.png",
         name: "EVN",
         backgroundColor: "#232529",
-        website: "https://www.osram-continental.com/"
+        website: "https://www.evn.at/EVN-Group/Karriere.aspx/"
     },
 
     {
         id: "6",
         image: "media/frischeis.jpg",
         name: "Frischeis",
-        backgroundColor: "#232529",
-        website: "https://www.osram-continental.com/"
+        backgroundColor: "#FFFFFF",
+        website: "https://www.frischeis.at/"
     },
 
     {
@@ -68,8 +68,8 @@ export const companies = [
         id: "8",
         image: "media/altium.png",
         name: "Altium",
-        backgroundColor: "#232529",
-        website: "https://www.osram-continental.com/"
+        backgroundColor: "#a5915f",
+        website: "https://www.altium.com/"
     },
 
     {

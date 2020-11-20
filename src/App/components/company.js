@@ -113,7 +113,7 @@ const exitIcoCont = {
     hidden: {scale: 0},
     visible: {scale: 1,
         transition: {
-            duration: 0.2, delay: 0.3, ease: [.14,.8,.4,1],
+            duration: 0.2, delay: 0.3, ease: [.14,.8,.4,1.25],
         }
     },
     exit:{
@@ -154,8 +154,8 @@ export function Company({ id }) {
         <motion.div className="company" variants={overlayShadow} initial="hidden" animate="visible" exit="exit">
             <motion.div className="close-ico-wrap" variants={exitIcoCont} initial="hidden" animate="visible" exit="exit">
                 <motion.div className="close-ico" initial={{scale: 1}}>
-                    <motion.div className="dash" style={{rotateZ: "-45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.6, duration: 0.4, ease:[.14,.8,.4,1]}}></motion.div>
-                    <motion.div className="dash" style={{rotateZ: "45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.65, duration: 0.4, ease:[.14,.8,.4,1]}}></motion.div>
+                    <motion.div className="dash" style={{rotateZ: "-45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.6, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
+                    <motion.div className="dash" style={{rotateZ: "45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.65, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
                 </motion.div>
             </motion.div>
             <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
