@@ -56,7 +56,7 @@ header{
     margin: 2vh 5rem 2vh 0vw;
     display: grid;
     grid-gap: 1.1rem 2.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(27rem, 0.9fr));
     grid-auto-rows: 21rem;
     height: 100%;
     z-index: 0;
@@ -280,5 +280,9 @@ header{
     margin-bottom: 1.5vh;
     width: 6px;
     opacity: 1 !important;
+}
+
+.simplebar-scrollbar::before .hide{
+    opacity: 0 !important;
 }
   

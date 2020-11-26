@@ -5,7 +5,7 @@
 
 import React from 'react';
 import './App.css';
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
