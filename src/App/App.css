@@ -97,13 +97,13 @@ header{
     "grid-seperator grid-seperator grid-seperator"
     "content-container content-container content-container";
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr)); 
-    grid-template-rows: 20rem 2px 61vh;
+    grid-auto-rows: 20rem 2px 61vh;
     grid-gap: 0.8rem 2.5rem;
     max-height: 96.5vh;
     max-width: calc(100% - 5rem);
     border-radius: 10px;
     padding: 1rem;
-    margin: 1vh 5rem 1vh 0vw;
+    margin: 2vh 5rem 2vh 0rem;
 }
 
 .open .overlay-backdrop{
@@ -113,11 +113,10 @@ header{
     max-width: calc(100% - 10rem);
     max-height: 98.5vh;
     pointer-events: none;
-    border-radius: 10px;
     background-color: #232529;
     height: 96.5vh;
     width: 100%;
-    margin: 0vh 5rem 0vh 0vw;
+    padding: 1rem;
 }
 
 .open .company-logo{
@@ -230,7 +229,7 @@ header{
     width: 100%;
     top: 0;
     height: 100%;
-    padding: 0.5rem 5rem 0vh 0rem;
+    padding-right: 5rem;
   }
 
 .company-logo{
@@ -282,7 +281,7 @@ header{
     opacity: 1 !important;
 }
 
-.simplebar-scrollbar::before .hide{
+.hide .simplebar-scrollbar::before {
     opacity: 0 !important;
 }
   

@@ -140,7 +140,7 @@ export function Company({ id }) {
     var accentColor = backgroundColor;
     if(backgroundColor === "#232529")
     {
-        accentColor = "#e20080";   
+        accentColor = "#e20080";
     }
     return (
     <>

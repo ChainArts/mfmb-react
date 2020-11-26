@@ -23,7 +23,7 @@ function Companies({ match }) {
     return(
     <>
         <AnimateSharedLayout type="crossfade">
-            <SimpleBar className="content-wrapper" scrollbarMaxSize={300}>
+            <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
                 <Grid selectedId={id} />
                 <AnimatePresence>
                     {id && imageHasLoaded && <Company id={id} key="company"/>}

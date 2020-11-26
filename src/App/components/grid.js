@@ -54,11 +54,11 @@ function Card({ id, name, backgroundColor, image}) {
 }
 
 export function Grid({ selectedId }) {
-  return (
-    <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
-      {companies.map(card => (
-        <Card key={card.id} {...card} isSelected={card.id === selectedId} />
-      ))}
-    </motion.ul>
-  );
+    return (
+        <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
+            {companies.map(card => (
+                <Card key={card.id} {...card} isSelected={card.id === selectedId} />
+            ))}
+        </motion.ul>
+    );
 }

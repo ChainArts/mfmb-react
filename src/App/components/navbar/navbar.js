@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './navbar.css';
-import {IconContext} from 'react-icons';
-import {HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTerminal} from "react-icons/hi";
+import { IconContext } from 'react-icons';
+import { HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTerminal } from "react-icons/hi";
 import { NavLink, useHistory} from "react-router-dom";
 import { motion, AnimatePresence} from 'framer-motion';
 
@@ -97,8 +97,10 @@ const navHeaderItem ={
         }
     }
 }
+
+
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
     const history = useHistory();
 
     return(
