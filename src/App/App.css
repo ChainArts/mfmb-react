@@ -191,10 +191,9 @@ header{
 
 .iframe-container{
     width: 100%;
-    height: 46rem !important;
+    height: 68vh !important;
     cursor: auto;
-   /* padding-right: 1rem;*/
-   overflow: hidden;
+    overflow: hidden;
 }
 iframe{
     border-radius: 10px;
