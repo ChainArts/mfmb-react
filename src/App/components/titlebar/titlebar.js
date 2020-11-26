@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './titlebar.css'
 import {VscChromeMinimize,VscChromeClose,VscChromeMaximize} from "react-icons/vsc"
 
-const ipcRenderer = window.require('electron').ipcRenderer
+const ipcRenderer = require('electron').ipcRenderer;
 
 const Titlebar = () => {
 

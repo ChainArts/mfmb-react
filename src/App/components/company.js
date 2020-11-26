@@ -175,29 +175,25 @@ export function Company({ id }) {
                 <source src={"../"+videolink}/>
             </video>
         </motion.div>
-        <motion.div className="company-qr-code grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
-            <span style={{display: "block"}}>{website}</span>
-            <QRCode
-                id = {id}
-                value = {website}
-                bgColor="#3b3e43"
-                fgColor="#eeeeee"
-                size={200}
-                includeMargin={true}
-            />
+        <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
+            <NavLink to="/jobs"><motion.div className="option" whileTap={{scale: 0.85}}><span>Jobs</span></motion.div></NavLink>
+            <motion.div className="qr-code">
+                <span style={{display: "block"}}>{website}</span>
+                <QRCode
+                    id = {id}
+                    value = {website}
+                    bgColor="#3b3e43"
+                    fgColor="#eeeeee"
+                    size={200}
+                    includeMargin={true}
+                />
+            </motion.div>
         </motion.div>
         <motion.div className="grid-seperator" style={{backgroundColor: accentColor}} variants={gridSeperator} initial="hidden" animate="visible" exit="exit"/>
         <motion.div className="content-container grid-item" layout variants={iframeCont} initial="hidden" animate="visible" exit="exit">
-            <div className="content-left" >
-            <SimpleBar className="iframe-content" scrollbarMaxSize={150}>
-                <div className="iframe-container">
-                    <span>IFrame Content</span>
-                </div>
-            </SimpleBar>
+            <div className="iframe-container" scrollbarMaxSize={150}>
+                <iframe title="test" src="http://vps406225.ovh.net/~mx/homepage/" width="100%" height="100%" scrolling="yes">Loading...</iframe>
             </div>
-            <motion.div className="content-right">
-
-            </motion.div>
         </motion.div>
         </motion.div>
     </motion.div>
