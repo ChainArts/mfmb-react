@@ -1,7 +1,5 @@
 import React from "react";
 import QRCode from 'qrcode.react';
-import SimpleBar from 'simplebar-react';
-import 'simplebar-react/dist/simplebar.min.css';
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { companies } from "../data";
@@ -135,6 +133,26 @@ const exitIcoDash = {
     }
 };
 
+const optionsText = {
+    hidden: {scaleX: 0, },
+    visible: {scaleX: 1, 
+    transition: {
+        delay: 0.8,
+        duration: 0.7, ease: [.14,.8,.4,1]
+    }
+    }
+}
+
+const optionsQR = {
+    hidden: {scale: 0},
+    visible: {scale: 1,    
+        transition:{
+        delay: 0.7,
+        duration: 0.8, ease: [.14,.8,.4,1]
+    }
+    }
+}
+
 export function Company({ id }) {
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     var accentColor = backgroundColor;
@@ -176,9 +194,8 @@ export function Company({ id }) {
             </video>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
-            <NavLink to="/jobs"><motion.div className="option" whileTap={{scale: 0.85}}><span>Jobs</span></motion.div></NavLink>
-            <motion.div className="qr-code">
-                <span style={{display: "block"}}>{website}</span>
+            <NavLink to="/jobs"><motion.div layout className="option" variants={optionsText} initial="hidden" animate="visible" whileTap={{scale: 0.85}}><span>Jobs</span></motion.div></NavLink>
+            <motion.div layout className="qr-code" variants={optionsQR} initial="hidden" animate="visible">
                 <QRCode
                     id = {id}
                     value = {website}
@@ -188,12 +205,13 @@ export function Company({ id }) {
                     includeMargin={true}
                 />
             </motion.div>
+            <motion.span className="company-link"variants={optionsText} initial="hidden" animate="visible">{website}</motion.span>
         </motion.div>
         <motion.div className="grid-seperator" style={{backgroundColor: accentColor}} variants={gridSeperator} initial="hidden" animate="visible" exit="exit"/>
         <motion.div className="content-container grid-item" layout variants={iframeCont} initial="hidden" animate="visible" exit="exit">
-            <div className="iframe-container" scrollbarMaxSize={150}>
+            <motion.div className="iframe-container" initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.8, duration: 0.3}}>
                 <iframe title="test" src="http://vps406225.ovh.net/~mx/homepage/" width="100%" height="100%" scrolling="yes">Loading...</iframe>
-            </div>
+            </motion.div>
         </motion.div>
         </motion.div>
     </motion.div>
