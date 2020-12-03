@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { companies } from "../data";
 
 const overlayBackdrop = {
-    hidden: {scaleX: 0, originX: 0, borderRadius: 10},
+    hidden: {scaleX: 0, originX: 0},
     visible: {scaleX: 1,
         transition: {
             duration: 0.8, ease: [.14,.8,.4,1]

@@ -3,7 +3,7 @@ body{
 }
 
 .about-container {
-    margin: 2vh 5rem 2vh 0vw;  
+    margin: 2vh 5rem 2vh 0vw;
     position: relative;
     height: 96vh;
     width: calc(100vw - 5rem);

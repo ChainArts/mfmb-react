@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 import "./jobs.css";
 
 const jobContainer = {
@@ -12,7 +14,7 @@ const jobContainer = {
         ease: "easeOut",
         delay: 0.3,
         delayChildren: 0.5,
-        staggerChildren: .1,
+        staggerChildren: .06,
       }
     }
   };
@@ -25,12 +27,18 @@ const jobContainer = {
     }
   };
 
+
+var jobs = Array.from(Array(20)).map(x=>Math.random())
+
 export const Jobs = () => (
-    <motion.ul  className = "jobs-container" variants = {jobContainer} initial = "hidden" animate = "visible">
-        {[0, 1, 2, 3].map(index => (
-            <motion.li key={index} className = {"jobs-item" + index} variants = {jobItem}/>
+    <SimpleBar scrollbarMaxSize={300} className="scroll-container">
+    <motion.ul className = "jobs-container" variants = {jobContainer} initial = "hidden" animate = "visible">
+        {jobs.map(index => (
+            <motion.li key={index} className ="jobs-item" variants = {jobItem}>
+            </motion.li>
         ))}
     </motion.ul>
+    </SimpleBar>
 )
 
 export default Jobs;
