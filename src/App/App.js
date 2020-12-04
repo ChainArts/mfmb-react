@@ -34,7 +34,6 @@ function Companies({ match }) {
     )
   }
 
-
 function App() {
     return (
         <div className="App">

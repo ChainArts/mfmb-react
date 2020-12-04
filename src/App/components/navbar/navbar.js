@@ -102,10 +102,11 @@ const navHeaderItem ={
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const history = useHistory();
+    const toggleOpen = () => setIsOpen(!isOpen);
 
     return(
         <div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
-            <div className="menu-toggle" onClick={e => setIsOpen(!isOpen)} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.4s"}}>
+            <div className="menu-toggle" onClick={toggleOpen} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.4s"}}>
                 <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>
                     <div className="bar"></div>
                     <div className="bar"></div>
@@ -125,16 +126,16 @@ const Navbar = () => {
                     <nav className="main-nav">
                         <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
                             <NavLink to="/" exact activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiHome/> Home</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiHome/> Home</motion.li>
                             </NavLink>
                             <NavLink to="/automode" activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiTerminal/> Auto-Mode</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiTerminal/> Auto-Mode</motion.li>
                             </NavLink>
                             <NavLink to="/jobs" activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiCollection/> Jobs</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiCollection/> Jobs</motion.li>
                             </NavLink>
                             <NavLink to="/about" activeClassName="current-page-item">
-                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={e => setIsOpen(!isOpen)}><HiUserGroup/> About</motion.li>
+                                <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiUserGroup/> About</motion.li>
                             </NavLink>
                         </motion.ul>
                     </nav>

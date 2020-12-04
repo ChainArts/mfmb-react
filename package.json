@@ -2,7 +2,16 @@
   "name": "mfmb-app",
   "author": "Maximilian Roll",
   "build": {
-    "appId": "com.mfmb-app"
+    "appId": "com.mfmb-app",
+        "extraResources": [
+        {
+          "from": "./src/Loading/",
+          "to": "loading",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
   },
   "version": "0.1.0",
   "private": true,
