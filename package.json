@@ -3,15 +3,15 @@
   "author": "Maximilian Roll",
   "build": {
     "appId": "com.mfmb-app",
-        "extraResources": [
-        {
-          "from": "./src/Loading/",
-          "to": "loading",
-          "filter": [
-            "**/*"
-          ]
-        }
-      ]
+    "extraResources": [
+      {
+        "from": "./src/Loading/",
+        "to": "loading",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
   },
   "version": "0.1.0",
   "private": true,
@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "electron": "^10.1.6",
+    "electron": "^10.1.7",
     "electron-builder": "^22.9.1",
     "wait-on": "^5.2.0"
   }

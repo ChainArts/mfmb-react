@@ -32,7 +32,7 @@ function Companies({ match }) {
         </AnimateSharedLayout>
     </>
     )
-  }
+}
 
 function App() {
     return (

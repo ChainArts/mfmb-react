@@ -1,9 +1,11 @@
 const {app, BrowserWindow, globalShortcut} = require('electron');
-
 const url = require("url");
 const path = require("path");
 const isDev = require("electron-is-dev");
 const ipcMain = require("electron").ipcMain;
+
+var server = require("../server")
+
 
 function newApp() {
     let win = null;
@@ -12,7 +14,7 @@ function newApp() {
     show: false,
     frame: false,
     resizable: false,
-    height: 480, width: 360, 
+    height: 400, width: 360, 
     webPreferences:{
 	    worldSafeExecuteJavaScript: true,
         contextIsolation: true
@@ -47,7 +49,7 @@ function newApp() {
     })
     loading.loadURL(
     url.format({
-      pathname: "src/Loading/loading.html",
+      pathname: "./public/loading/loading.html",
       slashes: true
     }))
     loading.once('ready-to-show', () => {
@@ -105,4 +107,4 @@ app.on('window-all-closed', () => {
       app.quit();
   }
 })
-app.on("ready", newApp);  
+app.on("ready", newApp);

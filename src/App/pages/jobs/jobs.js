@@ -20,7 +20,7 @@ const jobContainer = {
 };
   
 const jobItem = {
-    hidden: { y: 20, opacity: 0, borderRadius: 10},
+    hidden: { y: 20, opacity: 0, borderRadius: 6},
     visible: {
         y: 0,
         opacity: 1,
