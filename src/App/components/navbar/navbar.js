@@ -67,10 +67,11 @@ const navSeperator = {
 }
 
 const navHeader = {
-    hidden: {opacity: 0, x: "20vw"},
+    hidden: {opacity: 0, x: "20vw", rotateY: 60},
     open: {
         opacity: 1,
         x: 0,
+        rotateY: 0,
         transition: {
             staggerChildren: 0.1,
             delay: 0.2,

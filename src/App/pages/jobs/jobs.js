@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import { AnimateSharedLayout, AnimatePresence, motion } from 'framer-motion';
+import { AnimateSharedLayout, AnimatePresence, motion, useViewportScroll, useTransform } from 'framer-motion';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import "./jobs.css";
 
 const jobContainer = {
-    hidden: { opacity: 0, scale: .1, y: 500},
+    hidden: { opacity: 0, scaleY: .1, y: 200},
     visible: {
       y: 0, 
       opacity: 1,
-      scale: 1,
+      scaleY: 1,
       transition: {
         ease: [.14,.8,.4,1],
         delay: 0.3,
@@ -95,9 +95,11 @@ function JobContent() {
 function Job() {
     const [isOpen, setIsOpen] = useState(false);
     const toggleOpen = () => setIsOpen(!isOpen);
+    const { scrollYProgress } = useViewportScroll()
+    const scaleAnim = useTransform(scrollYProgress, [0, 0.5, 1], [1,0,0])
   
     return (
-      <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen}>
+      <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} style={{scale: scaleAnim}}>
             <motion.div className="avatar" layout style={isOpen ? {float: "right"} : {float: "left"}}/>
             <AnimatePresence>{isOpen && <JobContent/>}</AnimatePresence>
       </motion.li>
@@ -106,16 +108,21 @@ function Job() {
 
 var jobs = Array.from(Array(20)).map(x=>Math.random())
 
-export const Jobs = () => (
-    <SimpleBar scrollbarMaxSize={300} className="scroll-container">
-    <AnimateSharedLayout>
-    <motion.ul className = "jobs-container" variants = {jobContainer} initial = "hidden" animate = "visible">
-        {jobs.map(job => (
-            <Job key={job}/>
-        ))}
-    </motion.ul>
-    </AnimateSharedLayout>
-    </SimpleBar>
-)
+export function Jobs () {
+    const scrollableNodeRef = React.createRef();
+return(
+    <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible">
+        <SimpleBar scrollbarMaxSize={300} className="scroll-container" scrollableNodeProps={{ ref: scrollableNodeRef }}>
+        <AnimateSharedLayout>
+            <motion.ul className = "jobs-container">
+                {jobs.map(job => (
+                    <Job key={job}/>
+                ))}
+            </motion.ul>
+        </AnimateSharedLayout>
+        </SimpleBar>
+    </motion.div>
+    );
+}
 
 export default Jobs;
