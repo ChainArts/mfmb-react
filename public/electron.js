@@ -6,7 +6,6 @@ const ipcMain = require("electron").ipcMain;
 
 var server = require("../server")
 
-
 function newApp() {
     let win = null;
     let loading = new BrowserWindow({
@@ -14,7 +13,7 @@ function newApp() {
     show: false,
     frame: false,
     resizable: false,
-    height: 400, width: 360, 
+    height: 420, width: 360, 
     webPreferences:{
 	    worldSafeExecuteJavaScript: true,
         contextIsolation: true
@@ -36,13 +35,42 @@ function newApp() {
                 contextIsolation: true
             } 
         })
-    win.once('ready-to-show', () => {
-        win.maximize()
-        win.show()
-        win.focus()
-        loading.hide()
-        loading.close()
-    })
+        win.webContents.on('before-input-event', (event, input) => {
+        if (input.type === "keyDown"){
+            if (input.key === 'F5') {
+                console.log('Refresh')
+                win.reload()
+            }
+            else if(input.control && input.key === 'F5'){
+                console.log('Cleared Cache')
+                win.webContents.session.clearCache();
+                win.reload()
+            }
+            else if(input.key === 'F12'){
+                console.log('Opened Console')
+                win.webContents.openDevTools()
+            }
+            else if(input.alt && input.key === "Enter"){
+                if(win.fullScreen){
+                    win.setFullScreen(false)
+                    console.log('min')
+                }
+                else
+                {
+                    win.setFullScreen(true)
+                    console.log('max')
+                }
+            }
+        }
+        })
+        
+        win.once('ready-to-show', () => {
+            win.maximize()
+            win.show()
+            win.focus()
+            loading.hide()
+            loading.close()
+        })
     win.loadURL(
             isDev ? "http://localhost:3000" : 'file://${path.join(__dirname, "../build/index.html")}'
         )
@@ -57,46 +85,17 @@ function newApp() {
       loading.focus()
     })
 
+    ipcMain.handle('minimize-event', () => {
+        win.minimize()
+    })
 
-  globalShortcut.register('f5', function() {
-		console.log('Refresh')
-		win.reload()
-  });
+    ipcMain.handle('maximize-event', () => {
+        win.maximize()
+    })
 
-  globalShortcut.register('CommandOrControl+f5', function() {
-      console.log('Cleared Cache')
-      win.webContents.session.clearCache();
-      win.reload()
-  })
-
-  globalShortcut.register('CommandOrControl+R', function() {
-		console.log('Opened Console')
-    win.webContents.openDevTools()
-  });
-  globalShortcut.register('Alt+Return', function(){
-    if(win.fullScreen){
-      win.setFullScreen(false)
-      console.log('min')
-    }
-    else
-    {
-      win.setFullScreen(true)
-      console.log('max')
-    }
-  })
-
-
-  ipcMain.handle('minimize-event', () => {
-    win.minimize()
-  })
-
-  ipcMain.handle('maximize-event', () => {
-    win.maximize()
-  })
-
-  ipcMain.handle('unmaximize-event', () => {
-    win.unmaximize()
-  })
+    ipcMain.handle('unmaximize-event', () => {
+        win.unmaximize()
+    })
 }
 ipcMain.handle('close-event', () => {
   app.quit()
@@ -108,3 +107,7 @@ app.on('window-all-closed', () => {
   }
 })
 app.on("ready", newApp);
+
+app.on('will-quit', () =>{
+    globalShortcut.unregisterAll();
+});
