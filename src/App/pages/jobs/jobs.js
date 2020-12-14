@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { AnimateSharedLayout, AnimatePresence, motion, useViewportScroll, useTransform } from 'framer-motion';
+import React, {useState, useRef} from 'react';
+import { AnimateSharedLayout, AnimatePresence, motion, useElementScroll, useTransform } from 'framer-motion';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import "./jobs.css";
@@ -92,31 +92,33 @@ function JobContent() {
     );
 }
 
-function Job() {
+const Job = (props)  => {
+
     const [isOpen, setIsOpen] = useState(false);
     const toggleOpen = () => setIsOpen(!isOpen);
-    const { scrollYProgress } = useViewportScroll()
-    const scaleAnim = useTransform(scrollYProgress, [0, 0.5, 1], [1,0,0])
   
     return (
-      <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} style={{scale: scaleAnim}}>
+        <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} style={{scaleX: props.scale}}>
             <motion.div className="avatar" layout style={isOpen ? {float: "right"} : {float: "left"}}/>
             <AnimatePresence>{isOpen && <JobContent/>}</AnimatePresence>
-      </motion.li>
+        </motion.li>
     );
-  }
+}
 
 var jobs = Array.from(Array(20)).map(x=>Math.random())
 
 export function Jobs () {
-    const scrollableNodeRef = React.createRef();
+    const ref = useRef();
+    const { scrollYProgress } = useElementScroll(ref)
+    const scaleAnim = useTransform(scrollYProgress, [0.9, 1], [1,0])
+
 return(
     <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible">
-        <SimpleBar scrollbarMaxSize={300} className="scroll-container" scrollableNodeProps={{ ref: scrollableNodeRef }}>
+    <SimpleBar scrollbarMaxSize={300} className="scroll-container" scrollableNodeProps={{ ref: ref }}>
         <AnimateSharedLayout>
             <motion.ul className = "jobs-container">
                 {jobs.map(job => (
-                    <Job key={job}/>
+                    <Job key={job} scale={scaleAnim}/>
                 ))}
             </motion.ul>
         </AnimateSharedLayout>

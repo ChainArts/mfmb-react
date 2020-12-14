@@ -3,7 +3,7 @@
 // September 2, 2020
 // HTL Hollabrunn
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
@@ -22,14 +22,17 @@ function Companies({ match }) {
     
     return(
     <>
+    <Suspense fallback={null}>
         <AnimateSharedLayout type="crossfade">
             <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
                 <Grid selectedId={id} />
                 <AnimatePresence>
                     {id && imageHasLoaded && <Company id={id} key="company"/>}
+                    
                 </AnimatePresence>
             </SimpleBar>
         </AnimateSharedLayout>
+    </Suspense>
     </>
     )
 }

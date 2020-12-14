@@ -8,18 +8,19 @@ const gridWrapper = {
     visible: { 
         transition: {
             delayChildren: 0.25,
-            staggerChildren: .1,
+            staggerChildren: .08,
             ease: [.14,.8,.4,1]
       }
     }
 };
   
 const gridItem = {
-    hidden: { y: 50, opacity: 0},
+    hidden: { y: 80, opacity: 0},
     visible: {
         y: 0,
         opacity: 1,
         transition: {
+            duration: 0.8,
             ease: [.14,.8,.4,1]
         },
     },
