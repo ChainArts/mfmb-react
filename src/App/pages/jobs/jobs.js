@@ -28,7 +28,6 @@ const jobItem = {
             delayChildren: 0.5,
             staggerChildren: .06,
         }
-
     }
 };
 
@@ -98,7 +97,7 @@ const Job = (props)  => {
     const toggleOpen = () => setIsOpen(!isOpen);
   
     return (
-        <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} style={{scaleX: props.scale}}>
+        <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} afterTransition={{style: "scale: props.scale, opacity: props.opacity"}}>
             <motion.div className="avatar" layout style={isOpen ? {float: "right"} : {float: "left"}}/>
             <AnimatePresence>{isOpen && <JobContent/>}</AnimatePresence>
         </motion.li>
@@ -110,7 +109,7 @@ var jobs = Array.from(Array(20)).map(x=>Math.random())
 export function Jobs () {
     const ref = useRef();
     const { scrollYProgress } = useElementScroll(ref)
-    const scaleAnim = useTransform(scrollYProgress, [0.9, 1], [1,0])
+    const scaleAnim = useTransform(scrollYProgress, [0.9, 1], [1,1.2])
 
 return(
     <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible">
