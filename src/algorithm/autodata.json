@@ -1,13 +1,53 @@
 [
   {
+    "id": 9,
+    "name": "Altium",
+    "geld": 2500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 13,
+    "displaytime": 312,
+    "countedtime": 168
+  },
+  {
+    "id": 10,
+    "name": "B&R Automation",
+    "geld": 1500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 10,
+    "displaytime": 170,
+    "countedtime": 170
+  },
+  {
+    "id": 11,
+    "name": "Philips",
+    "geld": 600,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 9,
+    "displaytime": 72,
+    "countedtime": 168
+  },
+  {
+    "id": 12,
+    "name": "Pollmann International",
+    "geld": 200,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 22,
+    "displaytime": 44,
+    "countedtime": 314
+  },
+  {
     "id": 1,
     "name": "Osram Continental",
     "geld": 1000,
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 10,
-    "displaytime": 130,
-    "countedtime": 182
+    "displaytime": 120,
+    "countedtime": 168
   },
   {
     "id": 2,
@@ -16,8 +56,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 20,
-    "displaytime": 260,
-    "countedtime": 182
+    "displaytime": 240,
+    "countedtime": 168
   },
   {
     "id": 3,
@@ -56,8 +96,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 20,
-    "displaytime": 160,
-    "countedtime": 192
+    "displaytime": 140,
+    "countedtime": 168
   },
   {
     "id": 7,
@@ -78,45 +118,5 @@
     "playtime": 17,
     "displaytime": 204,
     "countedtime": 168
-  },
-  {
-    "id": 9,
-    "name": "Altium",
-    "geld": 2500,
-    "update": "2020-09-25T07:05:27.000Z",
-    "actuality": 3000,
-    "playtime": 13,
-    "displaytime": 325,
-    "countedtime": 175
-  },
-  {
-    "id": 10,
-    "name": "B&R Automation",
-    "geld": 1500,
-    "update": "2020-09-25T07:05:27.000Z",
-    "actuality": 3000,
-    "playtime": 10,
-    "displaytime": 170,
-    "countedtime": 170
-  },
-  {
-    "id": 11,
-    "name": "Philips",
-    "geld": 600,
-    "update": "2020-09-25T07:05:27.000Z",
-    "actuality": 3000,
-    "playtime": 9,
-    "displaytime": 72,
-    "countedtime": 168
-  },
-  {
-    "id": 12,
-    "name": "Pollmann International",
-    "geld": 200,
-    "update": "2020-09-25T07:05:27.000Z",
-    "actuality": 3000,
-    "playtime": 22,
-    "displaytime": 44,
-    "countedtime": 314
   }
 ]

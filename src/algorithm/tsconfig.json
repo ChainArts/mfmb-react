@@ -4,6 +4,7 @@
   },
     "files": [
       "algorithm.ts",
-      "select.ts"
+      "select.ts",
+      "sortAutomode.ts"
     ]
 }

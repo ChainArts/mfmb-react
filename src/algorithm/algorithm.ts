@@ -1,4 +1,4 @@
-    export {}
+    export { id };
     var fs = require('fs');
     var data = fs.readFileSync('data.json');
     var companies = [];
@@ -27,7 +27,7 @@
     }
 
     (async () =>{
-    while(rep <53){
+    while(rep <1){
     
         selection = [];
         //create selection of companies with samllest and same countedtime
@@ -80,13 +80,3 @@
 
             }
         })();
-    
-
-
-
-
-
-
-
-
- 
