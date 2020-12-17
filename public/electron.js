@@ -4,7 +4,7 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 const ipcMain = require("electron").ipcMain;
 
-var server = require("../server");
+var server = require("../webserver/server");
 
 function newApp() {
     let win = null;

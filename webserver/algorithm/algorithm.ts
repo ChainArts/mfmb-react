@@ -1,6 +1,6 @@
-    export {}
+    export { id };
     var fs = require('fs');
-    var data = fs.readFileSync('./webserver/algorithm/data.json');
+    var data = fs.readFileSync('data.json');
     var companies = [];
     companies = JSON.parse(data);
     var selection = [];
@@ -27,7 +27,7 @@
     }
 
     (async () =>{
-    while(rep <53){
+    while(rep <1){
     
         selection = [];
         //create selection of companies with samllest and same countedtime
@@ -66,7 +66,7 @@
         //console.log(id);
         await delay(1000);
         data = JSON.stringify(companies, null, 2);
-        fs.writeFile('./webserver/algorithm/data.json', data, finished);
+        fs.writeFile('data.json', data, finished);
         finished(finished);
         
     
@@ -80,13 +80,3 @@
 
             }
         })();
-    
-
-
-
-
-
-
-
-
- 

@@ -78,7 +78,7 @@ async function getData() {
     const ys = [];
     const ys_2 = [];
 
-    const response = await fetch('./webserver/algorithm/data.json');
+    const response = await fetch('http://127.0.0.1:5500/data.json');
     const data = await response.json();
     data.forEach(company => {
         xs.push(company.name);

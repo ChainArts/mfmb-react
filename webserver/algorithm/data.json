@@ -6,8 +6,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 10,
-    "displaytime": 50,
-    "countedtime": 70
+    "displaytime": 130,
+    "countedtime": 182
   },
   {
     "id": 2,
@@ -16,8 +16,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 20,
-    "displaytime": 100,
-    "countedtime": 70
+    "displaytime": 260,
+    "countedtime": 182
   },
   {
     "id": 3,
@@ -26,8 +26,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 30,
-    "displaytime": 60,
-    "countedtime": 114
+    "displaytime": 90,
+    "countedtime": 171
   },
   {
     "id": 4,
@@ -36,8 +36,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 5,
-    "displaytime": 20,
-    "countedtime": 64
+    "displaytime": 55,
+    "countedtime": 176
   },
   {
     "id": 5,
@@ -46,8 +46,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 15,
-    "displaytime": 75,
-    "countedtime": 70
+    "displaytime": 180,
+    "countedtime": 168
   },
   {
     "id": 6,
@@ -56,8 +56,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 20,
-    "displaytime": 60,
-    "countedtime": 72
+    "displaytime": 160,
+    "countedtime": 192
   },
   {
     "id": 7,
@@ -66,8 +66,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 25,
-    "displaytime": 50,
-    "countedtime": 90
+    "displaytime": 100,
+    "countedtime": 180
   },
   {
     "id": 8,
@@ -76,8 +76,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 17,
-    "displaytime": 85,
-    "countedtime": 70
+    "displaytime": 204,
+    "countedtime": 168
   },
   {
     "id": 9,
@@ -86,8 +86,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 13,
-    "displaytime": 130,
-    "countedtime": 70
+    "displaytime": 325,
+    "countedtime": 175
   },
   {
     "id": 10,
@@ -96,8 +96,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 10,
-    "displaytime": 70,
-    "countedtime": 70
+    "displaytime": 170,
+    "countedtime": 170
   },
   {
     "id": 11,
@@ -106,8 +106,8 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 9,
-    "displaytime": 36,
-    "countedtime": 84
+    "displaytime": 72,
+    "countedtime": 168
   },
   {
     "id": 12,
@@ -116,7 +116,7 @@
     "update": "2020-09-25T07:05:27.000Z",
     "actuality": 3000,
     "playtime": 22,
-    "displaytime": 22,
-    "countedtime": 157
+    "displaytime": 44,
+    "countedtime": 314
   }
 ]

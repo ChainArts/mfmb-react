@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,13 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
+exports.__esModule = true;
+exports.id = void 0;
 var fs = require('fs');
 var data = fs.readFileSync('data.json');
 var companies = [];
 companies = JSON.parse(data);
 var selection = [];
 var i = 0, rep = 0, prev_id = 0, id = 0;
+exports.id = id;
 function sum(total, num) {
     return total + num;
 }
@@ -53,14 +56,14 @@ function weight(money, sum) {
 function delay(ms) {
     return new Promise(function (resolve) { return setTimeout(resolve, ms); });
 }
-(function () { return __awaiter(_this, void 0, void 0, function () {
-    function finished(err) {
-        console.log('Data written');
-    }
+function finished(err) {
+    console.log('Data written');
+}
+(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                if (!(rep < 53)) return [3 /*break*/, 2];
+                if (!(rep < 1)) return [3 /*break*/, 2];
                 selection = [];
                 //create selection of companies with samllest and same countedtime
                 companies.sort(function (a, b) { return a.countedtime - b.countedtime; });
@@ -88,7 +91,7 @@ function delay(ms) {
                     }
                     companies.sort(function (a, b) { return a.id - b.id; });
                 }
-                id = selection[Math.floor(Math.random() * selection.length)];
+                exports.id = id = selection[Math.floor(Math.random() * selection.length)];
                 companies[id - 1].countedtime += Math.round(companies[id - 1].playtime / weight(companies[id - 1].geld, companies.map(function (a) { return a.geld; }).reduce(sum)));
                 companies[id - 1].displaytime += companies[id - 1].playtime;
                 prev_id = id;
@@ -100,6 +103,7 @@ function delay(ms) {
                 _a.sent();
                 data = JSON.stringify(companies, null, 2);
                 fs.writeFile('data.json', data, finished);
+                finished(finished);
                 console.log(companies.map(function (a) { return a.countedtime; }));
                 return [3 /*break*/, 0];
             case 2: return [2 /*return*/];
