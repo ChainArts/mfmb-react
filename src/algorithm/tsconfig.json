@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "watch": true,
+  },
+    "files": [
+      "algorithm.ts",
+      "select.ts",
+      "sortAutomode.ts"
+    ]
+}

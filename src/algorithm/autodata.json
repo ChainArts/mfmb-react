@@ -1,0 +1,122 @@
+[
+  {
+    "id": 9,
+    "name": "Altium",
+    "geld": 2500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 13,
+    "displaytime": 312,
+    "countedtime": 168
+  },
+  {
+    "id": 10,
+    "name": "B&R Automation",
+    "geld": 1500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 10,
+    "displaytime": 170,
+    "countedtime": 170
+  },
+  {
+    "id": 11,
+    "name": "Philips",
+    "geld": 600,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 9,
+    "displaytime": 72,
+    "countedtime": 168
+  },
+  {
+    "id": 12,
+    "name": "Pollmann International",
+    "geld": 200,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 22,
+    "displaytime": 44,
+    "countedtime": 314
+  },
+  {
+    "id": 1,
+    "name": "Osram Continental",
+    "geld": 1000,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 10,
+    "displaytime": 120,
+    "countedtime": 168
+  },
+  {
+    "id": 2,
+    "name": "Siemens",
+    "geld": 2000,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 20,
+    "displaytime": 240,
+    "countedtime": 168
+  },
+  {
+    "id": 3,
+    "name": "SMC Pneumatics",
+    "geld": 750,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 30,
+    "displaytime": 90,
+    "countedtime": 171
+  },
+  {
+    "id": 4,
+    "name": "EATON",
+    "geld": 450,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 5,
+    "displaytime": 55,
+    "countedtime": 176
+  },
+  {
+    "id": 5,
+    "name": "Loxone",
+    "geld": 1500,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 15,
+    "displaytime": 180,
+    "countedtime": 168
+  },
+  {
+    "id": 6,
+    "name": "EVN",
+    "geld": 1200,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 20,
+    "displaytime": 140,
+    "countedtime": 168
+  },
+  {
+    "id": 7,
+    "name": "Frischeis",
+    "geld": 800,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 25,
+    "displaytime": 100,
+    "countedtime": 180
+  },
+  {
+    "id": 8,
+    "name": "Abstergo",
+    "geld": 1800,
+    "update": "2020-09-25T07:05:27.000Z",
+    "actuality": 3000,
+    "playtime": 17,
+    "displaytime": 204,
+    "countedtime": 168
+  }
+]
