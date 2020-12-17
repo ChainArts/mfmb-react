@@ -1,7 +1,6 @@
-export {}
+    export {}
     var fs = require('fs');
     var mysql = require('mysql');
-    var playtime = [10, 20, 30, 5, 15, 20, 25, 17, 13, 10, 9, 22];
     var d = new Date(2020, 8, 25, 9, 5, 30, 0);
     var companies = [];
 
