@@ -14,10 +14,9 @@
 }
 
 .menu-toggle {
-    margin: 0 0.5rem 0 0.5rem;
+    margin-top: 1rem;
     display: flex;
 	position: relative;
-	margin-top: 2vh;
     width: 3.75rem;
 	height: 3.75rem;
 	border-radius: 10px;
@@ -171,7 +170,6 @@
     left:0;
     height: 100vh;
     width: 100vw;
-    
   }
 
 .menu-overlay-open{

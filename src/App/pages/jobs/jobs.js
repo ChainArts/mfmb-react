@@ -113,6 +113,9 @@ export function Jobs () {
 
 return(
     <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible">
+    <motion.div className="jobs-filter">
+            <motion.span className="jobs-title">JOBS</motion.span>
+        </motion.div>
     <SimpleBar scrollbarMaxSize={300} className="scroll-container" scrollableNodeProps={{ ref: ref }}>
         <AnimateSharedLayout>
             <motion.ul className = "jobs-container">
