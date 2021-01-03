@@ -38,26 +38,57 @@
 .view-type{
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 7rem;
     margin-bottom: 5rem;
 }
 
 .viewbutton{
+    font-size: 2rem;
+    line-height: 0;
+    padding: 1rem;
     cursor: pointer;
+    border: solid 2px #e20080;
+    border-radius: 1rem;
+}
+
+.dark{
+    color: #444;
+    border: solid 2px #e2008041;
 }
 
 .filter-list{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-size: 1.4rem;
+    cursor: pointer;
 }
 
-.jobs-container {
+.filter-list span{
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.jobs-container{
     position: relative;
-    display: flex;
     width: 100%;
     list-style: none;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+.job-list{
+    display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    padding: 1rem 2rem 1rem 2rem;
+}
+
+.job-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 0.8rem 0.8rem;
+    align-items: start;
 }
   
 .jobs-item {
@@ -125,8 +156,6 @@
     height: 40px;
     cursor: pointer;
 }
-
-
 
 .simplebar-scrollbar::before{
     background: #e20080 !important;

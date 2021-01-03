@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react';
-import { AnimateSharedLayout, AnimatePresence, motion, useElementScroll, useTransform } from 'framer-motion';
+import React, {useState} from 'react';
+import { AnimateSharedLayout, AnimatePresence, motion } from 'framer-motion';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import "./jobs.css";
@@ -26,8 +26,9 @@ const jobItem = {
         y: 0,
         opacity: 1,
         transition:{
+            duration: 0.8,
             delayChildren: 0.5,
-            staggerChildren: .06,
+            ease: [.14,.8,.4,1]
         }
     }
 };
@@ -42,6 +43,20 @@ const jobContent = {
     },
     exit: {opacity: 0}
 };
+
+function JobContainer(props) {
+    return(
+        <SimpleBar scrollbarMaxSize={300} className="scroll-container">
+        <AnimateSharedLayout>
+            <motion.ul className = {props.grid ? "jobs-container job-grid" : "jobs-container job-list"}>
+                {jobs.map(job => (
+                    <Job key={job}/>
+                ))}
+            </motion.ul>
+        </AnimateSharedLayout>
+        </SimpleBar>
+    )
+}
 
 function JobContent() {
     return (
@@ -60,27 +75,26 @@ function JobContent() {
     );
 }
 
-const Job = (props)  => {
-
+const Job = props => { 
     const [isOpen, setIsOpen] = useState(false);
     const toggleOpen = () => setIsOpen(!isOpen);
   
     return (
-        <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} afterTransition={{style: "scale: props.scale, opacity: props.opacity"}} whileHover={{filter: "brightness(1.1)"}}>
+        <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} whileHover={{filter: "brightness(1.1)"}}>
             <motion.div className="avatar" layout>
                 <motion.img src="media/default.png" alt="" layout/>
                 <motion.div className="nameCont" layout>
-                    <motion.div className="jobName">Lorem Ipsum / Dolor Sit</motion.div>
-                    <motion.div className="jobDesc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</motion.div>
+                    <motion.div layout className="jobName">Lorem Ipsum / Dolor Sit</motion.div>
+                    <motion.div layout className="jobDesc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</motion.div>
                 </motion.div>
             </motion.div>
             <motion.div className="jobs-close-ico-wrap" layout>
-                <motion.div className="close-ico">
+                <motion.div className="close-ico" layout>
                     <motion.div className="dash" style={{rotateZ: "45deg", y: "10px"}} animate={isOpen ? {x: 0, width: "100%"} : {x: 0, width: "60%"}} exit="exit" transition={{delay: 0.3, duration: 0.4, ease: [.14,.8,.4,1]}}></motion.div>
                     <motion.div className="dash" style={{rotateZ: "135deg", y: "10px"}} animate={isOpen ? {x: 0, width: "100%"} : {x: "8px", width: "60%"}} exit="exit" transition={{delay: 0.35, duration: 0.4, ease: [.14,.8,.4,1]}}></motion.div>
                 </motion.div>
             </motion.div>
-            <AnimatePresence>{isOpen && <JobContent/>}</AnimatePresence>
+            <AnimatePresence exitBeforeEnter>{isOpen && <JobContent/>}</AnimatePresence>
         </motion.li>
     );
 }
@@ -88,34 +102,39 @@ const Job = (props)  => {
 var jobs = Array.from(Array(20)).map(x=>Math.random())
 
 export function Jobs () {
-    const ref = useRef();
-    const { scrollYProgress } = useElementScroll(ref)
-    const scaleAnim = useTransform(scrollYProgress, [0.9, 1], [1,1.2])
+    const [isGrid, setIsGrid] = useState(false);
+    const [refreshKey, setRefreshKey] = useState(1);
+    function toggleGrid (){ setIsGrid(!isGrid);}
+    function refreshJobs (){ setRefreshKey(refreshKey + 1);}
 
 return(
-    <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible">
-    <motion.div className="jobs-filter">
+    <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible" layout>
+    <motion.div className="jobs-filter mobile-hide">
             <motion.span className="jobs-title">JOBS</motion.span>
             <motion.div className="view-type">
-                <span>View:</span>
-                    <motion.li className="viewbutton"><HiViewGrid style={{fontSize: "1.6rem"}}/></motion.li>
-                    <motion.li className="viewbutton"><HiViewList style={{fontSize: "1.6rem"}}/></motion.li>
+                <span>Ansicht:</span>
+                
+                {isGrid ?
+                (<>  
+                    <motion.li className="viewbutton"><HiViewGrid/></motion.li>
+                    <motion.li className="viewbutton dark" onClick={() => {refreshJobs(); toggleGrid();}} whileTap={{scale: 1.1}}><HiViewList/></motion.li>
+                </>)
+                :
+                (<>
+                    <motion.li className="viewbutton dark" onClick={() => {refreshJobs(); toggleGrid();}} whileTap={{scale: 1.1}}><HiViewGrid/></motion.li>
+                    <motion.li className="viewbutton"><HiViewList/></motion.li>
+                </>)
+                }
             </motion.div>
             <motion.div className="filter-list">
-                <span>Filters</span>
-                <HiPlus/>
+                <span>Filter:</span>
+                <HiPlus style={{color: "#e20080", fontSize: "1.6rem", lineHeight: "0"}}/>
             </motion.div>
     </motion.div>
-    <motion.span className="job-seperator"/>
-    <SimpleBar scrollbarMaxSize={300} className="scroll-container" scrollableNodeProps={{ ref: ref }}>
-        <AnimateSharedLayout>
-            <motion.ul className = "jobs-container">
-                {jobs.map(job => (
-                    <Job key={job} scale={scaleAnim}/>
-                ))}
-            </motion.ul>
-        </AnimateSharedLayout>
-        </SimpleBar>
+    <span className="job-seperator"/>
+    <AnimatePresence  key={refreshKey}>
+        <JobContainer grid={isGrid}/>
+    </AnimatePresence>
     </motion.div>
     );
 }
