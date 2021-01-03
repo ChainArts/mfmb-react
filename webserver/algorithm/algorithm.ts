@@ -1,10 +1,8 @@
-    export { id };
     var fs = require('fs');
-    var data = fs.readFileSync('data.json');
-    var companies = [];
-    companies = JSON.parse(data);
+    var data = require('../data.json');
+    var companies = data;
     var selection = [];
-    var i = 0,rep = 0, prev_id = 0, id = 0;
+    var i = 0, prev_id = 0, id = 0;
 
     function sum(total, num) {
         return total + num;
@@ -18,17 +16,10 @@
         return (money/sum)*10;
     }
 
-    function delay(ms: number) {
-        return new Promise( resolve => setTimeout(resolve, ms) );
-    }
-
     function finished(err){
         console.log('Data written');
     }
-
-    (async () =>{
-    while(rep <1){
-    
+        console.log(companies.map(a => a.countedtime));
         selection = [];
         //create selection of companies with samllest and same countedtime
         companies.sort((a, b) => a.countedtime - b.countedtime);
@@ -37,7 +28,7 @@
                 selection[i]=companies[i].id;
             }
         }
-    
+        console.log(selection);
         companies.sort((a, b) => a.id - b.id);
     
         //remove previous id from the selection
@@ -62,15 +53,21 @@
         companies[id-1].countedtime += Math.round(companies[id-1].playtime/weight(companies[id-1].geld,companies.map(a => a.geld).reduce(sum)));
         companies[id-1].displaytime += companies[id-1].playtime;
         prev_id = id;
-        rep++;
-        //console.log(id);
-        await delay(1000);
-        data = JSON.stringify(companies, null, 2);
-        fs.writeFile('data.json', data, finished);
-        finished(finished);
+
+        console.log(id);
+        console.log(companies.map(a => a.countedtime));
+        companies = JSON.stringify(companies, null, 2);
         
-    
-            console.log(companies.map(a => a.countedtime));
+        fs.writeFile('./webserver/data.json', companies, finished);
+        companies = JSON.parse(companies);
+        console.log(companies.map(a => a.countedtime));
+
+        while(companies[4].id != id){
+            companies.unshift(companies.pop());
+        }
+        companies = JSON.stringify(companies, null, 2);
+        fs.writeFile('./webserver/autodata.json', companies, finished);
+        var companies = JSON.parse(companies);
             //console.log(selection);
             //console.log(companies); 
             // console.log(update);
@@ -78,5 +75,4 @@
             // console.log(actuality);
             // console.log(noise, id, money.length);
 
-            }
-        })();
+        

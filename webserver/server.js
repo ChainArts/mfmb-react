@@ -1,11 +1,12 @@
 var http = require('http');
 
-//var algorithm = require('./webserver/algorithm/algorithm')
+var printData = require('../webserver/algorithm/algorithm.js');
 
 const PORT = 5500;
 
 http.createServer(function (req, res) {
-    res.write('Response from NodeJS Server');
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.write(JSON.stringify(printData));
     res.end();
 }).listen(PORT);
 

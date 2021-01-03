@@ -1,5 +1,3 @@
-"use strict";
-exports.__esModule = true;
 var fs = require('fs');
 var mysql = require('mysql');
 var d = new Date(2020, 8, 25, 9, 5, 30, 0);
@@ -49,3 +47,4 @@ con.connect(function (err) {
         console.log('Close the database connection.');
     });
 });
+export {};
