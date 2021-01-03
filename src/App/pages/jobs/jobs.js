@@ -3,6 +3,7 @@ import { AnimateSharedLayout, AnimatePresence, motion, useElementScroll, useTran
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import "./jobs.css";
+import { HiViewGrid, HiViewList, HiPlus } from "react-icons/hi";
 
 const jobContainer = {
     hidden: { opacity: 0, scaleY: .1, y: 200},
@@ -42,41 +43,9 @@ const jobContent = {
     exit: {opacity: 0}
 };
 
-const exitIcoCont = {
-    hidden: {scale: 0},
-    visible: {scale: 1,
-        transition: {
-            duration: 0.3, delay: 0.2, ease: [.14,.8,.4,1.25],
-        }
-    },
-    exit:{
-        scale: 0,
-        transition: {
-            duration: 0.10, ease: [.14,.8,.4,1]
-        }
-    }
-};
-
-const exitIcoDash = {
-    hidden: {scale: 0},
-    visible: {scale: 1,
-},
-    exit:{
-        scale: 0,
-        transition: {
-            duration: 0.10, ease: [.14,.8,.4,1]
-        }
-    }
-};
 function JobContent() {
     return (
         <>
-        <motion.div className="jobs-close-ico-wrap" variants={exitIcoCont} initial="hidden" animate="visible" exit="exit" layout>
-            <motion.div className="close-ico" initial={{scale: 1}}>
-                <motion.div className="dash" style={{rotateZ: "-45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.3, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
-                <motion.div className="dash" style={{rotateZ: "45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.35, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
-            </motion.div>
-        </motion.div>
         <motion.div layout variants = {jobContent} initial = "hidden" animate = "visible" exit="exit">
             <motion.div className="row1" />
             <motion.div className="row1" />
@@ -97,8 +66,20 @@ const Job = (props)  => {
     const toggleOpen = () => setIsOpen(!isOpen);
   
     return (
-        <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} afterTransition={{style: "scale: props.scale, opacity: props.opacity"}}>
-            <motion.div className="avatar" layout style={isOpen ? {float: "right"} : {float: "left"}}/>
+        <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} afterTransition={{style: "scale: props.scale, opacity: props.opacity"}} whileHover={{filter: "brightness(1.1)"}}>
+            <motion.div className="avatar" layout>
+                <motion.img src="media/default.png" alt="" layout/>
+                <motion.div className="nameCont" layout>
+                    <motion.div className="jobName">Lorem Ipsum / Dolor Sit</motion.div>
+                    <motion.div className="jobDesc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</motion.div>
+                </motion.div>
+            </motion.div>
+            <motion.div className="jobs-close-ico-wrap" layout>
+                <motion.div className="close-ico">
+                    <motion.div className="dash" style={{rotateZ: "45deg", y: "10px"}} animate={isOpen ? {x: 0, width: "100%"} : {x: 0, width: "60%"}} exit="exit" transition={{delay: 0.3, duration: 0.4, ease: [.14,.8,.4,1]}}></motion.div>
+                    <motion.div className="dash" style={{rotateZ: "135deg", y: "10px"}} animate={isOpen ? {x: 0, width: "100%"} : {x: "8px", width: "60%"}} exit="exit" transition={{delay: 0.35, duration: 0.4, ease: [.14,.8,.4,1]}}></motion.div>
+                </motion.div>
+            </motion.div>
             <AnimatePresence>{isOpen && <JobContent/>}</AnimatePresence>
         </motion.li>
     );
@@ -115,7 +96,17 @@ return(
     <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible">
     <motion.div className="jobs-filter">
             <motion.span className="jobs-title">JOBS</motion.span>
-        </motion.div>
+            <motion.div className="view-type">
+                <span>View:</span>
+                    <motion.li className="viewbutton"><HiViewGrid style={{fontSize: "1.6rem"}}/></motion.li>
+                    <motion.li className="viewbutton"><HiViewList style={{fontSize: "1.6rem"}}/></motion.li>
+            </motion.div>
+            <motion.div className="filter-list">
+                <span>Filters</span>
+                <HiPlus/>
+            </motion.div>
+    </motion.div>
+    <motion.span className="job-seperator"/>
     <SimpleBar scrollbarMaxSize={300} className="scroll-container" scrollableNodeProps={{ ref: ref }}>
         <AnimateSharedLayout>
             <motion.ul className = "jobs-container">

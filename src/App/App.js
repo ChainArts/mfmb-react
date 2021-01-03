@@ -22,7 +22,7 @@ function Companies({ match }) {
     
     return(
     <>
-    <Suspense fallback={null}>
+    <Suspense fallback={<h1>loading</h1>}>
         <AnimateSharedLayout type="crossfade">
             <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
                 <Grid selectedId={id} />

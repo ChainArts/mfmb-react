@@ -142,7 +142,7 @@ const Navbar = () => {
                     </nav>
                 </IconContext.Provider>
                 </div>
-                <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"></motion.span>
+                <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"/>
                 <div className="nav-header mobile-hide">
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
                         <img src={`media/default.png`} alt=""/>

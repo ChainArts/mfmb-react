@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from 'react';
 import { companies } from "../data";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -35,6 +35,7 @@ const gridItem = {
 function Card({ id, name, backgroundColor, image}) {
 
   return (
+    <Suspense fallback={<h1>loading</h1>}>  
     <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} exit="exit" >
     <NavLink to={"companies/"+id} className={`card-open-link`}>
       <div className="grid-container">
@@ -51,6 +52,7 @@ function Card({ id, name, backgroundColor, image}) {
       </div>
       </NavLink>
     </motion.li>
+    </Suspense>
   );
 }
 
