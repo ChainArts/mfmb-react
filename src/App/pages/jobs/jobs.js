@@ -116,13 +116,13 @@ return(
                 
                 {isGrid ?
                 (<>  
+                    <motion.li className="viewbutton dark" onClick={() => {toggleGrid(); refreshJobs();}} whileTap={{scale: 1.1}}><HiViewList/></motion.li>
                     <motion.li className="viewbutton"><HiViewGrid/></motion.li>
-                    <motion.li className="viewbutton dark" onClick={() => {refreshJobs(); toggleGrid();}} whileTap={{scale: 1.1}}><HiViewList/></motion.li>
                 </>)
                 :
                 (<>
-                    <motion.li className="viewbutton dark" onClick={() => {refreshJobs(); toggleGrid();}} whileTap={{scale: 1.1}}><HiViewGrid/></motion.li>
                     <motion.li className="viewbutton"><HiViewList/></motion.li>
+                    <motion.li className="viewbutton dark" onClick={() => {toggleGrid(); refreshJobs(); }} whileTap={{scale: 1.1}}><HiViewGrid/></motion.li>
                 </>)
                 }
             </motion.div>
@@ -132,7 +132,7 @@ return(
             </motion.div>
     </motion.div>
     <span className="job-seperator"/>
-    <AnimatePresence  key={refreshKey}>
+    <AnimatePresence key={refreshKey}>
         <JobContainer grid={isGrid}/>
     </AnimatePresence>
     </motion.div>

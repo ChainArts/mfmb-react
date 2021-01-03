@@ -1,10 +1,11 @@
 import React from 'react';
-import './automode.css'
+import './automode.css';
+import { NavLink } from 'react-router-dom';
 
 export const AutoMode = () => (
-    <div className="auto-container">
-        <iframe width="100%" height="100%" src="http://localhost:5500" title="pfusch"/>
-    </div>
+    <NavLink to="/" className="auto-container">
+         {/*Content*/}
+    </NavLink>
 )
 
 export default AutoMode;
