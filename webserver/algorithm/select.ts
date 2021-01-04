@@ -42,9 +42,7 @@
                     i++;
                 });
                 var data = JSON.stringify(companies, null, 2);
-                fs.writeFile('data.json', data, finished);
-                finished(finished);
-                
+                fs.writeFile('./webserver/data.json', data, finished);
             }
         });
         con.end(function(err){

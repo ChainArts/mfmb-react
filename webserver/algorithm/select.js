@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 var fs = require('fs');
 var mysql = require('mysql');
 var d = new Date(2020, 8, 25, 9, 5, 30, 0);
@@ -36,8 +38,7 @@ con.connect(function (err) {
                 i++;
             });
             var data = JSON.stringify(companies, null, 2);
-            fs.writeFile('data.json', data, finished);
-            finished(finished);
+            fs.writeFile('./webserver/data.json', data, finished);
         }
     });
     con.end(function (err) {
@@ -47,4 +48,3 @@ con.connect(function (err) {
         console.log('Close the database connection.');
     });
 });
-export {};
