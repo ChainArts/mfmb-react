@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './navbar.css';
 import { IconContext } from 'react-icons';
 import { HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTerminal } from "react-icons/hi";
-import { NavLink, useHistory} from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { motion, AnimatePresence} from 'framer-motion';
 
 const navoverlay = {
@@ -106,6 +106,7 @@ const Navbar = () => {
     const toggleOpen = () => setIsOpen(!isOpen);
 
     return(
+        <AnimatePresence>
         <div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
             <div className="menu-toggle" onClick={toggleOpen} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.4s"}}>
                 <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>
@@ -154,7 +155,7 @@ const Navbar = () => {
             )}
             </AnimatePresence>
 		</div>
-        
+        </AnimatePresence>    
     )
 }
 

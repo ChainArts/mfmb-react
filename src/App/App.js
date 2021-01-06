@@ -37,7 +37,23 @@ function Companies({ match }) {
     )
 }
 
+/*function redirectAuto(){
+    const[count, setCount] = useState(0);
+    const countRef = useRef(count);
+    countRef.current = count;
+
+    const getCountTimeout = () => {
+        setTimeout(()=> {
+            setTimeoutCount(countRef.current);
+            console.log("redirect")
+            return (<Redirect to="/automode"/>)
+        }, 2000);
+        return () => clearTimeout(timer);
+    };
+}*/
+
 function App() {
+
     return (
         <div className="App">
             <header/>

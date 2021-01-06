@@ -44,18 +44,51 @@ const jobContent = {
     exit: {opacity: 0}
 };
 
+const jobFilterOverlay = {
+    hidden: {opacity: 0},
+    visible: {
+        opacity: 1,
+        transition:{
+            duration: 0.3,
+            ease: [.14,.8,.4,1]
+        }
+    },
+    exit:{
+        opacity: 0,
+        transition: {
+            duration: 0.3,
+            ease: [.14,.8,.4,1]
+        }
+    }
+}
+
 function JobContainer(props) {
     return(
+        <>
         <SimpleBar scrollbarMaxSize={300} className="scroll-container">
         <AnimateSharedLayout>
-            <motion.ul className = {props.grid ? "jobs-container job-grid" : "jobs-container job-list"}>
+            <motion.ul layout className = {props.grid ? "jobs-container job-grid" : "jobs-container job-list"}>
                 {jobs.map(job => (
                     <Job key={job}/>
                 ))}
             </motion.ul>
         </AnimateSharedLayout>
         </SimpleBar>
-    )
+        <AnimatePresence>
+            {props.filter && (<JobFilterOverlay toggleFilter = {props.toggleFilter}/>)}
+        </AnimatePresence>
+        </>
+    );
+}
+
+function JobFilterOverlay(props) {
+    return(
+    <motion.div layout variants = {jobFilterOverlay} className="job-overlay-container" exit="exit" initial="hidden" animate="visible" onClick={props.toggleFilter}>
+        <motion.div className="job-overlay">
+            <span>Filter</span>
+        </motion.div>
+    </motion.div>
+    );
 }
 
 function JobContent() {
@@ -94,7 +127,7 @@ const Job = props => {
                     <motion.div className="dash" style={{rotateZ: "135deg", y: "10px"}} animate={isOpen ? {x: 0, width: "100%"} : {x: "8px", width: "60%"}} exit="exit" transition={{delay: 0.35, duration: 0.4, ease: [.14,.8,.4,1]}}></motion.div>
                 </motion.div>
             </motion.div>
-            <AnimatePresence exitBeforeEnter>{isOpen && <JobContent/>}</AnimatePresence>
+            <AnimatePresence>{isOpen && <JobContent/>}</AnimatePresence>
         </motion.li>
     );
 }
@@ -103,8 +136,10 @@ var jobs = Array.from(Array(20)).map(x=>Math.random())
 
 export function Jobs () {
     const [isGrid, setIsGrid] = useState(false);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [refreshKey, setRefreshKey] = useState(1);
     function toggleGrid (){ setIsGrid(!isGrid);}
+    function toggleOverlay(){setIsFilterOpen(!isFilterOpen);}
     function refreshJobs (){ setRefreshKey(refreshKey + 1);}
 
 return(
@@ -126,14 +161,14 @@ return(
                 </>)
                 }
             </motion.div>
-            <motion.div className="filter-list">
+            <motion.div className="filter-list" onClick={toggleOverlay}>
                 <span>Filter:</span>
                 <HiPlus style={{color: "#e20080", fontSize: "1.6rem", lineHeight: "0"}}/>
             </motion.div>
     </motion.div>
     <span className="job-seperator"/>
     <AnimatePresence key={refreshKey}>
-        <JobContainer grid={isGrid}/>
+        <JobContainer grid={isGrid} filter={isFilterOpen} toggleFilter={toggleOverlay}/>
     </AnimatePresence>
     </motion.div>
     );
