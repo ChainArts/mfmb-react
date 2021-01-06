@@ -133,22 +133,12 @@ const exitIcoDash = {
     }
 };
 
-const optionsText = {
-    hidden: {scaleX: 0, },
-    visible: {scaleX: 1, 
-    transition: {
-        delay: 0.8,
-        duration: 0.7, ease: [.14,.8,.4,1]
-    }
-    }
-}
-
-const optionsQR = {
-    hidden: {scale: 0},
-    visible: {scale: 1,    
+const options = {
+    hidden: {opacity: 0, scale: 0.9},
+    visible: {opacity: 1, scale: 1,    
         transition:{
-        delay: 0.7,
-        duration: 0.8, ease: [.14,.8,.4,1]
+        delay: 0.6,
+        duration: 0.3, ease: [.14,.8,.4,1]
     }
     }
 }
@@ -194,8 +184,8 @@ export function Company({ id }) {
             </video>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
-            <NavLink to="/jobs"><motion.div layout className="option" variants={optionsText} initial="hidden" animate="visible" whileTap={{scale: 0.85}}><span>Jobs</span></motion.div></NavLink>
-            <motion.div layout className="qr-code" variants={optionsQR} initial="hidden" animate="visible">
+            <NavLink to="/jobs"><motion.div layout className="option" variants={options} initial="hidden" animate="visible" whileTap={{scale: 0.85}}><span>Jobs</span></motion.div></NavLink>
+            <motion.div layout className="qr-code" variants={options} initial="hidden" animate="visible">
                 <QRCode
                     id = {id}
                     value = {website}
@@ -205,7 +195,7 @@ export function Company({ id }) {
                     includeMargin={true}
                 />
             </motion.div>
-            <motion.span className="company-link"variants={optionsText} initial="hidden" animate="visible">{website}</motion.span>
+            <motion.span className="company-link"variants={options} initial="hidden" animate="visible">{website}</motion.span>
         </motion.div>
         <motion.div className="grid-seperator" style={{backgroundColor: accentColor}} variants={gridSeperator} initial="hidden" animate="visible" exit="exit"/>
         <motion.div className="content-container grid-item" layout variants={iframeCont} initial="hidden" animate="visible" exit="exit">

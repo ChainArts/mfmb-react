@@ -95,7 +95,7 @@ header{
     "grid-seperator grid-seperator grid-seperator"
     "content-container content-container content-container";
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr)); 
-    grid-auto-rows: 20rem 2px 63vh;
+    grid-auto-rows: 20rem 2px auto;
     grid-gap: 0.8rem 2.5rem;
     height: 100vh;
     max-width: calc(100% - 5rem);
@@ -177,12 +177,12 @@ header{
     height: 100%;
     width: 100%;
     grid-area: grid-seperator;
-    border-radius: 100%;
+    border-radius: 5px;
 }
 
 .iframe-container{
     width: 100%;
-    height: calc(70vh + 2px) !important;
+    height: 100%;
     cursor: auto;
     overflow: hidden;
 }
