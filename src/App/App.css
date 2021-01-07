@@ -30,6 +30,7 @@ body {
   max-width: 100%;
   background-color: #2a2d32;
   text-rendering: optimizeLegibility;
+  overflow: hidden;
 }
 
 header{
@@ -45,9 +46,9 @@ header{
     width: 100vw;
     height: 100vh;
 }
+
 .content-wrapper{
     position: relative;
-    z-index: 0;
     right: 0;
     width: 100%;
 }
@@ -58,7 +59,6 @@ header{
     grid-template-columns: repeat(auto-fit, minmax(27rem, 0.9fr));
     grid-auto-rows: 21rem;
     height: 100%;
-    z-index: 0;
   }
 
 .grid-item{
@@ -84,11 +84,9 @@ header{
     right: 0;
     top: 0;
     position: fixed;
-    z-index: 2;
 }
 
 .open .company-content{
-    z-index: 1;
     display: grid;
     grid-template-areas:
     "company react-player options"
@@ -99,16 +97,15 @@ header{
     grid-gap: 0.8rem 2.5rem;
     height: 100vh;
     max-width: calc(100% - 5rem);
-    padding: 2vh 0rem 2vh 0rem;
+    padding: 1rem 0rem 1rem 0rem;
 }
 
 .overlay-backdrop{
-    z-index: 0;
-    position: absolute;
+    position: fixed;
     pointer-events: none;
     background-color: #2a2d32;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
 }
 
 .open .company-logo{
@@ -130,10 +127,10 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#232529;
+    background-color:#34363A;
     border-radius: 3rem;
     margin: 0.5rem;
-    box-shadow: 1px 1px 6px #111;
+    box-shadow: inset 1px 1px 6px #111;
     z-index: 802;
     width: 2.75rem;
     height: 2.75rem;
@@ -186,9 +183,11 @@ header{
     cursor: auto;
     overflow: hidden;
 }
+
 iframe{
     border-radius: 10px;
 }
+
 .company-options{
     display: flex;
     z-index: 10;
@@ -240,7 +239,6 @@ iframe{
     box-shadow: 0px 2px 11px #111;
 }
 .overlay {
-    z-index: 1;
     position: fixed;
     width: 100%;
     top: 0;

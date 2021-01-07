@@ -1,23 +1,15 @@
-body{
-    overflow: hidden;
-}
-
 .about-container {
-    margin: 2vh 5rem 2vh 0vw;
+    margin: 1rem 5rem 1rem 0vw;
     position: relative;
-    height: 96vh;
+    height: 100vh;
     width: calc(100vw - 5rem);
     display: grid;
-    overflow: hidden;
     list-style: none;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    grid-auto-rows: 1fr 50%;
+    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+    grid-auto-rows: 21rem auto;
     grid-template-areas:
     "about-item0 about-item1 about-item2 about-item3"
     "about-item4 about-item4 about-item4 about-item4";
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 1rem;
     gap: 1rem;
 }
   

@@ -5,7 +5,7 @@
 
 .job-seperator{
     content:"";
-    width: 2px;
+    width: 1px;
     height: 90vh;
     background-color: #eee;
     align-self: center;
