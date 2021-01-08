@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { companies } from "../data";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import {HiArrowRight } from "react-icons/hi";
 
 const gridWrapper = {
     hidden: {},
@@ -13,7 +14,7 @@ const gridWrapper = {
       }
     }
 };
-  
+
 const gridItem = {
     hidden: { y: 80, opacity: 0},
     visible: {
@@ -25,43 +26,50 @@ const gridItem = {
         },
     },
     exit: {
-        y: -50, opacity: 0},
+        y: -50, opacity: 0,
         transition: {
             duration: 0.2,
             ease: [.14,.8,.4,1]
         },
     }
+};
+
+
 
 function Card({ id, name, backgroundColor, image}) {
+    var color;
+    if(backgroundColor < '#AAAAAA')
+        color = '#efefef';
+    else
+        color = '#2a2a2a';
 
-  return (
-    <Suspense fallback={<h1>loading</h1>}>  
+    return (  
     <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} exit="exit" >
     <NavLink to={"companies/"+id} className={`card-open-link`}>
       <div className="grid-container">
         <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
           <img src={image} alt=""/>
         </motion.div>
-        <motion.div className="company-name" style={{backgroundColor: backgroundColor}} layoutId={`company-name-${id}`}>
-            {(backgroundColor < '#AAAAAA') ?
-              (<span style={{color:  '#efefef'}}>{name}</span>)
-              :
-              (<span style={{color: '#2a2a2a'}}>{name}</span>)
-            }
+        <motion.div className="company-name" style={{backgroundColor: backgroundColor, color: color}} layoutId={`company-name-${id}`}>
+            <span>{name}</span>
+            <motion.div layout className="infos">
+                <motion.div className="name-seperator" style={{backgroundColor: color}} initial={{height: 0}} animate={{height: "100%"}}/>
+                <span>INFOS</span><HiArrowRight style={{fontSize: "1.4rem"}}/></motion.div>
         </motion.div>
       </div>
       </NavLink>
     </motion.li>
-    </Suspense>
   );
 }
 
 export function Grid({ selectedId }) {
     return (
+        <Suspense fallback={<h1>loading</h1>}>
         <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map(card => (
                 <Card key={card.id} {...card} isSelected={card.id === selectedId} />
             ))}
         </motion.ul>
+        </Suspense>
     );
 }

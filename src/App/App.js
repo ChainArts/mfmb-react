@@ -3,10 +3,10 @@
 // September 2, 2020
 // HTL Hollabrunn
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { Company } from "./components/company";
@@ -18,14 +18,15 @@ import AutoMode from './pages/autoMode/autoMode';
 
 function Companies({ match }) {
     let { id } = match.params;
-    const imageHasLoaded = true;
+    const imageHasLoaded = useState(true);
     
     return(
     <>
     <Suspense fallback={<h1>loading</h1>}>
         <AnimateSharedLayout type="crossfade">
+            <motion.div className="currCategory" initial={{opacity: 0}} animate={{opacity: 1}}>FIRMEN</motion.div>
             <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
-                <Grid selectedId={id} />
+                <Grid selectedId={id}/>
                 <AnimatePresence>
                     {id && imageHasLoaded && <Company id={id} key="company"/>}
                     
@@ -53,17 +54,18 @@ function Companies({ match }) {
 }*/
 
 function App() {
-
     return (
         <div className="App">
             <header/>
             <Navbar/>
+            <AnimatePresence>
                 <Switch>
                     <Route exact path={["/companies/:id", "/"]} component={Companies}/>
                     <Route path="/automode" component={AutoMode}/>
                     <Route path="/about" component={About}/>
                     <Route path="/jobs" component={Jobs}/>
                 </Switch>
+            </AnimatePresence>    
         </div>
     );
 }

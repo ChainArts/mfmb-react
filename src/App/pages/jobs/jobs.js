@@ -6,7 +6,7 @@ import "./jobs.css";
 import { HiViewGrid, HiViewList, HiPlus } from "react-icons/hi";
 
 const jobContainer = {
-    hidden: { opacity: 0, scaleY: .1, y: 200},
+    hidden: { opacity: 0, scaleY: .9 , y: 200},
     visible: {
       y: 0, 
       opacity: 1,

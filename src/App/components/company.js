@@ -150,6 +150,12 @@ export function Company({ id }) {
     {
         accentColor = "#e20080";
     }
+
+    var color;
+    if(backgroundColor < '#AAAAAA')
+        color = '#efefef';
+    else
+        color = '#2a2a2a';
     return (
     <>
     <motion.div
@@ -169,12 +175,8 @@ export function Company({ id }) {
             <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
                 <img src={"../"+image} alt=""/>
             </motion.div>
-            <motion.div className="company-name" style={{backgroundColor: backgroundColor}} layoutId={`company-name-${id}`}>
-                {(backgroundColor < '#AAAAAA') ?
-                    (<span style={{color:  '#efefef'}}>{name}</span>)
-                    :
-                    (<span style={{color: '#2a2a2a'}}>{name}</span>)
-                }
+            <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color}} layoutId={`company-name-${id}`}>
+                <span>{name}</span>
             </motion.div>
         </motion.div>
         </NavLink>

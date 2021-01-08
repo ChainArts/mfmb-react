@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './navbar.css';
 import { IconContext } from 'react-icons';
 import { HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTerminal } from "react-icons/hi";
-import { NavLink, useHistory } from "react-router-dom";
-import { motion, AnimatePresence} from 'framer-motion';
+import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navoverlay = {
     hidden: {x: "-100vw"},
@@ -99,10 +99,25 @@ const navHeaderItem ={
     }
 }
 
+const scrollIndicator = {
+    animate: {
+        scaleY: [1, 0.2],
+        y: ["-6rem","6rem"],
+        transition: {
+            duration: 2,
+            ease: "linear",
+            loop: Infinity,
+            repeatDelay: 0.5,
+            times: [0, 1]
+        }
+    }
+}
+
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const history = useHistory();
+    const location = useLocation();
     const toggleOpen = () => setIsOpen(!isOpen);
 
     return(
@@ -154,8 +169,13 @@ const Navbar = () => {
             </motion.div>
             )}
             </AnimatePresence>
+            {((location.pathname === "/" || location.pathname === "/about") &&
+            <motion.div className="scrollIndicator" initial={{height: 0}} animate={{height: "6rem"}} exit={{height: 0}} transition={{delay: 0.5, duration: 0.3, ease: "easeInOut"}}>
+                <motion.div className="scrollIndicatorSlider" variants={scrollIndicator} animate="animate"/>
+            </motion.div>
+            )}
 		</div>
-        </AnimatePresence>    
+        </AnimatePresence>
     )
 }
 

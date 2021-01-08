@@ -265,16 +265,37 @@ iframe{
 }
 
 .company-name{
+    padding: 1rem 1rem 1rem 2rem;
     height: 25%;
     font-weight: 300;
     color: #FFF;
     font-size: 1.5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+.infos{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.infos  span{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.name-seperator{
+    content: '';
+    width: 1px;
+    height: 100%;
+} 
 
 .insert-content{
     height: 100%;
@@ -297,5 +318,23 @@ iframe{
 
 .hide .simplebar-scrollbar::before {
     opacity: 0 !important;
+}
+
+.currCategory{
+    position: absolute;
+    transform: rotate(90deg);
+    right: -1.6rem;
+    top: 50%;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: #4c4f53;
+}
+
+.currCategory::before{
+    position: absolute;
+    height: 2px;
+    background-color: #4c4f53;
+    width: 5rem;
 }
   
