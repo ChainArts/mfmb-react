@@ -3,6 +3,7 @@ import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { companies } from "../data";
+import { HiChevronRight } from "react-icons/hi";
 
 const overlayBackdrop = {
     hidden: {scaleX: 0, originX: 0},
@@ -175,8 +176,8 @@ export function Company({ id }) {
             <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
                 <img src={"../"+image} alt=""/>
             </motion.div>
-            <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color}} layoutId={`company-name-${id}`}>
-                <span>{name}</span>
+            <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
+                <motion.span>{name}</motion.span>
             </motion.div>
         </motion.div>
         </NavLink>
@@ -186,12 +187,17 @@ export function Company({ id }) {
             </video>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
-            <NavLink to="/jobs"><motion.div layout className="option" variants={options} initial="hidden" animate="visible" whileTap={{scale: 0.85}}><span>Jobs</span></motion.div></NavLink>
+            <NavLink to="/jobs">
+                <motion.div layout className="option" variants={options} initial="hidden" animate="visible" whileTap={{scale: 0.85}}>
+                        <span>Jobs</span>
+                        <HiChevronRight style={{fontSize: "1.6rem", lineHeight: "0"}}/>
+                    </motion.div>
+                </NavLink>
             <motion.div layout className="qr-code" variants={options} initial="hidden" animate="visible">
                 <QRCode
                     id = {id}
                     value = {website}
-                    bgColor="#3b3e43"
+                    bgColor="transparent"
                     fgColor="#eeeeee"
                     size={200}
                     includeMargin={true}

@@ -50,8 +50,8 @@ function Card({ id, name, backgroundColor, image}) {
         <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
           <img src={image} alt=""/>
         </motion.div>
-        <motion.div className="company-name" style={{backgroundColor: backgroundColor, color: color}} layoutId={`company-name-${id}`}>
-            <span>{name}</span>
+        <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color}} layoutId={`company-name-${id}`}>
+            <motion.span>{name}</motion.span>
             <motion.div layout className="infos">
                 <motion.div className="name-seperator" style={{backgroundColor: color}} initial={{height: 0}} animate={{height: "100%"}}/>
                 <span>INFOS</span><HiArrowRight style={{fontSize: "1.4rem"}}/></motion.div>

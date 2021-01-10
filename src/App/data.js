@@ -44,7 +44,7 @@ export const companies = [
         id: "5",
         image: "media/evn.png",
         name: "EVN",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.evn.at/EVN-Group/Karriere.aspx/"
     },
 
@@ -60,7 +60,7 @@ export const companies = [
         id: "7",
         image: "media/abstergo.png",
         name: "Abstergo Industries",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -76,7 +76,7 @@ export const companies = [
         id: "9",
         image: "media/b&r.jpg",
         name: "B&R Automation",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32", 
         website: "https://www.osram-continental.com/"
     },
 
@@ -84,7 +84,7 @@ export const companies = [
         id: "10",
         image: "media/philips.png",
         name: "Philips",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -92,7 +92,7 @@ export const companies = [
         id: "11",
         image: "media/pollmann.png",
         name: "Pollmann International",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -100,7 +100,7 @@ export const companies = [
         id: "12",
         image: "media/default.png",
         name: "AD Space",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -108,7 +108,7 @@ export const companies = [
         id: "13",
         image: "media/default.png",
         name: "AD Space",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -116,7 +116,7 @@ export const companies = [
         id: "14",
         image: "media/default.png",
         name: "AD Space",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -124,7 +124,7 @@ export const companies = [
         id: "15",
         image: "media/default.png",
         name: "AD Space",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -132,7 +132,7 @@ export const companies = [
         id: "16",
         image: "media/default.png",
         name: "AD Space",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 
@@ -140,7 +140,7 @@ export const companies = [
         id: "17",
         image: "media/default.png",
         name: "AD Space",
-        backgroundColor: "#232529",
+        backgroundColor: "#2a2d32",
         website: "https://www.osram-continental.com/"
     },
 ];
