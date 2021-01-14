@@ -2,20 +2,20 @@
 exports.__esModule = true;
 var fs = require('fs');
 var mysql = require('mysql');
-var d = new Date(2020, 8, 25, 9, 5, 30, 0);
+var d = new Date();
 var companies = [];
 function finished(err) {
     console.log('Data written');
 }
-function Company(id, name, geld, update, playtime, displaytime, countedtime) {
+function Company(id, name, credits, lastUpdate, contentLength, playbackTime, calculatedTime) {
     this.id = id;
     this.name = name;
-    this.geld = geld;
-    this.update = update;
-    this.actuality = d.getTime() - this.update;
-    this.playtime = playtime;
-    this.displaytime = 0;
-    this.countedtime = 0;
+    this.credits = credits;
+    this.lastUpdate = lastUpdate;
+    this.topicality = d.getTime() - this.lastUpdate;
+    this.contentLength = contentLength;
+    this.playbackTime = playbackTime;
+    this.calculatedTime = calculatedTime;
 }
 var con = mysql.createConnection({
     host: "localhost",
@@ -34,7 +34,7 @@ con.connect(function (err) {
         else {
             var i = 0;
             result.forEach(function (company) {
-                companies[i] = new Company(company.id, company.name, company.geld, company.update, company.playtime, company.displaytime, company.countedtime);
+                companies[i] = new Company(company.id, company.name, company.credits, company.last_update, company.content_length, company.playback_time, company.calculated_time);
                 i++;
             });
             var data = JSON.stringify(companies, null, 2);

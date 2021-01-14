@@ -15,11 +15,11 @@ function weight(money, sum) {
 function finished(err) {
     console.log('Data written');
 }
-//console.log(companies.map(a => a.countedtime));
-//create selection of companies with samllest and same countedtime
-companies.sort(function (a, b) { return a.countedtime - b.countedtime; });
+//console.log(companies.map(a => a.calculatedTime));
+//create selection of companies with samllest and same calculatedTime
+companies.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
 for (i = 0; i < companies.length; i++) {
-    if (companies[0].countedtime == companies[i].countedtime) {
+    if (companies[0].calculatedTime == companies[i].calculatedTime) {
         selection[i] = companies[i].id;
     }
 }
@@ -37,17 +37,17 @@ if (prevId != 0) {
 }
 if (selection.length == 0) {
     selection = [];
-    companies.sort(function (a, b) { return a.countedtime - b.countedtime; });
+    companies.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
     for (i = 1; i < companies.length; i++) {
-        if (companies[1].countedtime == companies[i].countedtime) {
+        if (companies[1].calculatedTime == companies[i].calculatedTime) {
             selection[i - 1] = companies[i].id;
         }
     }
     companies.sort(function (a, b) { return a.id - b.id; });
 }
 id = selection[Math.floor(Math.random() * selection.length)];
-companies[id - 1].countedtime += Math.round(companies[id - 1].playtime / weight(companies[id - 1].geld, companies.map(function (a) { return a.geld; }).reduce(sum)));
-companies[id - 1].displaytime += companies[id - 1].playtime;
+companies[id - 1].calculatedTime += Math.round(companies[id - 1].contentLength / weight(companies[id - 1].credits, companies.map(function (a) { return a.credits; }).reduce(sum)));
+companies[id - 1].playbackTime += companies[id - 1].contentLength;
 prevId = id;
 console.log(id);
 companies = JSON.stringify(companies, null, 2);
@@ -61,7 +61,7 @@ fs.writeFile('./webserver/autodata.json', companies, finished);
 var companies = JSON.parse(companies);
 //console.log(selection);
 //console.log(companies); 
-// console.log(update);
+// console.log(lastUpdate);
 // console.log(money);
-// console.log(actuality);
+// console.log(topicality);
 // console.log(noise, id, money.length);
