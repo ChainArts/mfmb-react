@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";

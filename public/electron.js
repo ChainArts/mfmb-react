@@ -4,12 +4,12 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 const ipcMain = require("electron").ipcMain;
 
-var server = require("../webserver/server");
+var server = require(__dirname + "/../webserver/server");
 
 function newApp() {
     let win = null;
     let loading = new BrowserWindow({
-    icon: './public/icons/ms-icon-150x150.png',
+    icon: __dirname + '/icons/ms-icon-150x150.png',
     show: false,
     frame: false,
     resizable: false,
@@ -22,7 +22,7 @@ function newApp() {
 
     loading.once('show', () =>{
         win = new BrowserWindow({
-            icon: './public/icons/ms-icon-150x150.png',
+            icon: __dirname + '/icons/ms-icon-150x150.png',
             backgroundColor: '#2a2b32',
             show: false,
             frame: false,
