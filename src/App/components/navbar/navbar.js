@@ -161,7 +161,7 @@ const Navbar = () => {
                 <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"/>
                 <div className="nav-header mobile-hide">
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
-                        <img src={`media/default.png`} alt=""/>
+                        <img src={`media/default.png`} alt="" loading="lazy"/>
                             <motion.span variants = {navHeaderItem} initial="hidden" animate="open">MFMB</motion.span><br/>
                             <motion.span variants = {navHeaderItem} initial="hidden" animate="open">HTL HOLLABRUNN</motion.span>
                     </motion.div>

@@ -115,7 +115,7 @@ const Job = props => {
     return (
         <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} whileHover={{filter: "brightness(1.1)"}}>
             <motion.div className="avatar" layout>
-                <motion.img src="media/default.png" alt="" layout/>
+                <motion.img src="media/default.png" alt="" layout loading="lazy"/>
                 <motion.div className="nameCont" layout>
                     <motion.div layout className="jobName">Lorem Ipsum / Dolor Sit</motion.div>
                     <motion.div layout className="jobDesc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</motion.div>

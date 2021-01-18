@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react';
-//import { companies } from "../data";
+import { companies } from "../data";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {HiArrowRight } from "react-icons/hi";
@@ -48,7 +48,7 @@ function Card({ id, name, backgroundColor, image}) {
     <NavLink to={"companies/"+id} className={`card-open-link`}>
       <div className="grid-container">
         <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-          <img src={image} alt=""/>
+          <img src={image} alt="" loading="lazy"/>
         </motion.div>
         <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color}} layoutId={`company-name-${id}`}>
             <motion.span>{name}</motion.span>
@@ -63,7 +63,7 @@ function Card({ id, name, backgroundColor, image}) {
 }
 
 export function Grid({ selectedId }) {
-    const [companies, setCompanyId] = useState(null);
+    /*const [companies, setCompanyId] = useState(null);
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
@@ -73,7 +73,7 @@ export function Grid({ selectedId }) {
         fetch('http://localhost:5500/getdata', requestOptions)
             .then(response => response.json())
             .then(companies => setCompanyId(companies.id));
-    }, []);
+    }, []);*/
     return (
         <Suspense fallback={<h1>loading</h1>}>
         <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">

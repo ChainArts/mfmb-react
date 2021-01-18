@@ -174,7 +174,7 @@ export function Company({ id }) {
                 </motion.div>
             </motion.div>
             <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-                <img src={"../"+image} alt=""/>
+                <img src={"../"+image} alt="" loading="lazy"/>
             </motion.div>
             <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
                 <motion.span>{name}</motion.span>
