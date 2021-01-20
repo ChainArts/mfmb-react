@@ -264,7 +264,7 @@ iframe{
     border-top-right-radius: 10px;
     width: 100%;
     height: 75%;
-    background: var(--second-layer-transparent);backdrop-filter: blur( 20px );-webkit-backdrop-filter: blur( 4px );
+    background: var(--second-layer-transparent);backdrop-filter: blur( 4px );-webkit-backdrop-filter: blur( 4px );
     justify-content: center;
     align-items: center;
 }
