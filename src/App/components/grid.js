@@ -70,7 +70,7 @@ export function Grid({ selectedId }) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({title: 'YEET'})
         };
-        fetch('http://localhost:5500/getdata', requestOptions)
+        fetch('http://localhost:5500/getData', requestOptions)
             .then(response => response.json())
             .then(companies => setCompanyId(companies.id));
     }, []);*/
