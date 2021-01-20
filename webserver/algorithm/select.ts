@@ -12,7 +12,7 @@
         this.name = name;
         this.credits = credits;
         this.lastUpdate = lastUpdate;
-        this.topicality = d.getTime() - this.lastUpdate;
+        this.topicality = (d.getTime() - this.lastUpdate)/604800000;
         this.contentLength = contentLength;
         this.playbackTime = playbackTime;
         this.calculatedTime = calculatedTime;
