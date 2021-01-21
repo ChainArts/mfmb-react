@@ -36,7 +36,7 @@ http.createServer(function (req, res) {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-    console.log(req.headers);
+    //console.log(req.headers);
 
     if(req.url === '/reset'){
         runScript('./webserver/algorithm/select.js', function (err) {
@@ -56,8 +56,18 @@ http.createServer(function (req, res) {
         res.end();
     }
 
-    if(req.url === '/getData'){
+    if(req.url === '/getAutoData'){
         fs.readFile("./webserver/autodata.json", "utf8", (err, jsonString) => {
+            if (err) {
+              console.log("File read failed:", err);
+              return;
+            }
+            res.end(jsonString);
+          });
+    }
+
+    if(req.url === '/getData'){
+        fs.readFile("./webserver/data.json", "utf8", (err, jsonString) => {
             if (err) {
               console.log("File read failed:", err);
               return;

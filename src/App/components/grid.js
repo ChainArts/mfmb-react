@@ -1,5 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { companies } from "../data";
+import React, { Suspense } from 'react';
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {HiArrowRight } from "react-icons/hi";
@@ -37,15 +36,13 @@ const gridItem = {
 
 
 function Card({ id, name, backgroundColor, image}) {
-    var color;
-    if(backgroundColor < '#AAAAAA')
-        color = '#efefef';
-    else
+    var color = '#efefef';
+    if(backgroundColor > '#AAAAAA')
         color = '#2a2a2a';
 
     return (  
     <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} exit="exit" >
-    <NavLink to={"companies/"+id} className={`card-open-link`}>
+    <NavLink to={"companies/"+id } className={`card-open-link`}>
       <div className="grid-container">
         <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
           <img src={image} alt="" loading="lazy"/>
@@ -62,23 +59,12 @@ function Card({ id, name, backgroundColor, image}) {
   );
 }
 
-export function Grid({ selectedId }) {
-    /*const [companies, setCompanyId] = useState(null);
-    useEffect(() => {
-        const requestOptions = {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({title: 'YEET'})
-        };
-        fetch('http://localhost:5500/getData', requestOptions)
-            .then(response => response.json())
-            .then(companies => setCompanyId(companies.id));
-    }, []);*/
+export function Grid({ selectedId, companies }) {
     return (
-        <Suspense fallback={<h1>loading</h1>}>
+        <Suspense fallback={<h1 className="grid">loading</h1>}>
         <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map(card => (
-                <Card key={card.id} {...card} isSelected={card.id === selectedId} />
+                <Card key={card.id} {...card} isSelected={card.id === selectedId}/>
             ))}
         </motion.ul>
         </Suspense>

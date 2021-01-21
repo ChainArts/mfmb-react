@@ -3,7 +3,7 @@
 // September 2, 2020
 // HTL Hollabrunn
 
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
@@ -17,22 +17,41 @@ import Jobs from './pages/jobs/jobs';
 import AutoMode from './pages/autoMode/autoMode';
 
 function Companies({ match }) {
+    const [companies, setCompanies] = useState(null);
+    useEffect(() => {
+        const requestOptions = {
+            headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
+        };
+        fetch('http://localhost:5500/getData', requestOptions)
+            .then(function(res){
+                console.log(res)
+                return res.json();
+            })
+            .then(companies=> {
+                console.log(companies);
+                setCompanies(companies)
+            })            
+            .catch(err => console.error(err));
+    }, []);
+
     let { id } = match.params;
     const imageHasLoaded = useState(true);
     
     return(
     <>
-    <Suspense fallback={<h1>loading</h1>}>
+    <Suspense fallback={<h1 className="content-wrapper">loading</h1>}>
+        {companies && companies.length>0 && 
         <AnimateSharedLayout type="crossfade">
             <motion.div className="currCategory" initial={{opacity: 0}} animate={{opacity: 1}}>FIRMEN</motion.div>
             <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
-                <Grid selectedId={id}/>
+                <Grid selectedId={id} companies={companies}/>
                 <AnimatePresence>
-                    {id && imageHasLoaded && <Company id={id} key="company"/>}
+                    {id && imageHasLoaded && <Company id={id} key="company" companies={companies}/>}
                     
                 </AnimatePresence>
             </SimpleBar>
         </AnimateSharedLayout>
+        }
     </Suspense>
     </>
     )

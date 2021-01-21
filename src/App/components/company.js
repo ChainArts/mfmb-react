@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import { companies } from "../data";
 import { HiChevronRight } from "react-icons/hi";
 
 const overlayBackdrop = {
@@ -144,7 +143,9 @@ const options = {
     }
 }
 
-export function Company({ id }) {
+export function Company({ id, companies }) {
+    console.log(companies)
+    
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     var accentColor = backgroundColor;
     if(backgroundColor === "#232529")
@@ -152,11 +153,10 @@ export function Company({ id }) {
         accentColor = "#e20080";
     }
 
-    var color;
-    if(backgroundColor < '#AAAAAA')
-        color = '#efefef';
-    else
+    var color = '#efefef';
+    if(backgroundColor > '#AAAAAA')
         color = '#2a2a2a';
+        
     return (
     <>
     <motion.div
