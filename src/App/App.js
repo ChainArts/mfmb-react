@@ -9,6 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import DelayedFallback from './components/delayedFallback';
 import { Company } from "./components/company";
 import { Grid } from "./components/grid";
 import Navbar from './components/navbar/navbar';
@@ -39,19 +40,19 @@ function Companies({ match }) {
     
     return(
     <>
-    <Suspense fallback={<h1 className="content-wrapper">loading</h1>}>
-        {companies && companies.length>0 && 
+    <Suspense fallback={<DelayedFallback />}>
         <AnimateSharedLayout type="crossfade">
             <motion.div className="currCategory" initial={{opacity: 0}} animate={{opacity: 1}}>FIRMEN</motion.div>
+            {companies && companies.length>0 && 
             <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
-                <Grid selectedId={id} companies={companies}/>
+                    <Grid selectedId={id} companies={companies}/>
                 <AnimatePresence>
                     {id && imageHasLoaded && <Company id={id} key="company" companies={companies}/>}
                     
                 </AnimatePresence>
             </SimpleBar>
+            }
         </AnimateSharedLayout>
-        }
     </Suspense>
     </>
     )

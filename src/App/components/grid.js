@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {HiArrowRight } from "react-icons/hi";
+import DelayedFallback from './delayedFallback';
 
 const gridWrapper = {
     hidden: {},
@@ -61,7 +62,7 @@ function Card({ id, name, backgroundColor, image}) {
 
 export function Grid({ selectedId, companies }) {
     return (
-        <Suspense fallback={<h1 className="grid">loading</h1>}>
+        <Suspense fallback={<DelayedFallback />}>
         <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map(card => (
                 <Card key={card.id} {...card} isSelected={card.id === selectedId}/>

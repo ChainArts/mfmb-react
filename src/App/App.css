@@ -60,6 +60,11 @@ header{
     right: 0;
     width: 100%;
 }
+
+.placeholder{
+    width: calc(100vw - 5rem);
+    height: 100vh;
+}
 .grid{
     margin: 1rem 5rem 1rem 0vw;
     display: grid;
