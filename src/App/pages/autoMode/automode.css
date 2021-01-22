@@ -1,10 +1,12 @@
 .auto-link{
-    position: fixed;
+    position: absolute;
     width: 100vw;
     height: 100vh;
+    z-index: 100;
 }
 
 .auto-container{
+    margin: 1rem 0 1rem 0;
     position: relative;
     height: 100vh;
     width: 100vw;
@@ -13,4 +15,33 @@
     flex-direction: column;
     overflow: hidden;
     list-style: none;
+}
+
+.company-logo-full{
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: var(--second-layer-transparent);
+}
+
+.company-logo-full img{
+    max-width: 70%;
+    max-height: 70%;
+}
+
+.video-overlay{
+    position: relative;
+    height: 0;
+    max-width: 100%;
+}
+
+.video-overlay video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

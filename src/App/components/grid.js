@@ -57,7 +57,7 @@ function Card({ id, name, backgroundColor, image}) {
   );
 }
 
-export function Grid({ selectedId, companies, toggleLoaded }) {
+export function Grid({ selectedId, companies }) {
     return(
         <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map(card => (

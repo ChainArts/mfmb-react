@@ -13,10 +13,10 @@ import DelayedFallback from './components/delayedFallback';
 import Company from "./components/company";
 import Grid from './components/grid'
 import Navbar from './components/navbar/navbar';
+import AutoMode from './pages/autoMode/autoMode';
 
 const About = lazy(() => import('./pages/about/about'));
 const Jobs = lazy(() => import('./pages/jobs/jobs'));
-const AutoMode = lazy(() => import('./pages/autoMode/autoMode'));
 
 function Companies({ match }) {
     const [companies, setCompanies] = useState(null);
@@ -95,7 +95,7 @@ function App() {
                     <Route path="/jobs" component={Jobs}/>
                 </Switch>
             </Suspense>
-            </AnimatePresence>    
+            </AnimatePresence>
         </div>
     );
 }
