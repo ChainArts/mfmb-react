@@ -2,8 +2,8 @@
 //USE ON YOUR OWN RISK!!!!!!!!!!
 var fs = require('fs');
 var mysql = require('mysql');
-var media = require('./max_data.json');     //Filepath to file with media data with special Maximilian Roll format (see autodata.json/data,json)
-var companies = require('./data');          //Filepath to file with algorithm data (see algorithmdata.json)
+var media = require('../data.json');     //Filepath to file with media data with special Maximilian Roll format (see autodata.json/data,json)
+var companies = require('..algorithmdata.json');          //Filepath to file with algorithm data (see algorithmdata.json)
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -26,8 +26,8 @@ con.connect(function (err) {
         var values = [];
         var i =0;
         var query = "INSERT INTO Company VALUES ?"
-        companies.forEach( function() {
-            values[i] = ['NULL',companies[i].name];
+        media.forEach( function() {
+            values[i] = ['NULL',media[i].name];
             i++
         });
         con.query(query, [values], function (err, result) {
@@ -42,8 +42,7 @@ con.connect(function (err) {
         var query = "INSERT INTO Media VALUES ?"
         var mysql_default = mysql.raw('default');
         media.forEach( function() {
-            if(CompanyID != companies.length){CompanyID++}
-            values[i] = ['NULL',media[i].image,mysql_default,media[i].website,media[i].videolink,CompanyID];
+            values[i] = ['NULL',media[i].image,media[i].backgroundColor,media[i].website,media[i].videolink,i+1];
             i++;
         });
         con.query(query, [values], function (err, result) {
@@ -59,8 +58,8 @@ con.connect(function (err) {
         var mysql_default = mysql.raw('default');
         companies.forEach( function() {
             if(CompanyID != companies.length){CompanyID++}
-            values[i] = [companies[i].credits,companies[i].contentLength,companies[i].playbackTime,companies[i].calculatedTime,false,CompanyID];
-            i++
+            values[i] = [companies[i].credits,companies[i].contentLength,companies[i].playbackTime,companies[i].calculatedTime,false,i+1];
+            i++;
         });
         con.query(query, [values], function (err, result) {
             if (err) throw err;
