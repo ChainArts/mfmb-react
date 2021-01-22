@@ -1,6 +1,7 @@
 var fs = require('fs');
-var companies = require('../data.json');
-var prevData = require('../autodata.json');
+var AlgorithmData = require('../algorithmdata.json');
+var MediaData = require('../data.json');
+var prevData = AlgorithmData.find(function (item) { return item.prevSelected == true; });
 var selection = [];
 var i = 0, prevId = 0, id = 0;
 function sum(total, num) {
@@ -15,52 +16,55 @@ function weight(money, sum) {
 function finished(err) {
     console.log('Data written');
 }
-//console.log(companies.map(a => a.calculatedTime));
+//console.log(AlgorithmData.map(a => a.calculatedTime));
 //create selection of companies with samllest and same calculatedTime
-companies.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
-for (i = 0; i < companies.length; i++) {
-    if (companies[0].calculatedTime == companies[i].calculatedTime) {
-        selection[i] = companies[i].id;
+AlgorithmData.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
+for (i = 0; i < AlgorithmData.length; i++) {
+    if (AlgorithmData[0].calculatedTime == AlgorithmData[i].calculatedTime) {
+        selection[i] = AlgorithmData[i].id;
     }
 }
-console.log(selection);
-companies.sort(function (a, b) { return a.id - b.id; });
+AlgorithmData.sort(function (a, b) { return a.id - b.id; });
 //remove previous id from the selection
-prevId = prevData[4].id;
-console.log(prevId);
-if (prevId != 0) {
+if (typeof prevData !== "undefined") {
     for (i = 0; i < selection.length; i++) {
-        if (selection[i] == prevId) {
+        if (selection[i] == prevData.id) {
             selection.splice(i, 1);
         }
     }
 }
+console.log(selection);
 if (selection.length == 0) {
     selection = [];
-    companies.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
-    for (i = 1; i < companies.length; i++) {
-        if (companies[1].calculatedTime == companies[i].calculatedTime) {
-            selection[i - 1] = companies[i].id;
+    AlgorithmData.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
+    for (i = 1; i < AlgorithmData.length; i++) {
+        if (AlgorithmData[1].calculatedTime == AlgorithmData[i].calculatedTime) {
+            selection[i - 1] = AlgorithmData[i].id;
         }
     }
-    companies.sort(function (a, b) { return a.id - b.id; });
+    AlgorithmData.sort(function (a, b) { return a.id - b.id; });
 }
 id = selection[Math.floor(Math.random() * selection.length)];
-companies[id - 1].calculatedTime += Math.round(companies[id - 1].contentLength / weight(companies[id - 1].credits, companies.map(function (a) { return a.credits; }).reduce(sum)));
-companies[id - 1].playbackTime += companies[id - 1].contentLength;
-prevId = id;
+AlgorithmData[id].calculatedTime += Math.round(AlgorithmData[id].contentLength / weight(AlgorithmData[id].credits, AlgorithmData.map(function (a) { return a.credits; }).reduce(sum)));
+AlgorithmData[id].playbackTime += AlgorithmData[id].contentLength;
+
 console.log(id);
-companies = JSON.stringify(companies, null, 2);
-fs.writeFile('./webserver/data.json', companies, finished);
-companies = JSON.parse(companies);
-while (companies[4].id != id) {
-    companies.unshift(companies.pop());
+if (typeof prevData !== "undefined") {
+AlgorithmData[AlgorithmData.findIndex(function (item) { return item.prevSelected == true; })].prevSelected = 0;
 }
-companies = JSON.stringify(companies, null, 2);
-fs.writeFile('./webserver/autodata.json', companies, finished);
-var companies = JSON.parse(companies);
+AlgorithmData[AlgorithmData.findIndex(function (item) { return item.id == id; })].prevSelected = 1;
+
+AlgorithmData = JSON.stringify(AlgorithmData, null, 2);
+fs.writeFile('./webserver/algorithmdata.json', AlgorithmData, finished);
+
+while (MediaData[4].id != id) {
+    MediaData.unshift(MediaData.pop());
+}
+MediaData = JSON.stringify(MediaData, null, 2);
+fs.writeFile('./webserver/autodata.json', MediaData, finished);
+//var MediaData = JSON.parse(MediaData);
 //console.log(selection);
-//console.log(companies); 
+//console.log(AlgorithmData); 
 // console.log(lastUpdate);
 // console.log(money);
 // console.log(topicality);
