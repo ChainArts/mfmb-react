@@ -144,7 +144,6 @@ const options = {
 }
 
 export function Company({ id, companies }) {
-    console.log(companies)
     
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     var accentColor = backgroundColor;
@@ -217,3 +216,5 @@ export function Company({ id, companies }) {
     </>
   );
 }
+
+export default Company

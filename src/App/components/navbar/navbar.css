@@ -10,6 +10,7 @@
     align-items: center;
     background: transparent;
     position: relative;
+    max-width: 5rem;
 }
 
 .menu-toggle {

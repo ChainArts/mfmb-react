@@ -3,57 +3,65 @@
 // September 2, 2020
 // HTL Hollabrunn
 
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect} from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import DelayedFallback from './components/delayedFallback';
-import { Company } from "./components/company";
-import { Grid } from "./components/grid";
+import Company from "./components/company";
+import Grid from './components/grid'
 import Navbar from './components/navbar/navbar';
-import About from './pages/about/about';
-import Jobs from './pages/jobs/jobs';
-import AutoMode from './pages/autoMode/autoMode';
+
+const About = lazy(() => import('./pages/about/about'));
+const Jobs = lazy(() => import('./pages/jobs/jobs'));
+const AutoMode = lazy(() => import('./pages/autoMode/autoMode'));
 
 function Companies({ match }) {
     const [companies, setCompanies] = useState(null);
+    const [imageHasLoaded, setImageHasLoaded] = useState(false);
+
+    let { id } = match.params;
+
+    useEffect((imageHasLoaded) => {
+        const timer = setTimeout(() => {
+            setImageHasLoaded(!imageHasLoaded);
+        }, 500)
+        return () => {
+            return () => clearTimeout(timer);
+        }
+    }, []);
+
     useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
         fetch('http://localhost:5500/getData', requestOptions)
             .then(function(res){
-                console.log(res)
                 return res.json();
             })
             .then(companies=> {
-                console.log(companies);
                 setCompanies(companies)
             })            
             .catch(err => console.error(err));
     }, []);
-
-    let { id } = match.params;
-    const imageHasLoaded = useState(true);
     
     return(
     <>
-    <Suspense fallback={<DelayedFallback />}>
+    <motion.div className="currCategory" initial={{opacity: 0}} animate={{opacity: 1}}>FIRMEN</motion.div>
         <AnimateSharedLayout type="crossfade">
-            <motion.div className="currCategory" initial={{opacity: 0}} animate={{opacity: 1}}>FIRMEN</motion.div>
-            {companies && companies.length>0 && 
-            <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
+            {imageHasLoaded && companies && companies.length>0 ?(
+                <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
                     <Grid selectedId={id} companies={companies}/>
-                <AnimatePresence>
-                    {id && imageHasLoaded && <Company id={id} key="company" companies={companies}/>}
-                    
-                </AnimatePresence>
-            </SimpleBar>
+                    <AnimatePresence>
+                        {id && <Company id={id} key="company" companies={companies}/>}
+                    </AnimatePresence>
+                </SimpleBar>)
+                :
+                (<DelayedFallback/>)
             }
         </AnimateSharedLayout>
-    </Suspense>
     </>
     )
 }
@@ -79,12 +87,14 @@ function App() {
             <header/>
             <Navbar/>
             <AnimatePresence>
+            <Suspense fallback={<DelayedFallback />}>
                 <Switch>
                     <Route exact path={["/companies/:id", "/"]} component={Companies}/>
                     <Route path="/automode" component={AutoMode}/>
                     <Route path="/about" component={About}/>
                     <Route path="/jobs" component={Jobs}/>
                 </Switch>
+            </Suspense>
             </AnimatePresence>    
         </div>
     );

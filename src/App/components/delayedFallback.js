@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react' 
 
-const DelayedFallback = () => {
-  const [show, setShow] = useState(false)
-  useEffect(() => {
-    let timeout = setTimeout(() => setShow(true), 6000)
-    return () => {
-      clearTimeout(timeout)
-    }
-  }, [])
+export const DelayedFallback = () => {
 
   return (
     <>
-      {show && <div className="placeholder">Loading ...</div>}
+        <div className="placeholder">
+            <img src="loading/loading_small.gif" alt=""/>
+        </div>
     </>
-  )
-}
+    )
+  }
 export default DelayedFallback

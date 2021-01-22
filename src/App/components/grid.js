@@ -1,8 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {HiArrowRight } from "react-icons/hi";
-import DelayedFallback from './delayedFallback';
 
 const gridWrapper = {
     hidden: {},
@@ -34,8 +33,6 @@ const gridItem = {
     }
 };
 
-
-
 function Card({ id, name, backgroundColor, image}) {
     var color = '#efefef';
     if(backgroundColor > '#AAAAAA')
@@ -60,14 +57,14 @@ function Card({ id, name, backgroundColor, image}) {
   );
 }
 
-export function Grid({ selectedId, companies }) {
-    return (
-        <Suspense fallback={<DelayedFallback />}>
+export function Grid({ selectedId, companies, toggleLoaded }) {
+    return(
         <motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map(card => (
                 <Card key={card.id} {...card} isSelected={card.id === selectedId}/>
             ))}
         </motion.ul>
-        </Suspense>
     );
 }
+
+export default Grid;

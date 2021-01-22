@@ -23,7 +23,7 @@ function newApp() {
     loading.once('show', () =>{
         win = new BrowserWindow({
             icon: __dirname + '/icons/ms-icon-150x150.png',
-            backgroundColor: '#2a2b32',
+            backgroundColor: '#1e2022',
             show: false,
             frame: false,
             minHeight: 480, minWidth: 720,
