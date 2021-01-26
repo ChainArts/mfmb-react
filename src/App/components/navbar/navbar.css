@@ -227,6 +227,7 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
 }
 
 .nav-header{
+    color: var(--sec-acc-color);
     display:flex;
     flex: 0 50vw;
     font-size: 1.2rem;

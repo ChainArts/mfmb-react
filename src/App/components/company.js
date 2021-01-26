@@ -146,17 +146,18 @@ const options = {
 export function Company({ id, companies }) {
     
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
+    var color = '#efefef';
+    if(backgroundColor > '#888888')
+        color = '#2a2a2a';
+    
     var accentColor = backgroundColor;
     var background = backgroundColor;
     if(backgroundColor === "#FDFDFD")
     {
-        accentColor = "var(--prim-acc-color)";
+        accentColor = "var(--sec-acc-color)";
         background = "linear-gradient(120deg, var(--prim-acc-color) 50%,var(--sec-acc-color) 100%)";
+        color = '#EFEFEF'
     }
-
-    var color = '#efefef';
-    if(backgroundColor > '#AAAAAA')
-        color = '#2a2a2a';
         
     return (
     <>
@@ -189,7 +190,7 @@ export function Company({ id, companies }) {
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
             <NavLink to="/jobs">
-                <motion.div layout className="option" variants={options} initial="hidden" animate="visible" whileTap={{scale: 0.85}}>
+                <motion.div layout className="option" variants={options} initial="hidden" animate="visible" whileTap={{scale: 0.85}} style={{color: color, background: background}}>
                         <span>Jobs</span>
                         <HiChevronRight style={{fontSize: "1.6rem", lineHeight: "0"}}/>
                     </motion.div>
