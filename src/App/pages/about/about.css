@@ -16,7 +16,8 @@
 .about-item {   
     height: 100%;
     width: 100%;  
-    background: rgba(255,255,255, 0.2);
+    background: var(--second-layer-transparent);
+    backdrop-filter: blur(3px);
     border-radius: 10px;
 }
 

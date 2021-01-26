@@ -35,8 +35,16 @@ const gridItem = {
 
 function Card({ id, name, backgroundColor, image}) {
     var color = '#efefef';
+    var background = backgroundColor;
+
     if(backgroundColor > '#AAAAAA')
         color = '#2a2a2a';
+        
+    if(backgroundColor === "#FDFDFD")
+    {
+        background = "linear-gradient(120deg, var(--prim-acc-color) 25%,var(--sec-acc-color) 100%)";
+        color = "efefef";
+    }
 
     return (  
     <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} exit="exit" >
@@ -45,7 +53,7 @@ function Card({ id, name, backgroundColor, image}) {
         <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
           <img src={image} alt="" loading="lazy"/>
         </motion.div>
-        <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color}} layoutId={`company-name-${id}`}>
+        <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-name-${id}`}>
             <motion.span>{name}</motion.span>
             <motion.div layout className="infos">
                 <motion.div className="name-seperator" style={{backgroundColor: color}} initial={{height: 0}} animate={{height: "100%"}}/>

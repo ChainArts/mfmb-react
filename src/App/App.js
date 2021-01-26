@@ -8,6 +8,7 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
+import ParticleBackground from "./components/particleBackground";
 import 'simplebar-react/dist/simplebar.min.css';
 import DelayedFallback from './components/delayedFallback';
 import Company from "./components/company";
@@ -37,7 +38,7 @@ function Companies({ match }) {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
-        fetch('http://localhost:5500/getData', requestOptions)
+        fetch('http://pendragon:5500/getData', requestOptions)
             .then(function(res){
                 return res.json();
             })
@@ -49,9 +50,14 @@ function Companies({ match }) {
     
     return(
     <>
-    <motion.div className="currCategory" initial={{opacity: 0}} animate={{opacity: 1}}>FIRMEN</motion.div>
+    <motion.div className="currCategory mobile-hide" 
+        initial={{opacity: 0, right: "-15rem"}} 
+        animate={{opacity: 1, right: "-13rem"}} 
+        transition={{delay: 2, duration: 0.6, ease: [.14,.8,.4,1]}}>
+            <span>FIRMEN</span>
+        </motion.div>
         <AnimateSharedLayout type="crossfade">
-            {imageHasLoaded && companies && companies.length>0 ?(
+            {imageHasLoaded && companies && companies.length > 0 ? (
                 <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
                     <Grid selectedId={id} companies={companies}/>
                     <AnimatePresence>
@@ -84,6 +90,7 @@ function Companies({ match }) {
 function App() {
     return (
         <div className="App">
+            <ParticleBackground/>
             <header/>
             <Navbar/>
             <AnimatePresence>

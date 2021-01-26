@@ -123,6 +123,7 @@ const Navbar = () => {
     return(
         <AnimatePresence>
         <div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
+            <div className="menu-background"/>
             <div className="menu-toggle" onClick={toggleOpen} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.4s"}}>
                 <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>
                     <div className="bar"></div>
@@ -132,8 +133,8 @@ const Navbar = () => {
             </div>
 			<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.45s"}}>
 				<NavLink to="/" className="item"><HiHome/></NavLink>
-				<div className="item" onClick={()=> history.goBack()}><HiChevronLeft/></div>
-				<div className="item" onClick={()=> history.goForward()}><HiChevronRight/></div>
+				<motion.div className="item" onClick={()=> history.goBack()} whileTap = {{backgroundColor: "var(--prim-acc-color)"}}><HiChevronLeft/></motion.div>
+				<motion.div className="item" onClick={()=> history.goForward()}><HiChevronRight/></motion.div>
 			</div>
             <AnimatePresence exitBeforeEnter>
             {isOpen && (

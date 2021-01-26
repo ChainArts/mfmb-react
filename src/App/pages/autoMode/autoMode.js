@@ -83,7 +83,7 @@ function AutoMode() {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
-        fetch('http://localhost:5500/getAutoData', requestOptions)
+        fetch('http://pendragon:5500/getAutoData', requestOptions)
             .then(function(res){
                 return res.json();
             })
@@ -95,6 +95,12 @@ function AutoMode() {
 
 return(
     <motion.div className="auto-container">
+    <motion.div className="currCategory mobile-hide" 
+        initial={{opacity: 0, right: "-17.5rem"}} 
+        animate={{opacity: 1, right: "-15.5rem"}} 
+        transition={{delay: 1, duration: 0.6, ease: [.14,.8,.4,1]}}>
+            <span>AUTOMODE</span>
+        </motion.div>
     <NavLink to="/" className="auto-link"/>
     {imageHasLoaded && companies && companies.length>0 ?
         (<motion.ul className="grid" variants = {gridWrapper} initial = "hidden" animate = "visible">

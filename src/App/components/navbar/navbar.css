@@ -4,11 +4,11 @@
 }
 
 .nav-bar-main{
-    display: flex;
+    background: transparent;
     flex: 5rem;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    background: transparent;
     position: relative;
     max-width: 5rem;
 }
@@ -20,9 +20,9 @@
     width: 3.75rem;
 	height: 3.75rem;
 	border-radius: 10px;
-	box-shadow: 0px 5px 8px -4px #2a2d32;
+    box-shadow: 0px 5px 8px -4px var(--bottom-layer);
     /*background: linear-gradient(-45deg, #fa4d4f 0%, #9a249c 53%, #4f0dcf 100%);*/
-    background-color: #e20080;
+    background-color: var(--prim-acc-color);
     opacity: 1;
     align-items: center;
     justify-content: center;
@@ -33,7 +33,7 @@
   }
 
 .menu-toggle-extended{
-    background-color: #e20080;
+    background-color: var(--prim-acc-color);
 	display: flex;
 	position: relative;
 	flex-direction: column;
@@ -53,15 +53,10 @@
     border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
     transition: all .3s cubic-bezier(0.7, 0, 0.84, 0), background-color 0.1s;
-    box-shadow: 0 5px 8px -3px #2a2d32;
+    box-shadow: 0 5px 8px -3px var(--bottom-layer);
     color: #eee;
    
 }
-
-.item:active{
-    background-color: #a8005f;
-}
-
 
 .is-open-menu .menu-toggle,  .is-open-menu .menu-toggle-extended{
     background-color: transparent;
@@ -165,7 +160,7 @@
     position: fixed;
     align-items: center;
     -webkit-box-align: center;
-    background: var(--base-layer);
+    background-color: var(--base-layer);
     bottom:0;
     left:0;
     height: 100vh;
@@ -191,21 +186,16 @@ ul.menu-list{
     color: #FFF;
     width: 30%;
     max-width: 50%;
-    min-width: 18rem !important;
+    min-width: 18.5rem !important;
 }
 
 ul.menu-list li{
-    margin-bottom: 4vh;
-    transition: transform .5s cubic-bezier(.14,.8,.4,1), opacity 1s cubic-bezier(.14,.8,.4,1);
-    background: linear-gradient(120deg, #e20080 50%,#9a249c 100%);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow:0px 5px 10px 5px #1a1b26;
-}
-
-ul.menu-list li {
     position: relative;
-    color: #FFF;
+    transition: transform .5s cubic-bezier(.14,.8,.4,1), opacity 1s cubic-bezier(.14,.8,.4,1);
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    border: solid 2px var(--prim-acc-color);
+    color: var(--sec-acc-color);
     font-size: 1.6rem;
     line-height: 34px;
     font-weight: 200;
@@ -219,7 +209,7 @@ ul.menu-list li::after, ul.menu-list a.current-page-item li::after{
     display: inline-block;
     vertical-align: middle;
     height: 2px;
-    background-color: #FFF;
+    background-color: var(--sec-acc-color);
     transition: all 0.5s cubic-bezier(.14,.8,.4,1);
     -webkit-transition: all 0.5s cubic-bezier(.14,.8,.4,1);
 }
@@ -230,9 +220,9 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
 
 .nav-seperator{
     content:"";
-    width: 2px;
+    width: 1px;
     height: 0;
-    background-color: #444444;
+    background-color: var(--sec-acc-color);
     justify-content: flex-end;
 }
 
@@ -275,15 +265,16 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
     bottom: 1rem;
     height: 6rem;
     padding: 1px;
-    background-color: #191c21;
+    background-color: var(--second-layer-transparent);
     justify-self: flex-end;
 }
 
 .scrollIndicatorSlider{
     position: absolute;
     height: 50%;
-    width: 2px;
-    background-color: #eee;
+    width: 3px;
+    left: 0;
+    background-color: var(--sec-acc-color);
 }
   @keyframes top {
     0% {

@@ -108,7 +108,7 @@ function JobContent() {
     );
 }
 
-const Job = props => { 
+const Job = () => { 
     const [isOpen, setIsOpen] = useState(false);
     const toggleOpen = () => setIsOpen(!isOpen);
   
@@ -163,7 +163,7 @@ return(
             </motion.div>
             <motion.div className="filter-list" onClick={toggleOverlay}>
                 <span>Filter:</span>
-                <HiPlus style={{color: "#e20080", fontSize: "1.6rem", lineHeight: "0"}}/>
+                <HiPlus style={{color: "var(--prim-acc-color)", fontSize: "1.6rem", lineHeight: "0"}}/>
             </motion.div>
     </motion.div>
     <span className="job-seperator"/>

@@ -147,9 +147,11 @@ export function Company({ id, companies }) {
     
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     var accentColor = backgroundColor;
-    if(backgroundColor === "#232529")
+    var background = backgroundColor;
+    if(backgroundColor === "#FDFDFD")
     {
-        accentColor = "#e20080";
+        accentColor = "var(--prim-acc-color)";
+        background = "linear-gradient(120deg, var(--prim-acc-color) 50%,var(--sec-acc-color) 100%)";
     }
 
     var color = '#efefef';
@@ -164,21 +166,21 @@ export function Company({ id, companies }) {
     <motion.div className="grid-container open">
     <motion.div className="overlay-backdrop" variants={overlayBackdrop} initial="hidden" animate="visible" exit="exit"/>
     <motion.div className="company-content" layoutId={`company-container-${id}`}>
-    <NavLink to="/" className="card-open-link">
-        <motion.div className="company" variants={overlayShadow} initial="hidden" animate="visible" exit="exit">
-            <motion.div className="close-ico-wrap" variants={exitIcoCont} initial="hidden" animate="visible" exit="exit">
-                <motion.div className="close-ico" initial={{scale: 1}}>
-                    <motion.div className="dash" style={{rotateZ: "-45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.6, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
-                    <motion.div className="dash" style={{rotateZ: "45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.65, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
+        <NavLink to="/" className="card-open-link">
+            <motion.div className="company" variants={overlayShadow} initial="hidden" animate="visible" exit="exit">
+                <motion.div className="close-ico-wrap" variants={exitIcoCont} initial="hidden" animate="visible" exit="exit">
+                    <motion.div className="close-ico" initial={{scale: 1}}>
+                        <motion.div className="dash" style={{rotateZ: "-45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.6, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
+                        <motion.div className="dash" style={{rotateZ: "45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.65, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
+                    </motion.div>
+                </motion.div>
+                <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
+                    <img src={"../"+image} alt="" loading="lazy"/>
+                </motion.div>
+                <motion.div layout className="company-name" style={{background: background, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
+                    <motion.span>{name}</motion.span>
                 </motion.div>
             </motion.div>
-            <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-                <img src={"../"+image} alt="" loading="lazy"/>
-            </motion.div>
-            <motion.div layout className="company-name" style={{backgroundColor: backgroundColor, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
-                <motion.span>{name}</motion.span>
-            </motion.div>
-        </motion.div>
         </NavLink>
         <motion.div className="react-player grid-item" variants={reactPlayer} initial="hidden" animate="visible" exit="exit">
             <video height="100%" width="auto" controls loop autoPlay muted style={{borderRadius: "10px"}}>

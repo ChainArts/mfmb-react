@@ -25,6 +25,7 @@
     height: 100%;
     width: 100%;
     background-color: var(--second-layer-transparent);
+    backdrop-filter: blur(3px);
 }
 
 .company-logo-full img{

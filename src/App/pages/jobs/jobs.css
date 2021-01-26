@@ -7,7 +7,7 @@
     content:"";
     width: 1px;
     height: 90vh;
-    background-color: #eee;
+    background-color: var(--sec-acc-color);
     align-self: center;
 }
 
@@ -28,6 +28,7 @@
 }
 
 .jobs-title{
+    color: var(--sec-acc-color);
     line-height: 1;
     font-weight: 100;
     font-size: 8rem;
@@ -48,16 +49,16 @@
     line-height: 0;
     padding: 1rem;
     cursor: pointer;
-    border: solid 2px #e20080;
+    border: solid 2px var(--prim-acc-color);
     border-radius: 1rem;
 }
 
 .dark{
-    color: #444;
-    border: solid 2px #e2008041;
+    opacity: 0.3;
 }
 
 .filter-list{
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -98,6 +99,7 @@
     cursor: pointer;
     font-weight: 300;
     filter: brightness(1);
+    backdrop-filter: blur( 3px );
 }
 
 .jobs-item:last-child {
@@ -128,7 +130,7 @@
 .row1 {
     width: 50%;
     height: 0.5rem;
-    background: linear-gradient(120deg, #00E2BC 0%,#3485e2 100%);
+    background: linear-gradient(120deg, var(--prim-acc-color) 0%,var(--sec-acc-color) 100%);
     border-radius: 10px;
     margin-top: 2rem;
 }
@@ -140,7 +142,7 @@
 .row2 {
     width: 100%;
     height: 0.5rem;
-    background: linear-gradient(120deg, #00E2BC 0%,#3485e2 100%);
+    background: linear-gradient(120deg, var(--prim-acc-color) 0%,var(--sec-acc-color) 100%);
     border-radius: 10px;
     margin-top: 2rem;
 }
@@ -187,7 +189,6 @@
 }
 
 .simplebar-scrollbar::before{
-    background: #e20080 !important;
     margin: 1rem 8px 1rem 0 !important;
     opacity: 1 !important;
 }
