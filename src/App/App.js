@@ -5,7 +5,7 @@
 
 import React, { Suspense, lazy, useState, useEffect} from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import ParticleBackground from "./components/particleBackground";
@@ -87,13 +87,13 @@ function Companies({ match }) {
     };
 }*/
 
-function App() {
+function App({location}) {
     return (
         <div className="App">
             <ParticleBackground/>
             <header/>
-            <Navbar/>
-            <AnimatePresence>
+            {location.pathname !== "/automode" && <Navbar/>}
+            <AnimatePresence exitBeforeEnter>
             <Suspense fallback={<DelayedFallback />}>
                 <Switch>
                     <Route exact path={["/companies/:id", "/"]} component={Companies}/>
@@ -107,4 +107,4 @@ function App() {
     );
 }
 
-export default App;
+export default withRouter(App);

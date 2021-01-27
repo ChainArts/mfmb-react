@@ -9,7 +9,7 @@ export const ParticleBackground = () => {
 	    "particles": {
             "color": "#deb992",
 	        "number": {
-                "value": 100,
+                "value": 150,
 	            "density": {
 	                "enable": false,
 	            }
@@ -24,7 +24,7 @@ export const ParticleBackground = () => {
                 "out_mode": "out",
 	        },
 	        "size": {
-                "value": 1.5,
+                "value": 2,
                 "random": true,
                 "size-min": 1,
 	        },

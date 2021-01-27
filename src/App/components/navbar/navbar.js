@@ -5,6 +5,38 @@ import { HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTer
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
 
+const extendedMenu = {
+    visible: {
+        transition:{
+            ease: [.14,.8,.4,1],
+            staggerChildren: 0.07,
+            delayChildren: 0.2,
+        }
+    },
+    hidden: {
+        transition: {
+            ease: [.14,.8,.4,1],
+            staggerChildren: 0.07,
+            staggerDirection: -1,
+        }    
+    }
+};
+
+const extendedItem = {
+    visible: {x: 0,
+        transition: {
+            duration: 0.35,
+            ease: [.14,.8,.4,1]
+        }
+    },
+    hidden: {x: "-4.5rem",
+        transition: {
+            duration: 0.35,
+            ease: [.14,.8,.4,1],
+        }
+    },
+};
+
 const navoverlay = {
     hidden: {x: "-100vw"},
     open: { 
@@ -21,7 +53,7 @@ const navoverlay = {
             ease: [.14,.8,.4,1]
         }
     }
-  };
+};
   
 const navwrapper = {
     hidden: {},
@@ -63,7 +95,6 @@ const navSeperator = {
             ease: "easeOut"
         }
     }
-
 }
 
 const navHeader = {
@@ -121,21 +152,21 @@ const Navbar = () => {
     const toggleOpen = () => setIsOpen(!isOpen);
 
     return(
-        <AnimatePresence>
-        <div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
+        <AnimatePresence exitBeforeEnter>
+        <motion.div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
             <div className="menu-background"/>
-            <div className="menu-toggle" onClick={toggleOpen} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.4s"}}>
+            <div className="menu-toggle" onClick={toggleOpen} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.2s"}}>
                 <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>
                     <div className="bar"></div>
                     <div className="bar"></div>
                     <div className="bar"></div>
                 </div>
             </div>
-			<div className={isOpen? "menu-toggle-extended menu-toggle-open" : "menu-toggle-extended"} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.45s"}}>
-				<NavLink to="/" className="item"><HiHome/></NavLink>
-				<motion.div className="item" onClick={()=> history.goBack()} whileTap = {{backgroundColor: "var(--prim-acc-color)"}}><HiChevronLeft/></motion.div>
-				<motion.div className="item" onClick={()=> history.goForward()}><HiChevronRight/></motion.div>
-			</div>
+			<motion.div className="menu-toggle-extended" variants={extendedMenu} animate={isOpen ? "hidden":"visible"}>
+				<motion.div className="item" variants={extendedItem} onClick={()=> history.push('/')} whileTap={{scale: 0.95}}><HiHome/></motion.div>
+				<motion.div className="item" variants={extendedItem} onClick={()=> history.goBack()} whileTap={{scale: 0.95}}><HiChevronLeft/></motion.div>
+				<motion.div className="item" variants={extendedItem} onClick={()=> history.goForward()} whileTap={{scale: 0.95}}><HiChevronRight/></motion.div>
+			</motion.div>
             <AnimatePresence exitBeforeEnter>
             {isOpen && (
             <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
@@ -175,7 +206,7 @@ const Navbar = () => {
                 <motion.div className="scrollIndicatorSlider" variants={scrollIndicator} animate="animate"/>
             </motion.div>
             )}
-		</div>
+		</motion.div>
         </AnimatePresence>
     )
 }

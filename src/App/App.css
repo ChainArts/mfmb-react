@@ -2,23 +2,12 @@
     --bottom-layer: #051622;
     --base-layer: #051622;
     --first-layer: #073844;
-    --second-layer-transparent: #ffffff25;
+    --second-layer-transparent: #ffffff20;
     --third-layer: #284955;
     --prim-acc-color: #3fc0ac;
     --sec-acc-color:#deb992;
     --prim-acc-color-dark: rgba(63, 192, 172, 0.3);
     --sec-acc-color-dark: rgba(222,185,146,0.3);
-    
-    /*  Green / Blue Gradient 
-    --bottom-layer: #1e2025;
-    --base-layer: #222629;
-    --first-layer: #474b4f;
-    --second-layer-transparent: #ffffff20;
-    --third-layer: #595f5e;
-    --prim-acc-color:#00E2BC;
-    --sec-acc-color: #3485e2;
-    --prim-acc-color-dark:#00977e;
-    --sec-acc-color-dark: #3485e2;*/
 }
 
 * {
@@ -388,6 +377,6 @@ iframe{
     position: relative;
     width: 2px;
     background-color: var(--sec-acc-color);
-    height: 20rem;
+    height: 30vh;
 }
   
