@@ -18,7 +18,7 @@
     display: flex;
     width: 3.75rem;
 	height: 3.75rem;
-    border-radius: 10px;
+    border-radius: 0.7rem;
     margin-bottom: 0.3rem;
     border: 2px solid var(--prim-acc-color);
     opacity: 1;
@@ -44,7 +44,7 @@
     cursor: pointer;
     padding: .8rem;
 	font-size: 1.4rem;
-    border-radius: 0.4rem;
+    border-radius: 0.5rem;
     color: #fff;
     margin-bottom: 0.3rem;
    

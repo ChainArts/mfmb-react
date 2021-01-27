@@ -153,7 +153,7 @@ const Navbar = () => {
 
     return(
         <AnimatePresence exitBeforeEnter>
-        <motion.div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}>
+        <motion.div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}  initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
             <div className="menu-background"/>
             <div className="menu-toggle" onClick={toggleOpen} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.2s"}}>
                 <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>

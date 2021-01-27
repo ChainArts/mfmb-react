@@ -2,35 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import "./about.css";
 
-const aboutContainer = {
-    hidden: { opacity: 0, scale: .1, y: 500},
-    visible: {
-      y: 0, 
-      opacity: 1,
-      scale: 1,
-      transition: {
-        ease: "easeOut",
-        delay: 0.3,
-        delayChildren: 0.5,
-        staggerChildren: .1,
-      }
-    }
-  };
-  
-  const aboutItem = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-    }
-  };
-
 export const About = () => (
-    <motion.ul  className = "about-container" variants = {aboutContainer} initial = "hidden" animate = "visible">
-        {[0, 1, 2, 3, 4].map(index => (
-            <motion.li key={index} className = {"about-item item" + index} variants = {aboutItem}/>
-        ))}
-    </motion.ul>
+    <motion.div className="about-container" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}}>
+        <motion.div className="about-header">
+            <span>ABOUT</span>
+            <motion.div className="about-seperator"/>
+        </motion.div>
+    </motion.div>
 )
 
 export default About;

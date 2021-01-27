@@ -15,8 +15,9 @@ const gridWrapper = {
 };
 
 const gridItem = {
-    hidden: { y: 80, opacity: 0},
+    hidden: { y: 80, opacity: 0, rotateZ: 1},
     visible: {
+        rotateZ: 0,
         y: 0,
         opacity: 1,
         transition: {
