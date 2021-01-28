@@ -1,12 +1,19 @@
 {
-  "name": "mfmb-app",
+  "name": "MFMB",
+  "title": "MFMB",
   "author": "Maximilian Roll",
   "build": {
     "appId": "com.MFMB.app",
+    "asar" : true,
+    "win": {
+        "icon": "./build/icons/ms-icon-310x310.png"
+    },
     "extraResources": [
-      "./webserver/**"
+      "./webserver/**",
+      "./loading/**"
     ]
   },
+  "postinstall": "electron-builder install-app-deps",
   "version": "0.4.0",
   "private": true,
   "main": "public/electron.js",
@@ -16,7 +23,6 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "cross-env": "^7.0.3",
-    "electron": "^11.2.1",
     "electron-is-dev": "^1.2.0",
     "framer-motion": "^2.9.5",
     "mysql": "^2.18.1",
@@ -57,6 +63,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "electron": "^11.2.1",
     "electron-builder": "^22.9.1",
     "react-lorem-ipsum": "^1.4.9",
     "wait-on": "^5.2.1"

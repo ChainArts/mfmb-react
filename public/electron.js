@@ -73,12 +73,11 @@ function newApp() {
             loading.close()
         })
     win.loadURL(
-            isDev ? "http://localhost:3000" : 'file://${path.join(__dirname, "../build/index.html")}'
-        )
+            isDev ? "http://localhost:3000" : 'file://' + __dirname + '/index.html')
     })
     loading.loadURL(
     url.format({
-      pathname: "./public/loading/loading.html",
+      pathname: "./loading/loading.html",
       slashes: true
     }))
     loading.once('ready-to-show', () => {
