@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/build/fonts/poppins/Poppins-ExtraLight.ttf') format('truetype');
+    src: url('../fonts/Poppins/Poppins-ExtraLight.woff2') format('woff2');
     font-weight: 200;
     font-style: normal;
     font-display: swap;
@@ -20,7 +20,7 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/build/fonts/poppins/Poppins-Light.ttf') format('truetype');
+    src: url('../fonts/Poppins/Poppins-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/build/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+    src: url('../fonts/Poppins/Poppins-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -36,7 +36,7 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/build/fonts/poppins/Poppins-Medium.ttf') format('truetype');
+    src: url('../fonts/Poppins/Poppins-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -44,7 +44,7 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/build/fonts/poppins/Poppins-Bold.ttf') format('truetype');
+    src: url('../fonts/Poppins/Poppins-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;

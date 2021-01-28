@@ -83,7 +83,7 @@ function AutoMode() {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
-        fetch('http://pendragon:5500/getAutoData', requestOptions)
+        fetch('http://localhost:5500/getAutoData', requestOptions)
             .then(function(res){
                 return res.json();
             })

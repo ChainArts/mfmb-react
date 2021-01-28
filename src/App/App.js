@@ -38,7 +38,7 @@ function Companies({ match }) {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
-        fetch('http://pendragon:5500/getData', requestOptions)
+        fetch('http://localhost:5500/getData', requestOptions)
             .then(function(res){
                 return res.json();
             })

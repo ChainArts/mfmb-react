@@ -3,6 +3,7 @@ const url = require("url");
 const path = require("path");
 const isDev = require("electron-is-dev");
 const ipcMain = require("electron").ipcMain;
+const cors = require("cors");
 
 var server = require(__dirname + "/../webserver/server");
 
@@ -75,11 +76,8 @@ function newApp() {
     win.loadURL(
             isDev ? "http://localhost:3000" : 'file://' + __dirname + '/index.html')
     })
-    loading.loadURL(
-    url.format({
-      pathname: "./loading/loading.html",
-      slashes: true
-    }))
+
+    loading.loadURL(`file://${__dirname}/loading/loading.html`)
     loading.once('ready-to-show', () => {
       loading.show()
       loading.focus()
