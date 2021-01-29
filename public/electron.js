@@ -5,12 +5,13 @@ const isDev = require("electron-is-dev");
 const ipcMain = require("electron").ipcMain;
 const cors = require("cors");
 
-var server = require(__dirname + "/../webserver/server");
+let { fork } = require('child_process');
+let server = fork(__dirname + "/webserver/server.js");
 
 function newApp() {
     let win = null;
     let loading = new BrowserWindow({
-    icon: __dirname + '/icons/ms-icon-150x150.png',
+    icon: __dirname + '/icons/ms-icon-310x310.png',
     backgroundColor:  '#051622',
     show: false,
     frame: false,
@@ -24,7 +25,7 @@ function newApp() {
 
     loading.once('show', () =>{
         win = new BrowserWindow({
-            icon: __dirname + '/icons/ms-icon-150x150.png',
+            icon: __dirname + '/icons/ms-icon-310x310.png',
             backgroundColor: ' #051622',
             show: false,
             frame: false,

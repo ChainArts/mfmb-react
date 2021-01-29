@@ -42,6 +42,17 @@
     max-height: 70%;
 }
 
+.video-overlay-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .video-overlay{
     position: relative;
     height: 0;

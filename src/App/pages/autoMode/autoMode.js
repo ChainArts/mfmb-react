@@ -35,10 +35,12 @@ const gridItem = {
 };
 const VideoOverlay = (props) => {
     return(
-        <motion.div className="video-overlay">
-        <video height="auto" width="auto" autoPlay muted style={{borderRadius: "10px"}}>
-            <source src={"../"+props.videolink}/>
-        </video>
+        <motion.div className="video-overlay-container">
+            <motion.div className="video-overlay">
+                <video height="auto" width="auto" autoPlay muted style={{borderRadius: "10px"}}>
+                    <source src="./public/video/osram.mp4"/>
+                </video>
+            </motion.div>
         </motion.div>
     )
 }
@@ -94,18 +96,25 @@ function AutoMode() {
     }, []);
 
 return(
+    <>
+    {imageHasLoaded && companies && companies.length>0 ?
+    (
     <motion.div className="auto-container">
     <NavLink to="/" className="auto-link"/>
-    {imageHasLoaded && companies && companies.length>0 ?
-        (<motion.ul className="auto-grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
+    
+        <motion.ul className="auto-grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map(card => (
                 <AutoCard key={card.id} {...card}/>
             ))}
-        </motion.ul>)
-        :
-        (<DelayedFallback/>)
-    }
+        </motion.ul>
+        <VideoOverlay/>
+    
     </motion.div>
+    )
+    :
+    (<DelayedFallback/>)
+}
+    </>
     )
 }
 

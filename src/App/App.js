@@ -3,21 +3,20 @@
 // September 2, 2020
 // HTL Hollabrunn
 
-import React, { Suspense, lazy, useState, useEffect} from 'react';
+import React, { Suspense, useState, useEffect} from 'react';
 import './App.css';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
-import ParticleBackground from "./components/particleBackground";
 import 'simplebar-react/dist/simplebar.min.css';
+import ParticleBackground from "./components/particleBackground";
 import DelayedFallback from './components/delayedFallback';
 import Company from "./components/company";
 import Grid from './components/grid'
 import Navbar from './components/navbar/navbar';
 import AutoMode from './pages/autoMode/autoMode';
-
-const About = lazy(() => import('./pages/about/about'));
-const Jobs = lazy(() => import('./pages/jobs/jobs'));
+import Jobs from './pages/jobs/jobs';
+import About from './pages/about/about';
 
 function Companies({ match }) {
     const [companies, setCompanies] = useState(null);

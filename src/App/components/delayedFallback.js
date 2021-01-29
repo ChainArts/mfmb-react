@@ -5,7 +5,7 @@ export const DelayedFallback = () => {
   return (
     <>
         <div className="placeholder">
-            <img src="loading/loading_small.gif" alt=""/>
+            <img src='../Media/loading_small.gif' alt="Loading..."/>
         </div>
     </>
     )

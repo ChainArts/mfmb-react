@@ -39,7 +39,7 @@ http.createServer(function (req, res) {
     //console.log(req.headers);
 
     if(req.url === '/reset'){
-        runScript('./webserver/algorithm/select.js', function (err) {
+        runScript(__dirname + '/algorithm/select.js', function (err) {
             if (err) throw err;
             console.log('finished running select.js');
         });
@@ -48,7 +48,7 @@ http.createServer(function (req, res) {
     }
 
     if(req.url === '/run'){
-        runScript('./webserver/algorithm/algorithm.js', function (err) {
+        runScript(__dirname + '/algorithm/algorithm.js', function (err) {
             if (err) throw err;
             console.log('finished running algorithm.js');
         });
@@ -57,7 +57,7 @@ http.createServer(function (req, res) {
     }
 
     if(req.url === '/getAutoData'){
-        fs.readFile("./webserver/autodata.json", "utf8", (err, jsonString) => {
+        fs.readFile(__dirname + "/autodata.json", "utf8", (err, jsonString) => {
             if (err) {
               console.log("File read failed:", err);
               return;
@@ -67,7 +67,7 @@ http.createServer(function (req, res) {
     }
 
     if(req.url === '/getData'){
-        fs.readFile("./webserver/data.json", "utf8", (err, jsonString) => {
+        fs.readFile(__dirname + "/data.json", "utf8", (err, jsonString) => {
             if (err) {
               console.log("File read failed:", err);
               return;

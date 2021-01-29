@@ -1,0 +1,116 @@
+[
+    {
+        "id": "0",
+        "image": "C:/Users/ChainArts/Documents/MFMB/Companies/Osram_Continental/osram.png",
+        "name": "Osram Continental",
+        "backgroundColor": "#FFFFFF",
+        "website": "www.osram-continental.com",
+        "videolink": "C:/Users/ChainArts/Documents/MFMB/Companies/Osram_Continental/osram.mp4"
+    },
+
+    {
+        "id": "1",
+        "image": "media/siemens.png",
+        "name": "Siemens",
+        "backgroundColor": "#009999",
+        "website": "www.siemens.com",
+        "videolink": "video/osram.mp4"
+    },
+
+    {
+        "id": "2",
+        "image": "media/smc.png",
+        "name": "SMC Pneumatics",
+        "backgroundColor": "#2473b8",
+        "website": "www.smc.eu",
+        "videolink": "video/osram.mp4"
+    },
+
+    {
+        "id": "3",
+        "image": "media/eaton.png",
+        "name": "EATON",
+        "backgroundColor": "#005eb8",
+        "website": "www.eaton.com"
+    },
+
+    {
+        "id": "4",
+        "image": "media/loxone.jpg",
+        "name": "Loxone",
+        "backgroundColor": "#FFFFFF",
+        "website": "www.loxone.com"
+    },
+
+    {
+        "id": "5",
+        "image": "media/evn.png",
+        "name": "EVN",
+        "backgroundColor": "#FDFDFD",
+        "website": "www.evn.at"
+    },
+
+    {
+        "id": "6",
+        "image": "media/frischeis.jpg",
+        "name": "Frischeis",
+        "backgroundColor": "#FFFFFF",
+        "website": "www.frischeis.at"
+    },
+
+    {
+        "id": "7",
+        "image": "media/abstergo.png",
+        "name": "Abstergo Industries",
+        "backgroundColor": "#FDFDFD",
+        "website": "www.osram-continental.com"
+    },
+
+    {
+        "id": "8",
+        "image": "media/altium.png",
+        "name": "Altium",
+        "backgroundColor": "#a5915f",
+        "website": "www.altium.com"
+    },
+
+    {
+        "id": "9",
+        "image": "media/b&r.jpg",
+        "name": "B&R Automation",
+        "backgroundColor": "#FDFDFD", 
+        "website": "www.br-automation.com"
+    },
+
+    {
+        "id": "10",
+        "image": "media/philips.png",
+        "name": "Philips",
+        "backgroundColor": "#FDFDFD",
+        "website": "www.htl-hl.ac.at"
+    },
+
+    {
+        "id": "11",
+        "image": "media/pollmann.png",
+        "name": "Pollmann International",
+        "backgroundColor": "#FDFDFD",
+        "website": "www.pollmann.at"
+    },
+
+    {
+        "id": "12",
+        "image": "media/default.png",
+        "name": "AD Space",
+        "backgroundColor": "#FDFDFD",
+        "website": "www.htl-hl.ac.at"
+    },
+
+    {
+        "id": "13",
+        "image": "media/default.png",
+        "name": "AD Space",
+        "backgroundColor": "#FDFDFD",
+        "website": "www.htl-hl.ac.at"
+    }
+]
