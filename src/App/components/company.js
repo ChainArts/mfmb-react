@@ -176,7 +176,7 @@ export function Company({ id, companies }) {
                     </motion.div>
                 </motion.div>
                 <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-                    <img src={image} alt="" loading="lazy"/>
+                    <img src={"../" + image} alt="" loading="lazy"/>
                 </motion.div>
                 <motion.div layout className="company-name" style={{background: background, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
                     <motion.span>{name}</motion.span>
@@ -185,7 +185,7 @@ export function Company({ id, companies }) {
         </NavLink>
         <motion.div className="react-player grid-item" variants={reactPlayer} initial="hidden" animate="visible" exit="exit">
             <video height="100%" width="auto" controls loop autoPlay muted style={{borderRadius: "10px"}}>
-                <source src={videolink}/>
+                <source src={"../" + videolink}/>
             </video>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">

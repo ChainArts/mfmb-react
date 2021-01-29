@@ -1,11 +1,11 @@
-import React from 'react' 
+import React from "react";
 
 export const DelayedFallback = () => {
 
   return (
     <>
         <div className="placeholder">
-            <img src='../Media/loading_small.gif' alt="Loading..."/>
+            <img src="./loading/loading_small.gif" alt="Loading..."/>
         </div>
     </>
     )

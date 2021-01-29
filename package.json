@@ -6,7 +6,7 @@
     "appId": "com.MFMB.app",
     "asar": true,
     "win": {
-      "icon": "./build/icons/ms-icon-310x310.png"
+        "icon": "./build/icons/ms-icon-310x310.png"
     },
     "extraResources": [
       "./webserver/**",
