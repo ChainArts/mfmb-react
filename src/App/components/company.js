@@ -146,6 +146,8 @@ const options = {
 export function Company({ id, companies }) {
     
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
+    const fallbackSrc = "/media/default.png";
+    
     var color = '#efefef';
     if(backgroundColor > '#888888')
         color = '#2a2a2a';
@@ -167,7 +169,7 @@ export function Company({ id, companies }) {
     <motion.div className="grid-container open">
     <motion.div className="overlay-backdrop" variants={overlayBackdrop} initial="hidden" animate="visible" exit="exit"/>
     <motion.div className="company-content" layoutId={`company-container-${id}`}>
-        <NavLink to="/" className="card-open-link">
+        <NavLink to="/companies" className="card-open-link">
             <motion.div className="company" variants={overlayShadow} initial="hidden" animate="visible" exit="exit">
                 <motion.div className="close-ico-wrap" variants={exitIcoCont} initial="hidden" animate="visible" exit="exit">
                     <motion.div className="close-ico" initial={{scale: 1}}>
@@ -176,7 +178,7 @@ export function Company({ id, companies }) {
                     </motion.div>
                 </motion.div>
                 <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-                    <img src={"../" + image} alt="" loading="lazy"/>
+                    <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = fallbackSrc}} alt="..."/>
                 </motion.div>
                 <motion.div layout className="company-name" style={{background: background, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
                     <motion.span>{name}</motion.span>
@@ -185,7 +187,7 @@ export function Company({ id, companies }) {
         </NavLink>
         <motion.div className="react-player grid-item" variants={reactPlayer} initial="hidden" animate="visible" exit="exit">
             <video height="100%" width="auto" controls loop autoPlay muted style={{borderRadius: "10px"}}>
-                <source src={"../" + videolink}/>
+                <source src={videolink}/>
             </video>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">

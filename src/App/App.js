@@ -5,7 +5,7 @@
 
 import React, { Suspense, useState, useEffect} from 'react';
 import './App.css';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
@@ -95,10 +95,11 @@ function App({location}) {
             <AnimatePresence exitBeforeEnter>
             <Suspense fallback={<DelayedFallback />}>
                 <Switch>
-                    <Route exact path={["/companies/:id", "/"]} component={Companies}/>
+                    <Route exact path={["/companies/:id", "/companies"]} component={Companies}/>
                     <Route path="/automode" component={AutoMode}/>
                     <Route path="/about" component={About}/>
                     <Route path="/jobs" component={Jobs}/>
+                    <Redirect to="/companies"/>
                 </Switch>
             </Suspense>
             </AnimatePresence>

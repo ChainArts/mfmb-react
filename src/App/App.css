@@ -161,7 +161,7 @@ header{
     "grid-seperator grid-seperator grid-seperator"
     "content-container content-container content-container";
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr)); 
-    grid-auto-rows: 21rem 2px auto;
+    grid-auto-rows: 20.5rem 2px auto;
     grid-gap: 0.7rem 2.5rem;
     height: 100vh;
     max-width: calc(100% - 5rem);

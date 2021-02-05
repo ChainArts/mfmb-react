@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import {HiArrowRight } from "react-icons/hi";
+import { HiArrowRight } from "react-icons/hi";
 
 const gridWrapper = {
     hidden: {},
@@ -37,6 +37,7 @@ const gridItem = {
 function Card({ id, name, backgroundColor, image}) {
     var color = '#efefef';
     var background = backgroundColor;
+    const fallbackSrc = "/media/default.png";
 
     if(backgroundColor > '#AAAAAA')
         color = '#2a2a2a';
@@ -49,10 +50,10 @@ function Card({ id, name, backgroundColor, image}) {
 
     return (  
     <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} exit="exit" >
-    <NavLink to={"companies/"+id } className={`card-open-link`}>
+    <NavLink to={"companies/"+id } className={"card-open-link"}>
       <div className="grid-container">
         <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-          <img src={image} alt="" loading="lazy"/>
+          <img src={fallbackSrc} /*onError={(e)=>{e.target.onError = null; e.target.src = fallbackSrc}}*/ alt="..." loading="lazy"/>
         </motion.div>
         <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-name-${id}`}>
             <motion.span>{name}</motion.span>

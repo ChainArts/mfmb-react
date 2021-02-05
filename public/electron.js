@@ -26,7 +26,7 @@ function newApp() {
     loading.once('show', () =>{
         win = new BrowserWindow({
             icon: __dirname + '/icons/ms-icon-310x310.png',
-            backgroundColor: ' #051622',
+            backgroundColor: '#051622',
             show: false,
             frame: false,
             minHeight: 480, minWidth: 720,
@@ -42,26 +42,26 @@ function newApp() {
         if (input.type === "keyDown"){
             if (input.key === 'F5') {
                 console.log('Refresh')
-                win.reload()
+                win.reload();
             }
             else if(input.control && input.key === 'F5'){
                 console.log('Cleared Cache')
                 win.webContents.session.clearCache();
-                win.reload()
+                win.reload();
             }
             else if(input.key === 'F12'){
                 console.log('Opened Console')
-                win.webContents.openDevTools()
+                win.webContents.openDevTools();
             }
             else if(input.alt && input.key === "Enter"){
                 if(win.fullScreen){
                     win.setFullScreen(false)
-                    console.log('min')
+                    console.log('min');
                 }
                 else
                 {
                     win.setFullScreen(true)
-                    console.log('max')
+                    console.log('max');
                 }
             }
         }
@@ -75,7 +75,7 @@ function newApp() {
             loading.close()
         })
     win.loadURL(
-            isDev ? "http://localhost:3000" : 'file://' + __dirname + '/index.html')
+            isDev ? "http://localhost:3000" : `file://${__dirname}/index.html`)
     })
 
     loading.loadURL(`file://${__dirname}/loading/loading.html`)

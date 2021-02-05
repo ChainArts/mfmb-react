@@ -163,7 +163,7 @@ const Navbar = () => {
                 </div>
             </div>
 			<motion.div className="menu-toggle-extended" variants={extendedMenu} animate={isOpen ? "hidden":"visible"}>
-				<motion.div className="item" variants={extendedItem} onClick={()=> history.push('/')} whileTap={{scale: 0.95}}><HiHome/></motion.div>
+				<motion.div className="item" variants={extendedItem} onClick={()=> history.push('/companies')} whileTap={{scale: 0.95}}><HiHome/></motion.div>
 				<motion.div className="item" variants={extendedItem} onClick={()=> history.goBack()} whileTap={{scale: 0.95}}><HiChevronLeft/></motion.div>
 				<motion.div className="item" variants={extendedItem} onClick={()=> history.goForward()} whileTap={{scale: 0.95}}><HiChevronRight/></motion.div>
 			</motion.div>
@@ -174,7 +174,7 @@ const Navbar = () => {
                 <IconContext.Provider value={{ className: 'react-icons' }}>
                     <nav className="main-nav">
                         <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
-                            <NavLink to="/" exact activeClassName="current-page-item">
+                            <NavLink to="/companies" exact activeClassName="current-page-item">
                                 <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiHome/> Home</motion.li>
                             </NavLink>
                             <NavLink to="/automode" activeClassName="current-page-item">
@@ -193,7 +193,7 @@ const Navbar = () => {
                 <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"/>
                 <div className="nav-header mobile-hide">
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
-                        <img src={'./icons/default_1024.png'} alt="" loading="lazy"/>
+                        <img src="/media/default.png" alt="" loading="lazy"/>
                             <motion.span variants = {navHeaderItem} initial="hidden" animate="open">MFMB</motion.span><br/>
                             <motion.span variants = {navHeaderItem} initial="hidden" animate="open">HTL HOLLABRUNN</motion.span>
                     </motion.div>

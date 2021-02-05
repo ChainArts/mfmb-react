@@ -46,10 +46,10 @@ const VideoOverlay = (props) => {
 }
 
 function AutoCard({ id, backgroundColor, image, videolink}) {
-    var color = '#efefef';
+    /*var color = '#efefef';
     if(backgroundColor > '#AAAAAA')
         color = '#2a2a2a';
-
+    */
     return (
         <>  
     <motion.li className="grid-item" variants={gridItem} exit="exit" >
@@ -58,7 +58,7 @@ function AutoCard({ id, backgroundColor, image, videolink}) {
             <VideoOverlay videolink = {videolink}/>):
         (
         <motion.div className="company-logo-full" layoutId={`company-logo-${id}`}>
-            <img src={image} alt="" loading="lazy"/>
+            <img src={"/"+image} alt="" loading="lazy"/>
         </motion.div>
         )
         }
@@ -100,7 +100,7 @@ return(
     {imageHasLoaded && companies && companies.length>0 ?
     (
     <motion.div className="auto-container">
-    <NavLink to="/" className="auto-link"/>
+    <NavLink to="/companies" className="auto-link"/>
     
         <motion.ul className="auto-grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map(card => (
