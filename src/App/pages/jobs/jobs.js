@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { AnimateSharedLayout, AnimatePresence, motion } from 'framer-motion';
+import { AnimateSharedLayout, AnimatePresence, motion, m } from 'framer-motion';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import "./jobs.css";
@@ -18,8 +18,14 @@ const jobContainer = {
         delayChildren: 0.5,
         staggerChildren: .06,
       }
-    }
-};
+    },
+    exit:{}, 
+        transition:{
+            ease: [.14,.8,.4,1],
+            staggerChildren: .06,
+            staggerDirection: -1,
+        }
+    };
   
 const jobItem = {
     hidden: { y: 20, opacity: 0, borderRadius: 6},
@@ -28,7 +34,14 @@ const jobItem = {
         opacity: 1,
         transition:{
             duration: 0.8,
-            delayChildren: 0.5,
+            delayChildren: 0.3,
+            ease: [.14,.8,.4,1]
+        }
+    },
+    exit: {
+        y:20, opacity: 0, borderRadius: 6,
+        transition: {
+            duration: 0.3,
             ease: [.14,.8,.4,1]
         }
     }
@@ -68,7 +81,7 @@ function JobContainer(props) {
         <>
         <SimpleBar scrollbarMaxSize={300} className="scroll-container">
         <AnimateSharedLayout>
-            <motion.ul layout className = {props.grid ? "jobs-container job-grid" : "jobs-container job-list"}>
+            <motion.ul layout className = {props.grid ? "jobs-container job-grid" : "jobs-container job-list"} variants = {jobContainer} initial = "hidden" animate = "visible" exit = "exit">
                 {jobs.map(job => (
                     <Job key={job}/>
                 ))}
@@ -144,7 +157,7 @@ export function Jobs () {
     function refreshJobs (){ setRefreshKey(refreshKey + 1);}
 
 return(
-    <motion.div className="page-container" variants = {jobContainer} initial = "hidden" animate = "visible" layout>
+    <motion.div className="page-container">
     <motion.div className="jobs-filter mobile-hide">
             <motion.span className="jobs-title">JOBS</motion.span>
             <motion.div className="view-type">
@@ -168,7 +181,7 @@ return(
             </motion.div>
     </motion.div>
     <span className="job-seperator"/>
-    <AnimatePresence key={refreshKey}>
+    <AnimatePresence key={refreshKey} exitBeforeEnter>
         <JobContainer grid={isGrid} filter={isFilterOpen} toggleFilter={toggleOverlay}/>
     </AnimatePresence>
     </motion.div>
