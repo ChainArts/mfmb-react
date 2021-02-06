@@ -3,6 +3,7 @@ import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { HiChevronRight } from "react-icons/hi";
+import defImg from "./default.png";
 
 const overlayBackdrop = {
     hidden: {scaleX: 0, originX: 0},
@@ -146,7 +147,7 @@ const options = {
 export function Company({ id, companies }) {
     
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
-    const fallbackSrc = "/media/default.png";
+    const fallbackSrc = defImg;
     
     var color = '#efefef';
     if(backgroundColor > '#888888')

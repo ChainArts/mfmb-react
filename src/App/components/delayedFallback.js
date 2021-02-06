@@ -1,11 +1,12 @@
 import React from "react";
+import loading from "./loading_small.gif";
 
 export const DelayedFallback = () => {
 
   return (
     <>
         <div className="placeholder">
-            <img src="/loading/loading_small.gif" alt="Loading..."/>
+            <img src={loading} alt="Loading..."/>
         </div>
     </>
     )

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import './automode.css';
 import { NavLink } from 'react-router-dom';
 import DelayedFallback from '../../components/delayedFallback';
+import defImg from "./../../components/default.png"
 
 const gridWrapper = {
     hidden: {},
@@ -52,13 +53,13 @@ function AutoCard({ id, backgroundColor, image, videolink}) {
     */
     return (
         <>  
-    <motion.li className="grid-item" variants={gridItem} exit="exit" >
+    <motion.li className="grid-item" variants={gridItem}>
         <div className="grid-container">
         {id === "5" ? (
             <VideoOverlay videolink = {videolink}/>):
         (
         <motion.div className="company-logo-full" layoutId={`company-logo-${id}`}>
-            <img src={"/"+image} alt="" loading="lazy"/>
+            <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="" loading="lazy"/>
         </motion.div>
         )
         }

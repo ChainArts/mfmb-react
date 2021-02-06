@@ -4,6 +4,7 @@ import { IconContext } from 'react-icons';
 import { HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTerminal } from "react-icons/hi";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
+import defImg from './../default.png';
 
 const extendedMenu = {
     visible: {
@@ -193,7 +194,7 @@ const Navbar = () => {
                 <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"/>
                 <div className="nav-header mobile-hide">
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
-                        <img src="/media/default.png" alt="" loading="lazy"/>
+                        <img src={defImg} alt="" loading="lazy"/>
                             <motion.span variants = {navHeaderItem} initial="hidden" animate="open">MFMB</motion.span><br/>
                             <motion.span variants = {navHeaderItem} initial="hidden" animate="open">HTL HOLLABRUNN</motion.span>
                     </motion.div>

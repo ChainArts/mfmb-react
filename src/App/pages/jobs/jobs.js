@@ -4,6 +4,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import "./jobs.css";
 import { HiViewGrid, HiViewList, HiPlus } from "react-icons/hi";
+import defImg from "./../../components/default.png";
 
 const jobContainer = {
     hidden: { opacity: 0, scaleY: .9 , y: 200},
@@ -115,7 +116,7 @@ const Job = () => {
     return (
         <motion.li className ="jobs-item" layout variants = {jobItem} onClick={toggleOpen} whileHover={{filter: "brightness(1.1)"}}>
             <motion.div className="avatar" layout>
-                <motion.img src="/media/default.png" alt="" layout loading="lazy"/>
+                <motion.img src={defImg} alt="" layout loading="lazy"/>
                 <motion.div className="nameCont" layout>
                     <motion.div layout className="jobName">Lorem Ipsum / Dolor Sit</motion.div>
                     <motion.div layout className="jobDesc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</motion.div>
