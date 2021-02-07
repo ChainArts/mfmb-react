@@ -25,6 +25,7 @@
     padding: 1rem 2rem 1rem 2rem;
     align-items: center;
     flex-direction: column;
+    max-height: 100vh;
 }
 
 .jobs-title{
@@ -51,13 +52,14 @@
     cursor: pointer;
     border: solid 2px var(--prim-acc-color);
     border-radius: 1rem;
+    color: var(--sec-acc-color);
 }
 
 .dark{
     opacity: 0.3;
 }
 
-.filter-list{
+.filter-button{
     position: relative;
     display: flex;
     flex-direction: row;
@@ -66,9 +68,25 @@
     cursor: pointer;
 }
 
-.filter-list span{
+.filter-button span{
     cursor: pointer;
     padding: 1rem;
+}
+
+.filter-container{
+    background-color: var(--second-layer-transparent);
+    width: 90%;
+    max-height: 100%;
+    border-radius: 10px;
+    height: 100%;
+    margin-bottom: 1rem;
+    overflow-y: hidden;
+    backdrop-filter: blur( 3px );
+}
+
+.filter-list{
+    padding: 1rem;
+    height: 100%;
 }
 
 .jobs-container{

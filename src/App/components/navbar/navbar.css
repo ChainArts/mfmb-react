@@ -221,8 +221,10 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
     bottom: 1rem;
     height: 6rem;
     padding: 1px;
+    border-radius: 2px;
     background-color: var(--second-layer-transparent);
     justify-self: flex-end;
+    transform-origin: top center;
 }
 
 .scrollIndicatorSlider{

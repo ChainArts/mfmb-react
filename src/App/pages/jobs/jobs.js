@@ -6,20 +6,43 @@ import "./jobs.css";
 import { HiViewGrid, HiViewList, HiPlus } from "react-icons/hi";
 import defImg from "./../../components/default.png";
 
-const jobContainer = {
-    hidden: { opacity: 0, scaleY: .9 , y: 200},
+const jobSettings = {
+    hidden: {opacity: 0},
     visible: {
-      y: 0, 
+        opacity: 1,
+        transition:{
+            ease: [.14,.8,.4,1],
+            delay: 0.3,
+            delayChildren: 0.2,
+            staggerChildren: 0.1
+        }
+    }
+};
+
+const jobSettingsItem = {
+    hidden: {opacity: 0, y:200},
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition:{
+            duration: 0.5,
+            ease: [.14,.8,.4,1],
+        }
+    }
+}
+
+const jobContainer = {
+    hidden: { opacity: 0},
+    visible: { 
       opacity: 1,
-      scaleY: 1,
       transition: {
         ease: [.14,.8,.4,1],
         delay: 0.3,
-        delayChildren: 0.5,
-        staggerChildren: .06,
+        delayChildren: 0.3,
+        staggerChildren: .04,
       }
     },
-    exit:{}, 
+    exit:{opacity: 0}, 
         transition:{
             ease: [.14,.8,.4,1],
             staggerChildren: .06,
@@ -41,7 +64,7 @@ const jobItem = {
     exit: {
         y:20, opacity: 0, borderRadius: 6,
         transition: {
-            duration: 0.3,
+            duration: 0.8,
             ease: [.14,.8,.4,1]
         }
     }
@@ -158,27 +181,32 @@ export function Jobs () {
 
 return(
     <motion.div className="page-container">
-    <motion.div className="jobs-filter mobile-hide">
-            <motion.span className="jobs-title">JOBS</motion.span>
-            <motion.div className="view-type">
-                <span>Ansicht:</span>
-                
-                {isGrid ?
-                (<>  
-                    <motion.li className="viewbutton dark" onClick={() => {toggleGrid(); refreshJobs();}} whileTap={{scale: 1.1}}><HiViewList/></motion.li>
-                    <motion.li className="viewbutton"><HiViewGrid/></motion.li>
-                </>)
-                :
-                (<>
-                    <motion.li className="viewbutton"><HiViewList/></motion.li>
-                    <motion.li className="viewbutton dark" onClick={() => {toggleGrid(); refreshJobs(); }} whileTap={{scale: 1.1}}><HiViewGrid/></motion.li>
-                </>)
-                }
-            </motion.div>
-            <motion.div className="filter-list" onClick={toggleOverlay}>
-                <span>Filter:</span>
-                <HiPlus style={{color: "var(--prim-acc-color)", fontSize: "1.6rem", lineHeight: "0"}}/>
-            </motion.div>
+    <motion.div className="jobs-filter" variants={jobSettings} initial="hidden" animate="visible">
+        <motion.span className="jobs-title" variants={jobSettingsItem}>JOBS</motion.span>
+        <motion.div className="view-type" variants={jobSettingsItem}>
+            <span>Ansicht:</span>        
+            {isGrid ?
+            (<>  
+                <motion.li className="viewbutton dark" onClick={() => {toggleGrid(); refreshJobs();}} whileTap={{scale: 1.1}}><HiViewList/></motion.li>
+                <motion.li className="viewbutton"><HiViewGrid/></motion.li>
+            </>)
+            :
+            (<>
+                <motion.li className="viewbutton"><HiViewList/></motion.li>
+                <motion.li className="viewbutton dark" onClick={() => {toggleGrid(); refreshJobs(); }} whileTap={{scale: 1.1}}><HiViewGrid/></motion.li>
+            </>)
+            }
+        </motion.div>
+        <motion.div className="filter-button" onClick={toggleOverlay} variants={jobSettingsItem}>
+            <span>Filter:</span>
+            <HiPlus style={{color: "var(--prim-acc-color)", fontSize: "1.6rem", lineHeight: "0"}}/>
+        </motion.div>
+        <motion.div className="filter-container" variants={jobSettingsItem}>
+            <SimpleBar scrollbarMaxSize={300} style={{height: "100%"}}>
+                <motion.ul className="filter-list">
+                </motion.ul>
+            </SimpleBar>
+        </motion.div>
     </motion.div>
     <span className="job-seperator"/>
     <AnimatePresence key={refreshKey} exitBeforeEnter>

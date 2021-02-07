@@ -1,11 +1,14 @@
-.about-container {
-    margin: 1rem;
-    height: 100vh;
+.about-scroll{
+    height: 100%;
     width: 100%;
+}
+
+.about-container {
+    color: var(--sec-acc-color);
     display: flex;
     align-items: center;
     flex-direction: column;
-    color: var(--sec-acc-color);
+    padding: 1rem;
 }
 
 .about-header{
@@ -19,8 +22,8 @@
     font-size: 8rem;
     font-weight: 100;
     letter-spacing: .02em;
-    line-height: 1.5;
-    margin-bottom: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 .about-seperator{

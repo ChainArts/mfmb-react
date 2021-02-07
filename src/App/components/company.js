@@ -145,10 +145,8 @@ const options = {
 }
 
 export function Company({ id, companies }) {
-    
     const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     const fallbackSrc = defImg;
-    
     var color = '#efefef';
     if(backgroundColor > '#888888')
         color = '#2a2a2a';

@@ -5,7 +5,7 @@
 
 import React, { Suspense, useState, useEffect} from 'react';
 import './App.css';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect, useLocation } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
@@ -21,6 +21,7 @@ import About from './pages/about/about';
 function Companies({ match }) {
     const [companies, setCompanies] = useState(null);
     const [imageHasLoaded, setImageHasLoaded] = useState(false);
+    const location = useLocation();
 
     let { id } = match.params;
 
@@ -49,15 +50,15 @@ function Companies({ match }) {
     
     return(
     <>
-    <motion.div className="currCategory mobile-hide" 
-        initial={{opacity: 0, right: "-15rem"}} 
-        animate={{opacity: 1, right: "-13rem"}} 
-        transition={{delay: 2, duration: 0.6, ease: [.14,.8,.4,1]}}>
+        <motion.div className="currCategory mobile-hide" 
+            initial={{opacity: 0, right: "-15rem"}} 
+            animate={{opacity: 1, right: "-13rem"}} 
+            transition={{delay: 2, duration: 0.6, ease: [.14,.8,.4,1]}}>
             <span>FIRMEN</span>
         </motion.div>
         <AnimateSharedLayout type="crossfade">
             {imageHasLoaded && companies && companies.length > 0 ? (
-                <SimpleBar className= "content-wrapper" scrollbarMaxSize={300}>
+                <SimpleBar className={location.pathname != '/companies'  ? "content-wrapper simple-hidden":"content-wrapper"} scrollbarMaxSize={300}>
                     <Grid selectedId={id} companies={companies}/>
                     <AnimatePresence>
                         {id && <Company id={id} key="company" companies={companies}/>}

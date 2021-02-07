@@ -138,7 +138,7 @@ const scrollIndicator = {
         transition: {
             duration: 2,
             ease: "linear",
-            loop: Infinity,
+            repeat: "Infinity",
             repeatDelay: 0.5,
             times: [0, 1]
         }
@@ -154,7 +154,7 @@ const Navbar = () => {
 
     return(
         <AnimatePresence exitBeforeEnter>
-        <motion.div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}  initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+        <motion.div className={isOpen ? "nav-bar-main is-open-menu" : "nav-bar-main"}  initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.3, delay: 0.3}}>
             <div className="menu-background"/>
             <div className="menu-toggle" onClick={toggleOpen} style={isOpen ? {transitionDelay: "0s"} : {transitionDelay:"0.2s"}}>
                 <div className={ isOpen ? "menu-toggle-icon menu-toggle-open" : "menu-toggle-icon menu-toggle-closed"}>
@@ -191,7 +191,7 @@ const Navbar = () => {
                     </nav>
                 </IconContext.Provider>
                 </div>
-                <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" exit="exit"/>
+                <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" animate="open" exit="exit"/>
                 <div className="nav-header mobile-hide">
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
                         <img src={defImg} alt="" loading="lazy"/>
@@ -202,8 +202,8 @@ const Navbar = () => {
             </motion.div>
             )}
             </AnimatePresence>
-            {((location.pathname === "/" || location.pathname === "/about") &&
-            <motion.div className="scrollIndicator" initial={{height: 0}} animate={{height: "6rem"}} exit={{height: 0}} transition={{delay: 0.5, duration: 0.3, ease: "easeInOut"}}>
+            {((location.pathname === "/companies" || location.pathname === "/about") &&
+            <motion.div className="scrollIndicator" initial={{scaleY: 0}} animate={{scaleY: 1}} exit={{scaleY: 0}} transition={{delay: 0.5, duration: 0.3, ease: "easeInOut"}}>
                 <motion.div className="scrollIndicatorSlider" variants={scrollIndicator} animate="animate"/>
             </motion.div>
             )}
