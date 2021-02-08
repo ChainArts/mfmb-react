@@ -29,7 +29,19 @@ const jobSettingsItem = {
             ease: [.14,.8,.4,1],
         }
     }
-}
+};
+
+const jobSeperator = {
+    hidden: {scaleY: 0},
+    visible: {
+        scaleY: 1,
+        transition:{
+            delay: 0.2,
+            duration: 0.3,
+            ease: [.14,.8,.4,1],
+        }
+    }
+};
 
 const jobContainer = {
     hidden: { opacity: 0},
@@ -208,7 +220,7 @@ return(
             </SimpleBar>
         </motion.div>
     </motion.div>
-    <span className="job-seperator"/>
+    <motion.span className="job-seperator" variants={jobSeperator} initial="hidden" animate="visible"/>
     <AnimatePresence key={refreshKey} exitBeforeEnter>
         <JobContainer grid={isGrid} filter={isFilterOpen} toggleFilter={toggleOverlay}/>
     </AnimatePresence>

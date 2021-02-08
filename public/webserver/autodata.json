@@ -31,7 +31,7 @@
         "id": "0",
         "image": "media/evn.png",
         "name": "EVN",
-        "backgroundColor": "#2a2d32",
+        "backgroundColor": "#FDFDFD",
         "website": "https://www.evn.at/EVN-Group/Karriere.aspx/",
         "videolink": "video/osram.mp4"
     },
@@ -67,7 +67,7 @@
         "id": "7",
         "image": "media/abstergo.png",
         "name": "Abstergo Industries",
-        "backgroundColor": "#2a2d32",
+        "backgroundColor": "#FDFDFD",
         "website": "https://www.osram-continental.com/",
         "videolink": "video/osram.mp4"
     },
@@ -85,7 +85,7 @@
         "id": "9",
         "image": "media/b&r.jpg",
         "name": "B&R Automation",
-        "backgroundColor": "#2a2d32", 
+        "backgroundColor": "#FDFDFD", 
         "website": "https://www.osram-continental.com/",
         "videolink": "video/osram.mp4"
     }

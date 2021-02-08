@@ -47,13 +47,15 @@ const VideoOverlay = (props) => {
 }
 
 function AutoCard({ id, backgroundColor, image, videolink}) {
-    /*var color = '#efefef';
-    if(backgroundColor > '#AAAAAA')
-        color = '#2a2a2a';
-    */
+    var background = backgroundColor;
+
+    if(backgroundColor === "#FDFDFD")
+    {
+        background = "var(--prim-acc-color)";
+    }
     return (
         <>  
-    <motion.li className="grid-item" variants={gridItem}>
+    <motion.li className="grid-item" variants={gridItem} style={{border: "2px solid " + background}}>
         <div className="grid-container">
         {id === "5" ? (
             <VideoOverlay videolink = {videolink}/>):

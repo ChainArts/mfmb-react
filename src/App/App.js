@@ -88,6 +88,7 @@ function Companies({ match }) {
 }*/
 
 function App({location}) {
+
     return (
         <div className="App">
             <ParticleBackground/>
