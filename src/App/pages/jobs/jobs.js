@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
-import { AnimateSharedLayout, AnimatePresence, motion, m } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { AnimateSharedLayout, AnimatePresence, motion, } from 'framer-motion';
+import { Redirect } from 'react-router-dom';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import IdleTimer from './../../components/idleTimer';
+import { globalTimeout } from './../../App';
 import "./jobs.css";
 import { HiViewGrid, HiViewList, HiPlus } from "react-icons/hi";
 import defImg from "./../../components/default.png";
@@ -187,11 +190,30 @@ export function Jobs () {
     const [isGrid, setIsGrid] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [refreshKey, setRefreshKey] = useState(1);
+    const [isTimeout, setIsTimeout] = useState(false);
     function toggleGrid (){ setIsGrid(!isGrid);}
     function toggleOverlay(){setIsFilterOpen(!isFilterOpen);}
     function refreshJobs (){ setRefreshKey(refreshKey + 1);}
+    
+    useEffect(() => {
+        const timer = new IdleTimer({
+            timeout: globalTimeout,
+            onTimeout: () => {
+                setIsTimeout(true);
+            },
+            onExpired: () => {
+                setIsTimeout(true);
+            }
 
-return(
+        })
+        return () => {
+            timer.cleanUp();
+        }
+    }, []);
+    
+    return(
+    <>
+    {isTimeout ? <Redirect to="/automode"/>:
     <motion.div className="page-container">
     <motion.div className="jobs-filter" variants={jobSettings} initial="hidden" animate="visible">
         <motion.span className="jobs-title" variants={jobSettingsItem}>JOBS</motion.span>
@@ -225,6 +247,8 @@ return(
         <JobContainer grid={isGrid} filter={isFilterOpen} toggleFilter={toggleOverlay}/>
     </AnimatePresence>
     </motion.div>
+    }
+    </>
     );
 }
 
