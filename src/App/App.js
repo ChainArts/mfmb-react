@@ -19,6 +19,7 @@ import AutoMode from './pages/autoMode/autoMode';
 import Jobs from './pages/jobs/jobs';
 import About from './pages/about/about';
 
+//Dev Purposes
 export const globalTimeout = Infinity;
 
 function Companies({ match }) {

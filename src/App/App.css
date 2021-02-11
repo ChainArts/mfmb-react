@@ -364,7 +364,7 @@ iframe{
 
 .name-seperator{
     content: '';
-    width: 1px;
+    width: 2px;
     height: 100%;
 } 
 

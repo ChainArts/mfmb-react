@@ -89,6 +89,20 @@
     height: 100%;
 }
 
+.filter-item{
+    width: 100%;
+    height: 3.5rem;
+    border-bottom: 1px solid var(--prim-acc-color);
+    color: var(--sec-acc-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1rem 0 1rem;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
 .jobs-container{
     position: relative;
     width: 100%;

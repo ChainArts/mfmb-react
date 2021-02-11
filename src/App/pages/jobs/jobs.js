@@ -6,7 +6,7 @@ import 'simplebar-react/dist/simplebar.min.css';
 import IdleTimer from './../../components/idleTimer';
 import { globalTimeout } from './../../App';
 import "./jobs.css";
-import { HiViewGrid, HiViewList, HiPlus } from "react-icons/hi";
+import { HiViewGrid, HiViewList, HiPlus, HiX} from "react-icons/hi";
 import defImg from "./../../components/default.png";
 
 const jobSettings = {
@@ -114,6 +114,34 @@ const jobFilterOverlay = {
     }
 }
 
+const filterList = {
+    hidden: {},
+    visible: {
+        transition:{
+            staggerChildren: 0.2,
+            delayChildren: 0.3
+        }
+    }
+}
+
+const filterItem = {
+    hidden : {x: -50, opacity: 0},
+    visible: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.3,
+            ease: [.14,.8,.4,1]
+        }
+    },
+    exit: {
+        x: 50, opacity: 0,
+        transition: {
+        duration: 0.3,
+            ease: [.14,.8,.4,1]
+        }
+    }
+}
 function JobContainer(props) {
     return(
         <>
@@ -237,7 +265,11 @@ export function Jobs () {
         </motion.div>
         <motion.div className="filter-container" variants={jobSettingsItem}>
             <SimpleBar scrollbarMaxSize={300} style={{height: "100%"}}>
-                <motion.ul className="filter-list">
+                <motion.ul className="filter-list" variants={filterList}>
+                    <motion.li className="filter-item" variants={filterItem}>
+                        <span>Filter #1</span>
+                        <HiX style={{fontSize: "1.5rem", cursor: "pointer"}}/>
+                    </motion.li>
                 </motion.ul>
             </SimpleBar>
         </motion.div>
