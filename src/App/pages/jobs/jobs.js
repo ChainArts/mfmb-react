@@ -125,9 +125,9 @@ const filterList = {
 }
 
 const filterItem = {
-    hidden : {x: -50, opacity: 0},
+    hidden : {y: 50, opacity: 0},
     visible: {
-        x: 0,
+        y: 0,
         opacity: 1,
         transition: {
             duration: 0.3,
@@ -135,7 +135,7 @@ const filterItem = {
         }
     },
     exit: {
-        x: 50, opacity: 0,
+        y: 50, opacity: 0,
         transition: {
         duration: 0.3,
             ease: [.14,.8,.4,1]

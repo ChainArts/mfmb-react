@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './navbar.css';
 import { IconContext } from 'react-icons';
 import { HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTerminal } from "react-icons/hi";
+import { FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
 import defImg from './../default.png';
@@ -99,32 +100,20 @@ const navSeperator = {
 }
 
 const navHeader = {
-    hidden: {opacity: 0, x: "20vw", rotateY: 60},
+    hidden: {},
     open: {
-        opacity: 1,
-        x: 0,
-        rotateY: 0,
         transition: {
-            staggerChildren: 0.1,
-            delay: 0.2,
-            duration: 0.8,
+            staggerChildren: 0.06,
+            delayChildren: 0.4,
             ease: [0.22, 1, 0.36, 1]
-        }
-    },
-    exit: {
-        opacity: 0, x: "20vw",
-        transition: {
-            duration: 0.2,
-            ease: "easeOut"
         }
     }
 }
 
 const navHeaderItem ={
-    hidden: {opacity: 0, y: 20},
-    open: {opacity: 1, y: 0,
+    hidden: {opacity: 0, x: 300},
+    open: {opacity: 1, x: 0,
         transition: {
-            delay: 0.5,
             duration: 0.8,
             ease: [.14,.8,.4,1],
         }
@@ -170,9 +159,9 @@ const Navbar = () => {
 			</motion.div>
             <AnimatePresence exitBeforeEnter>
             {isOpen && (
+            <IconContext.Provider value={{ className: 'react-icons' }}>
             <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
                 <div className="menu-overlay-main mobile-maxWidth">
-                <IconContext.Provider value={{ className: 'react-icons' }}>
                     <nav className="main-nav">
                         <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
                             <NavLink to="/companies" exact activeClassName="current-page-item">
@@ -189,17 +178,19 @@ const Navbar = () => {
                             </NavLink>
                         </motion.ul>
                     </nav>
-                </IconContext.Provider>
                 </div>
                 <motion.span className="nav-seperator mobile-hide" variants = {navSeperator} initial="hidden" animate="open" exit="exit"/>
                 <div className="nav-header mobile-hide">
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
-                        <img src={defImg} alt="" loading="lazy"/>
-                            <motion.span variants = {navHeaderItem} initial="hidden" animate="open">MFMB</motion.span><br/>
-                            <motion.span variants = {navHeaderItem} initial="hidden" animate="open">HTL HOLLABRUNN</motion.span>
+                        <motion.span variants = {navHeaderItem} >MFMB | HTL Hollabrunn</motion.span><br/>
+                        <motion.img  variants = {navHeaderItem} src={defImg} alt="" loading="lazy"/>
+                        <motion.span variants = {navHeaderItem} ><FaInstagram/> | @htlhollabrunn</motion.span><br/>
+                        <motion.span variants = {navHeaderItem} ><FaYoutube/> | HTL Hollabrunn</motion.span><br/>
+                        <motion.span variants = {navHeaderItem} ><FaLinkedin/> | HTL Hollabrunn</motion.span><br/>
                     </motion.div>
                 </div>
             </motion.div>
+            </IconContext.Provider>
             )}
             </AnimatePresence>
             {((location.pathname === "/companies" || location.pathname === "/about") &&

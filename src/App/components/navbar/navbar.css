@@ -192,11 +192,9 @@ ul.menu-list li:hover::after, ul.menu-list a.current-page-item li::after{
 }
 
 .nav-header-content img{
-    width: 40%;
+    width: 30%;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 5rem;
+    margin: 1rem auto 3rem auto;
 }
 
 .nav-header-content{

@@ -45,7 +45,7 @@ function Card({ id, name, backgroundColor, image}) {
     if(backgroundColor === "#FDFDFD")
     {
         background = "linear-gradient(120deg, var(--prim-acc-color) 25%,var(--sec-acc-color) 100%)";
-        color = "efefef";
+        color = "#efefef";
     }
 
     return (  
