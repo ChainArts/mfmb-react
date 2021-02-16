@@ -30,7 +30,7 @@ function newApp() {
             show: false,
             frame: false,
             minHeight: 480, minWidth: 720,
-            height: 720, width: 1280,
+            height: 1080, width: 1920,
             webPreferences: {
                 nodeIntegration: true,
                 enableRemoteModule: true,
