@@ -3,12 +3,12 @@
 var fs = require('fs');
 var mysql = require('mysql');
 var media = require('../data.json');     //Filepath to file with media data with special Maximilian Roll format (see autodata.json/data,json)
-var companies = require('..algorithmdata.json');          //Filepath to file with algorithm data (see algorithmdata.json)
+var companies = require('../algorithmdata.json');          //Filepath to file with algorithm data (see algorithmdata.json)
 
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
+    host: "192.168.8.13",
+    user: "mfmb",
+    password: "mfmb",
     database: "mfmb"
 });
 
@@ -25,9 +25,9 @@ con.connect(function (err) {
     if(input == "company" || input == "all"){
         var values = [];
         var i =0;
-        var query = "INSERT INTO Company VALUES ?"
+        var query = "INSERT INTO fe_users VALUES ?"
         media.forEach( function() {
-            values[i] = ['NULL',media[i].name];
+            values[i] = [0,media[i].name];
             i++
         });
         con.query(query, [values], function (err, result) {
@@ -39,10 +39,10 @@ con.connect(function (err) {
     if(input == "media" || input == "all"){
         var values = [];
         var i = 0, CompanyID = 0;
-        var query = "INSERT INTO Media VALUES ?"
+        var query = "INSERT INTO media VALUES ?"
         var mysql_default = mysql.raw('default');
         media.forEach( function() {
-            values[i] = ['NULL',media[i].image,media[i].backgroundColor,media[i].website,media[i].videolink,i+1];
+            values[i] = [0,1,true,media[i].image,media[i].backgroundColor,media[i].website,media[i].videolink,i+1];
             i++;
         });
         con.query(query, [values], function (err, result) {
@@ -54,11 +54,11 @@ con.connect(function (err) {
     if(input == "algorithm" || input == "all"){
         var values = [];
         var i = 0, CompanyID = 0;
-        var query = "INSERT INTO Algorithm VALUES ?"
+        var query = "INSERT INTO algorithm VALUES ?"
         var mysql_default = mysql.raw('default');
         companies.forEach( function() {
             if(CompanyID != companies.length){CompanyID++}
-            values[i] = [companies[i].credits,companies[i].contentLength,companies[i].playbackTime,companies[i].calculatedTime,false,i+1];
+            values[i] = [0,companies[i].credits,companies[i].contentLength,companies[i].playbackTime,companies[i].calculatedTime,false,i+1];
             i++;
         });
         con.query(query, [values], function (err, result) {
