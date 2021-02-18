@@ -3,7 +3,8 @@ var AlgorithmData = require('../algorithmdata.json');
 var MediaData = require('../data.json');
 var prevData = AlgorithmData.find(function (item) { return item.prevSelected == true; });
 var selection = [];
-var i = 0, prevId = 0, id = 0;
+var i = 0, prevId = 0, companyID = 0;
+var priorityMode = false;
 function sum(total, num) {
     return total + num;
 }
@@ -16,56 +17,89 @@ function weight(money, sum) {
 function finished(err) {
     console.log('Data written');
 }
-//console.log(AlgorithmData.map(a => a.calculatedTime));
+
+
+
+
+//if(!priorityMode)
+
 //create selection of companies with samllest and same calculatedTime
 AlgorithmData.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
-for (i = 0; i < AlgorithmData.length; i++) {
+for (i = 0; i < AlgorithmData.length; i++) {                                                  
     if (AlgorithmData[0].calculatedTime == AlgorithmData[i].calculatedTime) {
-        selection[i] = AlgorithmData[i].id;
+        selection.push(AlgorithmData[i].companyID);
     }
 }
-AlgorithmData.sort(function (a, b) { return a.id - b.id; });
-//remove previous id from the selection
+
+//remove previous companyID from the selection
 if (typeof prevData !== "undefined") {
     for (i = 0; i < selection.length; i++) {
-        if (selection[i] == prevData.id) {
+        if (selection[i] == prevData.companyID) {
             selection.splice(i, 1);
         }
     }
+
 }
-console.log(selection);
 if (selection.length == 0) {
     selection = [];
-    AlgorithmData.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
+
     for (i = 1; i < AlgorithmData.length; i++) {
         if (AlgorithmData[1].calculatedTime == AlgorithmData[i].calculatedTime) {
-            selection[i - 1] = AlgorithmData[i].id;
+            selection[i - 1] = AlgorithmData[i].companyID;
         }
     }
-    AlgorithmData.sort(function (a, b) { return a.id - b.id; });
 }
-id = selection[Math.floor(Math.random() * selection.length)];
-AlgorithmData[id].calculatedTime += Math.round(AlgorithmData[id].contentLength / weight(AlgorithmData[id].credits, AlgorithmData.map(function (a) { return a.credits; }).reduce(sum)));
-AlgorithmData[id].playbackTime += AlgorithmData[id].contentLength;
+AlgorithmData.sort(function (a, b) { return a.companyID - b.companyID; });
+companyID = selection[Math.floor(Math.random() * selection.length)];
+console.log("id is " + companyID);
 
-console.log(id);
-if (typeof prevData !== "undefined") {
-AlgorithmData[AlgorithmData.findIndex(function (item) { return item.prevSelected == true; })].prevSelected = 0;
+
+var media_selection = [];
+MediaData.forEach(function (media){
+    if(media.companyID == companyID){media_selection.push(media)}
+});
+
+
+
+if(media_selection.length > 1){
+    var prevMedia = media_selection.find(function (item) { return item.prevSelected == true});
+
+    if (typeof prevMedia !== "undefined") {
+        for (i = 0; i < media_selection.length; i++) {
+            if (media_selection[i].id == prevMedia.id) {
+                media_selection.splice(i, 1);
+            }
+        }
+    }
 }
-AlgorithmData[AlgorithmData.findIndex(function (item) { return item.id == id; })].prevSelected = 1;
+
+var media = media_selection[Math.floor(Math.random() * media_selection.length)];
+
+
+if (typeof prevMedia !== "undefined") {
+    MediaData[MediaData.findIndex(function (item) { return item.prevSelected == true && item.companyID == prevMedia.companyID})].prevSelected = 0;
+}
+MediaData[MediaData.findIndex(function (item) { return item.companyID == media.companyID && item.campaignID == media.campaignID})].prevSelected = 1;
+
+if (typeof prevData !== "undefined") {
+    AlgorithmData[AlgorithmData.findIndex(function (item) { return item.prevSelected == true; })].prevSelected = 0;
+}
+AlgorithmData[AlgorithmData.findIndex(function (item) { return item.companyID == companyID; })].prevSelected = 1;
+
+index = AlgorithmData.findIndex(function (item) { return item.companyID == companyID});
+AlgorithmData[index].calculatedTime += Math.round(media.contentLength / weight(AlgorithmData[index].credits, AlgorithmData.map(function (a) { return a.credits; }).reduce(sum)));
+AlgorithmData[index].playbackTime += media.contentLength;
+
 
 AlgorithmData = JSON.stringify(AlgorithmData, null, 2);
 fs.writeFile('./webserver/algorithmdata.json', AlgorithmData, finished);
 
-while (MediaData[4].id != id) {
+data = JSON.stringify(MediaData, null, 2);
+fs.writeFile('./webserver/data.json', data, finished);
+
+while (MediaData[4].companyID != companyID) {
     MediaData.unshift(MediaData.pop());
 }
-MediaData = JSON.stringify(MediaData, null, 2);
-fs.writeFile('./webserver/autodata.json', MediaData, finished);
-//var MediaData = JSON.parse(MediaData);
-//console.log(selection);
-//console.log(AlgorithmData); 
-// console.log(lastUpdate);
-// console.log(money);
-// console.log(topicality);
-// console.log(noise, id, money.length);
+autoData = JSON.stringify(MediaData, null, 2);
+fs.writeFile('./webserver/autodata.json', autoData, finished);
+

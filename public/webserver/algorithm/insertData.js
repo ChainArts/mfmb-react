@@ -42,7 +42,7 @@ con.connect(function (err) {
         var query = "INSERT INTO media VALUES ?"
         var mysql_default = mysql.raw('default');
         media.forEach( function() {
-            values[i] = [0,1,true,media[i].image,media[i].backgroundColor,media[i].website,media[i].videolink,i+1];
+            values[i] = [0,media[i].campaignID,true,media[i].image,media[i].backgroundColor,media[i].website,media[i].videolink,media[i].companyID+1,media[i].contentLength,false];
             i++;
         });
         con.query(query, [values], function (err, result) {
@@ -58,7 +58,7 @@ con.connect(function (err) {
         var mysql_default = mysql.raw('default');
         companies.forEach( function() {
             if(CompanyID != companies.length){CompanyID++}
-            values[i] = [0,companies[i].credits,companies[i].contentLength,companies[i].playbackTime,companies[i].calculatedTime,false,i+1];
+            values[i] = [0,companies[i].credits,companies[i].playbackTime,companies[i].calculatedTime,false,companies[i].companyID+1];
             i++;
         });
         con.query(query, [values], function (err, result) {

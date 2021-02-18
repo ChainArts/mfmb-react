@@ -20,31 +20,29 @@ var client = mysql.createConnection({
     database: "mfmb"
 });
 
-function arr_diff (a1, a2) {
+function arr_diff (array1, array2) {
 
-    var a = [], diff = [];
+    var array = [], diff = [];
 
-    for (var i = 0; i < a1.length; i++) {
-        a[a1[i][0]] = true;
+    for (var i = 0; i < array1.length; i++) {
+        array[array1[i][0]] = true;
     }
 
-    for (var i = 0; i < a2.length; i++) {
-        if (a[a2[i][0]]) {
-            delete a[a2[i][0]];
+    for (var i = 0; i < array2.length; i++) {
+        if (array[array2[i][0]]) {
+            delete array[array2[i][0]];
         } else {
-            a[a2[i][0]] = true;
+            array[array2[i][0]] = true;
         }
     }
 
-    for (var k in a) {
+    for (var k in array) {
         diff.push(k);
     }
-
     return diff;
 }
 
-
-var Arrayify = function(query_result,StatementIndex) {
+var ObjArrayToTwoDimArray = function(query_result,StatementIndex) {
     var data = [];
     var x = 0; 
     switch(StatementIndex){
@@ -74,45 +72,30 @@ var Arrayify = function(query_result,StatementIndex) {
 
 var getServerAsync = async function(i) {
     var promisfyserver = promisify(server.query).bind(server);
-
     var result = await promisfyserver(selectStatements[i]);
-    return Arrayify(result,i);
-    
+    return ObjArrayToTwoDimArray(result,i);
 };
 
-var setClientAsync = async function(i,values) {
-    var testarray = [];
+var setClientAsync = async function(i,server_values) {
     var promisfyclient = promisify(client.query).bind(client);
-    var message = await promisfyclient(insertStatements[i], [values]);
-    var buffer = await promisfyclient(selectStatements[i]);
-    var test = Arrayify(buffer,i);
-    //console.log(test);
-    diff = arr_diff(test,values);
-    console.log(diff);
+    var ins_message = await promisfyclient(insertStatements[i], [server_values]);
+    console.log(ins_message.affectedRows + " Rows checked");
+    var sel_ObjArray = await promisfyclient(selectStatements[i]);
+    var client_values = ObjArrayToTwoDimArray(sel_ObjArray,i);
+    diff = arr_diff(client_values,server_values);
 
     diff.forEach(async function(item){
-        await promisfyclient(deleteStatements[i], item);
+        var del_message = await promisfyclient(deleteStatements[i], item);
+        console.log(del_message.affectedRows + " Rows deleted\n");
     });
-
-    
-
-
-
-
-
-    return message;
-  };
+};
 
 var processDataAsync = async function() {
-    var i;
-    for(i = 0; i<3; i++){
+    for(var i = 0; i<3; i++){
         var data = [];
         try {
             data = await getServerAsync(i);
-            //console.log(data);
-            message = await setClientAsync(i,data);
-            console.log(message.affectedRows + " rows have been affected.");
-
+            await setClientAsync(i,data);
           } catch (error) {
             console.log(error);
           }

@@ -1,98 +1,93 @@
 [
   {
     "credits": 1000,
-    "contentLength": 10,
-    "playbackTime": 10,
-    "calculatedTime": 14,
+    "playbackTime": 60,
+    "calculatedTime": 84,
     "prevSelected": 0,
-    "id": 0
+    "companyID": 0
   },
   {
     "credits": 2000,
-    "contentLength": 20,
-    "playbackTime": 20,
-    "calculatedTime": 14,
+    "playbackTime": 120,
+    "calculatedTime": 84,
     "prevSelected": 0,
-    "id": 1
+    "companyID": 1
   },
   {
     "credits": 750,
-    "contentLength": 30,
-    "playbackTime": 30,
-    "calculatedTime": 57,
+    "playbackTime": 60,
+    "calculatedTime": 114,
     "prevSelected": 0,
-    "id": 2
+    "companyID": 2
   },
   {
     "credits": 450,
-    "contentLength": 5,
-    "playbackTime": 5,
-    "calculatedTime": 16,
+    "playbackTime": 30,
+    "calculatedTime": 96,
     "prevSelected": 0,
-    "id": 3
+    "companyID": 3
   },
   {
     "credits": 1500,
-    "contentLength": 15,
-    "playbackTime": 15,
-    "calculatedTime": 14,
+    "playbackTime": 90,
+    "calculatedTime": 84,
     "prevSelected": 0,
-    "id": 4
+    "companyID": 4
   },
   {
     "credits": 1200,
-    "contentLength": 20,
-    "playbackTime": 20,
-    "calculatedTime": 24,
+    "playbackTime": 80,
+    "calculatedTime": 96,
     "prevSelected": 0,
-    "id": 5
+    "companyID": 5
   },
   {
     "credits": 800,
-    "contentLength": 25,
-    "playbackTime": 25,
-    "calculatedTime": 45,
+    "playbackTime": 50,
+    "calculatedTime": 90,
     "prevSelected": 0,
-    "id": 6
+    "companyID": 6
   },
   {
     "credits": 1800,
-    "contentLength": 17,
-    "playbackTime": 17,
-    "calculatedTime": 14,
+    "playbackTime": 102,
+    "calculatedTime": 84,
     "prevSelected": 0,
-    "id": 7
+    "companyID": 7
   },
   {
     "credits": 2500,
-    "contentLength": 13,
-    "playbackTime": 13,
-    "calculatedTime": 7,
+    "playbackTime": 156,
+    "calculatedTime": 84,
     "prevSelected": 0,
-    "id": 8
+    "companyID": 8
   },
   {
     "credits": 1500,
-    "contentLength": 10,
-    "playbackTime": 10,
-    "calculatedTime": 10,
-    "prevSelected": 0,
-    "id": 9
+    "playbackTime": 90,
+    "calculatedTime": 90,
+    "prevSelected": 1,
+    "companyID": 9
   },
   {
     "credits": 600,
-    "contentLength": 9,
-    "playbackTime": 9,
-    "calculatedTime": 21,
+    "playbackTime": 36,
+    "calculatedTime": 84,
     "prevSelected": 0,
-    "id": 10
+    "companyID": 10
   },
   {
     "credits": 200,
-    "contentLength": 22,
     "playbackTime": 22,
     "calculatedTime": 157,
     "prevSelected": 0,
-    "id": 11
+    "companyID": 11
+  },
+  {
+    "credits": 0,
+    "playbackTime": 540,
+    "calculatedTime": null,
+    "prevSelected": 0,
+    "companyID": 12
   }
 ]
