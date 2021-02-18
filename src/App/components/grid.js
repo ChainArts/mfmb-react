@@ -35,7 +35,7 @@ const gridItem = {
     }
 };
 
-function Card({ id, name, backgroundColor, image}) {
+function Card({ id, name, backgroundColor, image }) {
     var color = '#efefef';
     var background = backgroundColor;
 
