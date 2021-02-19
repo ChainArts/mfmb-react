@@ -83,9 +83,9 @@ const navitem = {
 const navSeperator = {
     hidden: {height: 0},
     open: {
-        height: "80vh",
+        height: "65vh",
         transition: {
-            delay: 0.2,
+            delay: 0.4,
             duration: 0.8,
             ease: [.14,.8,.4,1],
         }

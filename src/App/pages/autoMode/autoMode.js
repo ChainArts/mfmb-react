@@ -39,7 +39,7 @@ const VideoOverlay = (props) => {
         <motion.div className="video-overlay-container">
             <motion.div className="video-overlay">
                 <video height="auto" width="auto" autoPlay muted style={{borderRadius: "10px"}}>
-                    <source src="./public/video/osram.mp4"/>
+                    <source src= {props.videolink}/>
                 </video>
             </motion.div>
         </motion.div>
