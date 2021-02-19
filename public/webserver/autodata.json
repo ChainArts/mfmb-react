@@ -1,65 +1,5 @@
 [
   {
-    "id": 5,
-    "image": "/media/evn.png",
-    "name": "EVN",
-    "backgroundColor": "#fd3232",
-    "website": "www.evn.at",
-    "videolink": null,
-    "companyID": 5,
-    "campaignID": 1,
-    "contentLength": 20,
-    "prevSelected": 1
-  },
-  {
-    "id": 6,
-    "image": "/media/frischeis.jpg",
-    "name": "Frischeis",
-    "backgroundColor": "#FFFFFF",
-    "website": "www.frischeis.at",
-    "videolink": null,
-    "companyID": 6,
-    "campaignID": 1,
-    "contentLength": 25,
-    "prevSelected": 1
-  },
-  {
-    "id": 7,
-    "image": "/media/abstergo.png",
-    "name": "Abstergo Industries",
-    "backgroundColor": "#FDFDFD",
-    "website": "www.osram-continental.com",
-    "videolink": null,
-    "companyID": 7,
-    "campaignID": 1,
-    "contentLength": 17,
-    "prevSelected": 1
-  },
-  {
-    "id": 8,
-    "image": "/media/altium.png",
-    "name": "Altium",
-    "backgroundColor": "#a5915f",
-    "website": "www.altium.com",
-    "videolink": null,
-    "companyID": 8,
-    "campaignID": 1,
-    "contentLength": 13,
-    "prevSelected": 1
-  },
-  {
-    "id": 9,
-    "image": "/media/b&r.jpg",
-    "name": "B&R Automation",
-    "backgroundColor": "#FDFDFD",
-    "website": "www.br-automation.com",
-    "videolink": null,
-    "companyID": 9,
-    "campaignID": 1,
-    "contentLength": 10,
-    "prevSelected": 1
-  },
-  {
     "id": 10,
     "image": "/media/philips.png",
     "name": "Philips",
@@ -93,7 +33,7 @@
     "companyID": 12,
     "campaignID": 1,
     "contentLength": 8,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 13,
@@ -105,7 +45,7 @@
     "companyID": 12,
     "campaignID": 2,
     "contentLength": 12,
-    "prevSelected": 0
+    "prevSelected": 1
   },
   {
     "id": 0,

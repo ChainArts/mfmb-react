@@ -2,8 +2,8 @@ var mysql = require('mysql');
 const { promisify } = require('util');
 const selectStatements = ["SELECT * from fe_users","SELECT * from media","SELECT * from algorithm"];
 const insertStatements = ["INSERT INTO fe_users (uid, company) VALUES ? ON DUPLICATE KEY UPDATE company=VALUES(company)",
-                          "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), uid=VALUES(uid)",
-                          "INSERT INTO algorithm VALUES ? ON DUPLICATE KEY UPDATE Credits=VALUES(Credits), ContentLength=VALUES(ContentLength), PlaybackTime=VALUES(PlaybackTime), CalculatedTime=VALUES(CalculatedTime), PrevSelected=VALUES(PrevSelected), uid=VALUES(uid)"];
+                          "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)",
+                          "INSERT INTO algorithm VALUES ? ON DUPLICATE KEY UPDATE Credits=VALUES(Credits), PlaybackTime=VALUES(PlaybackTime), CalculatedTime=VALUES(CalculatedTime), PrevSelected=VALUES(PrevSelected), uid=VALUES(uid)"];
 const deleteStatements = ["DELETE FROM fe_users where uid = ?","DELETE FROM media where MediaID = ?","DELETE FROM algorithm where AlgorithmID = ?"];
 
 var server = mysql.createConnection({
@@ -55,14 +55,14 @@ var ObjArrayToTwoDimArray = function(query_result,StatementIndex) {
           
         case 1:
             query_result.forEach(function (media){
-                data[x] = [media.MediaID, media.CampaignID, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid];
+                data[x] = [media.MediaID, media.CampaignID, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid, media.ContentLength, media.PrevSelected];
                 x++;
             });
             break;
     
         case 2:
             query_result.forEach(function (algorithm){
-                data[x] = [algorithm.AlgorithmID, algorithm.Credits, algorithm.ContentLength, algorithm.PlaybackTime, algorithm.CalculatedTime, algorithm.PrevSelected, algorithm.uid];
+                data[x] = [algorithm.AlgorithmID, algorithm.Credits, algorithm.PlaybackTime, algorithm.CalculatedTime, algorithm.PrevSelected, algorithm.uid];
                 x++;
             });
             break;

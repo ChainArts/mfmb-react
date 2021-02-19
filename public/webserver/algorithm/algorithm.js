@@ -100,6 +100,6 @@ fs.writeFile('./webserver/data.json', data, finished);
 while (MediaData[4].companyID != companyID) {
     MediaData.unshift(MediaData.pop());
 }
-autoData = JSON.stringify(MediaData, null, 2);
+autoData = JSON.stringify(MediaData.slice(0, 9), null, 2);
 fs.writeFile('./webserver/autodata.json', autoData, finished);
 

@@ -1,9 +1,9 @@
 [
   {
     "credits": 1000,
-    "playbackTime": 60,
-    "calculatedTime": 84,
-    "prevSelected": 0,
+    "playbackTime": 70,
+    "calculatedTime": 98,
+    "prevSelected": 1,
     "companyID": 0
   },
   {
@@ -66,7 +66,7 @@
     "credits": 1500,
     "playbackTime": 90,
     "calculatedTime": 90,
-    "prevSelected": 1,
+    "prevSelected": 0,
     "companyID": 9
   },
   {
@@ -85,7 +85,7 @@
   },
   {
     "credits": 0,
-    "playbackTime": 540,
+    "playbackTime": 552,
     "calculatedTime": null,
     "prevSelected": 0,
     "companyID": 12
