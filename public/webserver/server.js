@@ -48,10 +48,10 @@ http.createServer(function (req, res) {
     }
 
     if(req.url === '/run'){
-        runScript(__dirname + '/algorithm/algorithm.js', function (err) {
-            if (err) throw err;
-            console.log('finished running algorithm.js');
-        });
+            runScript(__dirname + '/algorithm/algorithm.js', function (err) {
+                if (err) throw err;
+                console.log('finished running algorithm.js');
+            });
         res.write('finished running algorithm.js');
         res.end();
     }

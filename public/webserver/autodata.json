@@ -1,5 +1,17 @@
 [
   {
+    "id": 9,
+    "image": "/media/b&r.jpg",
+    "name": "B&R Automation",
+    "backgroundColor": "#FDFDFD",
+    "website": "www.br-automation.com",
+    "videolink": null,
+    "companyID": 9,
+    "campaignID": 1,
+    "contentLength": 10,
+    "prevSelected": 1
+  },
+  {
     "id": 10,
     "image": "/media/philips.png",
     "name": "Philips",
@@ -33,7 +45,7 @@
     "companyID": 12,
     "campaignID": 1,
     "contentLength": 8,
-    "prevSelected": 0
+    "prevSelected": 1
   },
   {
     "id": 13,
@@ -45,7 +57,7 @@
     "companyID": 12,
     "campaignID": 2,
     "contentLength": 12,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 0,
@@ -93,18 +105,6 @@
     "companyID": 3,
     "campaignID": 1,
     "contentLength": 5,
-    "prevSelected": 1
-  },
-  {
-    "id": 4,
-    "image": "/media/loxone.jpg",
-    "name": "Loxone",
-    "backgroundColor": "#FFFFFF",
-    "website": "www.loxone.com",
-    "videolink": null,
-    "companyID": 4,
-    "campaignID": 1,
-    "contentLength": 15,
     "prevSelected": 1
   }
 ]

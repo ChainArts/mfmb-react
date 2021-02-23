@@ -90,16 +90,15 @@ index = AlgorithmData.findIndex(function (item) { return item.companyID == compa
 AlgorithmData[index].calculatedTime += Math.round(media.contentLength / weight(AlgorithmData[index].credits, AlgorithmData.map(function (a) { return a.credits; }).reduce(sum)));
 AlgorithmData[index].playbackTime += media.contentLength;
 
-
 AlgorithmData = JSON.stringify(AlgorithmData, null, 2);
-fs.writeFile('./webserver/algorithmdata.json', AlgorithmData, finished);
+fs.writeFile(__dirname + '/../algorithmdata.json', AlgorithmData, finished);
 
 data = JSON.stringify(MediaData, null, 2);
-fs.writeFile('./webserver/data.json', data, finished);
+fs.writeFile(__dirname + '/../data.json', data, finished);
 
 while (MediaData[4].companyID != companyID) {
     MediaData.unshift(MediaData.pop());
 }
 autoData = JSON.stringify(MediaData.slice(0, 9), null, 2);
-fs.writeFile('./webserver/autodata.json', autoData, finished);
+fs.writeFile(__dirname + '/../autodata.json', autoData, finished);
 
