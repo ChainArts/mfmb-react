@@ -9,6 +9,8 @@
     align-items: center;
     flex-direction: column;
     padding: 1rem;
+    text-align: center;
+    
 }
 
 .about-container span{
@@ -27,7 +29,7 @@
     left: 5rem;
     position: absolute;
     content: "";
-    width: 60rem;
+    width: 61.5rem;
     height: 2px;
     background-color: var(--prim-acc-color);
 }
@@ -37,7 +39,23 @@
     flex-direction: column;
     align-items: center;
     width: 80%;
-    height: 85vh;
+}
+
+.about-description{
+    height: 78vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 200;
+    letter-spacing: 0.05em;
+    padding: 1rem 20rem 1rem 20rem;
+}
+
+.about-scroll-chevron{
+    color: var(--prim-acc-color);
+    font-size: 3rem;
 }
 
 .about-header .about-title {
@@ -95,12 +113,16 @@
 
 .person-content h3{
     padding: 1rem 0 1rem 0;
-    font-size: 2rem;
+    font-size: 3rem;
+}
+
+.person-content p{
+    font-size: 1.4rem;
 }
 
 .slide-swiper-container{
     width: 100%;
-    margin-top: 5rem;
+    padding: 5rem 0 5rem 0;
 }
 
 .slide-swiper-container img {

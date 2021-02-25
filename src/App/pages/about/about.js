@@ -7,16 +7,39 @@ import "./about.css";
 import SimpleBar from 'simplebar-react';
 import IdleTimer from './../../components/idleTimer';
 import { globalTimeout } from './../../App';
+import {HiChevronDown} from 'react-icons/hi';
+
+const scrollChevron = {
+    animate: {
+        opacity: [0, 1, 1, 0],
+        y: ["-6rem","0rem"],
+        transition: {
+            duration: 0.8,
+            ease: [.14,.8,.4,1],
+            repeat: "Infinity",
+            repeatDelay: 0.3,
+            times: [0, 0.33, 0.66, 1]
+        }
+    }
+}
+
 
 function AboutHero () {
     return(
+        <>
         <motion.div className="about-header">
             <motion.div className="about-header-content">
                 <div className="about-title">ABOUT</div>
             </motion.div>
             <motion.div className="about-seperator"/>
-            <img src="/media/orto.png" alt=""/>
         </motion.div>
+        <motion.div className="about-description">
+            MFMB Content Plattform für Informationen, Werbung und mehr
+        </motion.div>
+        <motion.div className="about-scroll-chevron" variants={scrollChevron} animate="animate">
+          <HiChevronDown/>
+        </motion.div>
+        </>
     )
 }
 

@@ -184,9 +184,11 @@ const Navbar = () => {
                     <motion.div className="nav-header-content" variants = {navHeader} initial="hidden" animate="open" exit="exit">
                         <motion.span variants = {navHeaderItem} >MFMB | HTL Hollabrunn</motion.span><br/>
                         <motion.img  variants = {navHeaderItem} src={defImg} alt="" loading="lazy"/>
-                        <motion.span variants = {navHeaderItem} ><FaInstagram/> | @htlhollabrunn</motion.span><br/>
-                        <motion.span variants = {navHeaderItem} ><FaYoutube/> | HTL Hollabrunn</motion.span><br/>
-                        <motion.span variants = {navHeaderItem} ><FaLinkedin/> | HTL Hollabrunn</motion.span><br/>
+                        <div className="nav-header-links">
+                            <motion.span variants = {navHeaderItem} ><div className="link-icon"><FaInstagram/></div> <p>@htlhollabrunn</p></motion.span>
+                            <motion.span variants = {navHeaderItem} ><div className="link-icon"><FaYoutube/></div><p>HTL Hollabrunn</p></motion.span>
+                            <motion.span variants = {navHeaderItem} ><div className="link-icon"><FaLinkedin/></div><p>HTL Hollabrunn</p></motion.span>
+                        </div>
                     </motion.div>
                 </div>
             </motion.div>

@@ -348,6 +348,13 @@ iframe{
     border-bottom-right-radius: 10px;
 }
 
+.company-name span{
+    max-width: 82%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .infos{
     height: 100%;
     display: flex;

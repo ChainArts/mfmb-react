@@ -5,7 +5,7 @@
 
 import React, { Suspense, useState, useEffect} from 'react';
 import './App.css';
-import { Route, Switch, withRouter, Redirect, useLocation, useHistory } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect, useLocation } from 'react-router-dom';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
@@ -96,6 +96,17 @@ function Companies({ match }) {
 }
 
 function App({location}) {
+
+    useEffect(() => {
+        const requestOptions = {
+            headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
+        };
+        fetch('http://localhost:5500/update', requestOptions)
+            .then(function(res){
+                return res.json();
+            })            
+            .catch(err => console.error(err));
+    }, []);
 
     return (
         <div className="App">
