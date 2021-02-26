@@ -30,6 +30,8 @@
     "cross-env": "^7.0.3",
     "electron-is-dev": "^1.2.0",
     "framer-motion": "^3.3.0",
+    "fs-extra": "^8.1.0",
+    "klaw-sync": "^6.0.0",
     "mysql": "^2.18.1",
     "qrcode.react": "^1.0.1",
     "react": "^17.0.1",

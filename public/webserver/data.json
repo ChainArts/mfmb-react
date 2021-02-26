@@ -1,167 +1,167 @@
 [
   {
     "id": 0,
-    "image": "C:/Users/ChainArts/Documents/MFMB/Companies/Osram_Continental/osram.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Osram Continental/1/image/IMG_20200609_174710.jpg",
     "name": "Osram Continental",
     "backgroundColor": "#FFFFFF",
     "website": "www.osram-continental.com",
-    "videolink": "C:/Users/ChainArts/Documents/MFMB/Companies/Osram_Continental/osram.mp4",
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Osram Continental/1/video/C0047.MP4",
     "companyID": 0,
     "campaignID": 1,
     "contentLength": 10,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 1,
-    "image": "/media/siemens.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Siemens/1/image/IMG_20200609_174710.jpg",
     "name": "Siemens",
     "backgroundColor": "#009999",
     "website": "www.siemens.com",
-    "videolink": "/video/osram.mp4",
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Siemens/1/video/C0047.MP4",
     "companyID": 1,
     "campaignID": 1,
     "contentLength": 20,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 2,
-    "image": "/media/smc.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/SMC Pneumatics/1/image/IMG_20200609_174710.jpg",
     "name": "SMC Pneumatics",
     "backgroundColor": "#2473b8",
     "website": "www.smc.eu",
-    "videolink": "/video/osram.mp4",
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/SMC Pneumatics/1/video/C0047.MP4",
     "companyID": 2,
     "campaignID": 1,
     "contentLength": 30,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 3,
-    "image": "/media/eaton.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/EATON/1/image/IMG_20200609_174710.jpg",
     "name": "EATON",
     "backgroundColor": "#005eb8",
     "website": "www.eaton.com",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/EATON/1/video/C0047.MP4",
     "companyID": 3,
     "campaignID": 1,
     "contentLength": 5,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 4,
-    "image": "/media/loxone.jpg",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Loxone/1/image/IMG_20200609_174710.jpg",
     "name": "Loxone",
     "backgroundColor": "#FFFFFF",
     "website": "www.loxone.com",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Loxone/1/video/C0047.MP4",
     "companyID": 4,
     "campaignID": 1,
     "contentLength": 15,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 5,
-    "image": "/media/evn.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/EVN/1/image/IMG_20200609_174710.jpg",
     "name": "EVN",
     "backgroundColor": "#fd3232",
     "website": "www.evn.at",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/EVN/1/video/C0047.MP4",
     "companyID": 5,
     "campaignID": 1,
     "contentLength": 20,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 6,
-    "image": "/media/frischeis.jpg",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Frischeis/1/image/IMG_20200609_174710.jpg",
     "name": "Frischeis",
     "backgroundColor": "#FFFFFF",
     "website": "www.frischeis.at",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Frischeis/1/video/C0047.MP4",
     "companyID": 6,
     "campaignID": 1,
     "contentLength": 25,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 7,
-    "image": "/media/abstergo.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Abstergo Industries/1/image/IMG_20200609_174710.jpg",
     "name": "Abstergo Industries",
     "backgroundColor": "#FDFDFD",
     "website": "www.osram-continental.com",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Abstergo Industries/1/video/0e2cdecc741a9a2d9fddd7c2d3e4877a.mp4",
     "companyID": 7,
     "campaignID": 1,
     "contentLength": 17,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 8,
-    "image": "/media/altium.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Altium/1/image/IMG_20200609_174710.jpg",
     "name": "Altium",
     "backgroundColor": "#a5915f",
     "website": "www.altium.com",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Altium/1/video/C0047.MP4",
     "companyID": 8,
     "campaignID": 1,
     "contentLength": 13,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 9,
-    "image": "/media/b&r.jpg",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/B&R Automation/1/image/IMG_20200609_174710.jpg",
     "name": "B&R Automation",
     "backgroundColor": "#FDFDFD",
     "website": "www.br-automation.com",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/B&R Automation/1/video/C0047.MP4",
     "companyID": 9,
     "campaignID": 1,
     "contentLength": 10,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 10,
-    "image": "/media/philips.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Philips/1/image/IMG_20200609_174710.jpg",
     "name": "Philips",
     "backgroundColor": "#FDFDFD",
     "website": "www.htl-hl.ac.at",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Philips/1/video/C0047.MP4",
     "companyID": 10,
     "campaignID": 1,
     "contentLength": 9,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 11,
-    "image": "/media/pollmann.png",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/Pollmann International/1/image/IMG_20200609_174710.jpg",
     "name": "Pollmann International",
     "backgroundColor": "#FDFDFD",
     "website": "www.pollmann.at",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/Pollmann International/1/video/C0047.MP4",
     "companyID": 11,
     "campaignID": 1,
     "contentLength": 22,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 12,
-    "image": "",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/AD Space/1/image/IMG_20200609_174710.jpg",
     "name": "AD Space",
     "backgroundColor": "#FDFDFD",
     "website": "www.htl-hl.ac.at",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/AD Space/1/video/C0047.MP4",
     "companyID": 12,
     "campaignID": 1,
     "contentLength": 8,
-    "prevSelected": 1
+    "prevSelected": 0
   },
   {
     "id": 13,
-    "image": "",
+    "image": "C:/Users/Plata/Documents/MFMB/Companies/AD Space/2/image/IMG_20191203_145424.jpg",
     "name": "AD Space",
     "backgroundColor": "#FDFDFD",
     "website": "www.htl-hl.ac.at",
-    "videolink": null,
+    "videolink": "C:/Users/Plata/Documents/MFMB/Companies/AD Space/2/video/Snapchat-1282292893.mp4",
     "companyID": 12,
     "campaignID": 2,
     "contentLength": 12,

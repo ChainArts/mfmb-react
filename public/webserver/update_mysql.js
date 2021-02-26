@@ -1,3 +1,4 @@
+console.log("hallo i bims da mysql");
 var mysql = require('mysql');
 const { promisify } = require('util');
 const selectStatements = ["SELECT * from fe_users","SELECT * from media","SELECT * from algorithm"];

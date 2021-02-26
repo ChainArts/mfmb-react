@@ -1,3 +1,4 @@
+console.log("hallo i bims da select");
 var fs = require('fs');
 var mysql = require('mysql');
 var i = 0;

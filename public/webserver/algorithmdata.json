@@ -1,93 +1,93 @@
 [
   {
     "credits": 1000,
-    "playbackTime": 1880,
-    "calculatedTime": 2632,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 0
   },
   {
     "credits": 2000,
-    "playbackTime": 3760,
-    "calculatedTime": 2632,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 1
   },
   {
     "credits": 750,
-    "playbackTime": 1410,
-    "calculatedTime": 2679,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 2
   },
   {
     "credits": 450,
-    "playbackTime": 825,
-    "calculatedTime": 2640,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 3
   },
   {
     "credits": 1500,
-    "playbackTime": 2820,
-    "calculatedTime": 2632,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 4
   },
   {
     "credits": 1200,
-    "playbackTime": 2200,
-    "calculatedTime": 2640,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 5
   },
   {
     "credits": 800,
-    "playbackTime": 1475,
-    "calculatedTime": 2655,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 6
   },
   {
     "credits": 1800,
-    "playbackTime": 3196,
-    "calculatedTime": 2632,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 7
   },
   {
     "credits": 2500,
-    "playbackTime": 4888,
-    "calculatedTime": 2632,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 8
   },
   {
     "credits": 1500,
-    "playbackTime": 2640,
-    "calculatedTime": 2640,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 9
   },
   {
     "credits": 600,
-    "playbackTime": 1134,
-    "calculatedTime": 2646,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 10
   },
   {
     "credits": 200,
-    "playbackTime": 374,
-    "calculatedTime": 2669,
+    "playbackTime": 0,
+    "calculatedTime": 0,
     "prevSelected": 0,
     "companyID": 11
   },
   {
     "credits": 0,
-    "playbackTime": 19060,
-    "calculatedTime": null,
-    "prevSelected": 1,
+    "playbackTime": 0,
+    "calculatedTime": 0,
+    "prevSelected": 0,
     "companyID": 12
   }
 ]

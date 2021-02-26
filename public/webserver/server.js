@@ -37,7 +37,30 @@ http.createServer(function (req, res) {
     res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     //console.log(req.headers);
+        
+    if(req.url === '/update'){
+        runScript(__dirname + '/update_mysql.js', function (err) {
+            if (err) throw err;
+            console.log('finished running update_mysql.js');
+        });
+        runScript(__dirname + '/update_media.js', function (err) {
+            if (err) throw err;
+            console.log('finished running update_media.js');
+        });
 
+        runScript(__dirname + '/insertData.js', function (err) {
+            if (err) throw err;
+            console.log('finished running insertData.js');
+        });
+
+        runScript(__dirname + '/algorithm/select.js', function (err) {
+            if (err) throw err;
+            console.log('finished running select.js');
+        });
+        res.write('finished updating');
+        res.end();
+    }
+        
     if(req.url === '/reset'){
         runScript(__dirname + '/algorithm/select.js', function (err) {
             if (err) throw err;

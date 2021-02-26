@@ -1,20 +1,38 @@
+console.log("hallo i bims da media");
 const klawSync = require('klaw-sync');
 const fs = require('fs-extra');
 const homedir = require('os').homedir();
-const { getVideoDurationInSeconds } = require('get-video-duration');
+const { promisify } = require('util');
+var mysql = require('mysql');
+var MediaData = [];
 
-function File(path,mtime,fname,type,campaign,company) {
+var con = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "root",
+  password: "",
+  database: "mfmb"
+});
+function Media(id, campaignID, active, image, backgroundColor, website, videolink, companyID, contentLength, prevSelected) {
+  this.id = id;
+  this.campaignID = campaignID;
+  this.active = active;
+  this.image = image;
+  this.backgroundColor = backgroundColor;
+  this.website = website;
+  this.videolink = videolink;
+  this.companyID = companyID;
+  this.contentLength = contentLength;
+  this.prevSelected = prevSelected;
+}
+
+function File(path,mtime,fname,type,campaign,company,uid) {
   this.path = path;
   this.mtime = mtime;
   this.fname = fname;
   this.type = type;
   this.campaign = campaign;
   this.company = company;
-  this.getcontentLength = function(){
-    getVideoDurationInSeconds(client_DocDir + this.path).then((duration) => {
-      console.log(duration)
-    })
-  };
+  this.uid = uid;
 }
 
 function arr_diff (array1, array2) {
@@ -36,8 +54,16 @@ function arr_diff (array1, array2) {
   return diff;
 }
 
+async function getDuration(path) {
+  getVideoDurationInSeconds(path).then((duration) => {
+    return duration;
+  });
+}
+
 function removeDeletedData (){
-  var diff = arr_diff(serverFiles.map(obj => obj.path),clientFiles.map(obj => obj.path));
+  const client_dir = klawSync(client_DocDir, {nofile: true});
+  const server_dir = klawSync(server_DocDir, {nofile: true});
+  var diff = arr_diff(server_dir.map(obj => format(obj)),client_dir.map(obj => format(obj)));
   diff.forEach(item =>{
     console.log(client_DocDir + item);
     fs.removeSync(client_DocDir + item);
@@ -77,7 +103,7 @@ var client_DocDir = client_DocDir.split('\\').join('/');
 const server = klawSync(server_DocDir, {nodir: true});
 var serverFiles = [];
 server.forEach(function (obj, index){
-  serverFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4));
+  serverFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4),0);
 });
 
 serverFiles.forEach(item =>{
@@ -93,7 +119,7 @@ serverFiles.forEach(item =>{
 const client = klawSync(client_DocDir, {nodir: true});
 var clientFiles = [];
 client.forEach(function (obj, index){
-  clientFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4));
+  clientFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4),0);
 });
 
 
@@ -114,19 +140,49 @@ client_new.forEach(function (obj, index){
   clientFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4));
 });
 
-clientFiles.forEach(item =>{
-  if(item.type == 'video'){
-    item.getcontentLength();
-  }
 
-})
-
-//removeDeletedData();
+removeDeletedData();
 
 
 
+var pushData = async function(){
+    var select = "SELECT * FROM fe_users";
+    var promisfyquery = promisify(con.query).bind(con);
+    var result = await promisfyquery(select);
+    result.forEach(function (company, index){
+      clientFiles.forEach(function(file){
+          if(company.company == file.company){
+            file.uid = company.uid;
+          }
+      });
+});
 
+    select = "SELECT * FROM media";
+    result = await promisfyquery(select);
+    result.forEach(function (media, index){
+      MediaData[index] = new Media(media.MediaID, media.CampaignID, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid, media.ContentLength, media.PrevSelected);
+        clientFiles.forEach(function (file){
+          if(file.campaign == MediaData[index].campaignID && file.uid == MediaData[index].companyID){
+            if(file.type == "video"){
+              MediaData[index].videolink = client_DocDir + file.path;
+            }else if(file.type == "image"){
+              MediaData[index].image = client_DocDir + file.path;
+            }
+          }
+        });
+      });
 
+  
+    con.end(function(err){
+      if (err) {
+          return console.log('error:' + err.message);
+      }
+      console.log('Close the database connection.');
+  });
+fs.writeJSONSync('./updateData.json',MediaData,{spaces: 1});
+};
+
+pushData();
 
 
 
