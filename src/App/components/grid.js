@@ -35,6 +35,23 @@ const gridItem = {
     }
 };
 
+const gridInfos = {
+    hidden: {opacity: 0},
+    visible: {opacity: 1,
+        transition:{
+            duration: 0.2,
+            ease: [.14,.8,.4,1]
+        } 
+    }, 
+    exit: {
+        opacity: 0,
+        transition:{
+            duration: 0.2,
+            ease: [.14,.8,.4,1]
+        }
+    }   
+}
+
 function Card({ id, name, backgroundColor, image }) {
     var color = '#efefef';
     var background = backgroundColor;
@@ -49,19 +66,19 @@ function Card({ id, name, backgroundColor, image }) {
     }
 
     return (  
-    <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}}>
+    <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} layoutId={`card-container-${id}`}>
     <NavLink to={"companies/"+id } className={"card-open-link"}>
-      <div className="grid-container">
+      <motion.div className="grid-container">
         <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
           <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="..." loading="lazy"/>
         </motion.div>
         <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-name-${id}`}>
             <motion.span>{name}</motion.span>
-            <motion.div layout className="infos">
-                <motion.div className="name-seperator" style={{backgroundColor: color}} initial={{height: 0}} animate={{height: "100%"}}/>
+            <motion.div variants={gridInfos} initial="hidden" animate="visible" exit="exit" className="infos">
+                <motion.div className="name-seperator" style={{backgroundColor: color}} />
                 <span>INFOS</span><HiArrowRight style={{fontSize: "1.4rem"}}/></motion.div>
         </motion.div>
-      </div>
+      </motion.div>
       </NavLink>
     </motion.li>
   );

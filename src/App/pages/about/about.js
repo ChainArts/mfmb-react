@@ -48,7 +48,7 @@ function AboutTeam () {
         <>
         <section className="about-section">
             <div className="col-left">
-                <img src="https://picsum.photos/1280/720"/>
+                <img src="https://picsum.photos/1280/720" alt=""/>
             </div>
             <div className="col-right">
                 <div className="person-content">
@@ -70,12 +70,12 @@ function AboutTeam () {
                 </div>
             </div>
             <div className="col-right">
-                <img src="https://picsum.photos/1280/720"/>
+                <img src="https://picsum.photos/1280/720" alt=""/>
             </div>
         </section>
         <section className="about-section">
             <div className="col-left">
-                <img src="https://picsum.photos/1280/720"/>
+                <img src="https://picsum.photos/1280/720" alt=""/>
             </div>
             <div className="col-right">
                 <div className="person-content">
@@ -95,11 +95,11 @@ function CompanyPortal () {
         <span>Firmen Portal</span>
         <div className = "slide-swiper-container">
             <Swiper speed={300} slidesPerView={3} spaceBetween={500} loop={true}>
-                <SwiperSlide><img src="https://picsum.photos/id/1/1280/720"/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/2/1280/720"/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/3/1280/720"/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/4/1280/720"/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/5/1280/720"/></SwiperSlide>
+                <SwiperSlide><img src="https://picsum.photos/id/1/1280/720" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://picsum.photos/id/2/1280/720" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://picsum.photos/id/3/1280/720" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://picsum.photos/id/4/1280/720" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://picsum.photos/id/5/1280/720" alt=""/></SwiperSlide>
             </Swiper>
         </div>
         </>

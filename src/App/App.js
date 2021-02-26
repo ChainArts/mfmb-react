@@ -80,9 +80,9 @@ function Companies({ match }) {
             <span>FIRMEN</span>
         </motion.div>
             {imageHasLoaded && companies && companies.length > 0 ? (
-                <SimpleBar className={location.pathname != '/companies'  ? "content-wrapper simple-hidden":"content-wrapper"} scrollbarMaxSize={300}>
+                <SimpleBar className={location.pathname !== '/companies'  ? "content-wrapper simple-hidden":"content-wrapper"} scrollbarMaxSize={300}>
                     <Grid selectedId={id} companies={companies}/>
-                    <AnimatePresence>
+                    <AnimatePresence exitBeforeEnter>
                         {id && <Company id={id} key="company" companies={companies}/>}
                     </AnimatePresence>
                 </SimpleBar>)
@@ -97,7 +97,7 @@ function Companies({ match }) {
 
 function App({location}) {
 
-    useEffect(() => {
+    /*useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
@@ -106,7 +106,7 @@ function App({location}) {
                 return res.json();
             })            
             .catch(err => console.error(err));
-    }, []);
+    }, []);*/
 
     return (
         <div className="App">

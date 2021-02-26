@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "id": "0",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Osram Continental/1/image/IMG_20200609_174710.jpg",
     "name": "Osram Continental",
     "backgroundColor": "#FFFFFF",
@@ -12,7 +12,7 @@
     "prevSelected": 0
   },
   {
-    "id": 1,
+    "id": "1",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Siemens/1/image/IMG_20200609_174710.jpg",
     "name": "Siemens",
     "backgroundColor": "#009999",
@@ -24,7 +24,7 @@
     "prevSelected": 0
   },
   {
-    "id": 2,
+    "id": "2",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/SMC Pneumatics/1/image/IMG_20200609_174710.jpg",
     "name": "SMC Pneumatics",
     "backgroundColor": "#2473b8",
@@ -36,7 +36,7 @@
     "prevSelected": 0
   },
   {
-    "id": 3,
+    "id": "3",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/EATON/1/image/IMG_20200609_174710.jpg",
     "name": "EATON",
     "backgroundColor": "#005eb8",
@@ -48,7 +48,7 @@
     "prevSelected": 0
   },
   {
-    "id": 4,
+    "id": "4",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Loxone/1/image/IMG_20200609_174710.jpg",
     "name": "Loxone",
     "backgroundColor": "#FFFFFF",
@@ -60,7 +60,7 @@
     "prevSelected": 0
   },
   {
-    "id": 5,
+    "id":"5",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/EVN/1/image/IMG_20200609_174710.jpg",
     "name": "EVN",
     "backgroundColor": "#fd3232",
@@ -72,7 +72,7 @@
     "prevSelected": 0
   },
   {
-    "id": 6,
+    "id": "6",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Frischeis/1/image/IMG_20200609_174710.jpg",
     "name": "Frischeis",
     "backgroundColor": "#FFFFFF",
@@ -84,7 +84,7 @@
     "prevSelected": 0
   },
   {
-    "id": 7,
+    "id": "7",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Abstergo Industries/1/image/IMG_20200609_174710.jpg",
     "name": "Abstergo Industries",
     "backgroundColor": "#FDFDFD",
@@ -96,7 +96,7 @@
     "prevSelected": 0
   },
   {
-    "id": 8,
+    "id": "8",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Altium/1/image/IMG_20200609_174710.jpg",
     "name": "Altium",
     "backgroundColor": "#a5915f",
@@ -108,7 +108,7 @@
     "prevSelected": 0
   },
   {
-    "id": 9,
+    "id": "9",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/B&R Automation/1/image/IMG_20200609_174710.jpg",
     "name": "B&R Automation",
     "backgroundColor": "#FDFDFD",
@@ -120,7 +120,7 @@
     "prevSelected": 0
   },
   {
-    "id": 10,
+    "id": "10",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Philips/1/image/IMG_20200609_174710.jpg",
     "name": "Philips",
     "backgroundColor": "#FDFDFD",
@@ -132,7 +132,7 @@
     "prevSelected": 0
   },
   {
-    "id": 11,
+    "id": "11",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/Pollmann International/1/image/IMG_20200609_174710.jpg",
     "name": "Pollmann International",
     "backgroundColor": "#FDFDFD",
@@ -144,7 +144,7 @@
     "prevSelected": 0
   },
   {
-    "id": 12,
+    "id": "12",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/AD Space/1/image/IMG_20200609_174710.jpg",
     "name": "AD Space",
     "backgroundColor": "#FDFDFD",
@@ -156,7 +156,7 @@
     "prevSelected": 0
   },
   {
-    "id": 13,
+    "id": "13",
     "image": "C:/Users/Plata/Documents/MFMB/Companies/AD Space/2/image/IMG_20191203_145424.jpg",
     "name": "AD Space",
     "backgroundColor": "#FDFDFD",

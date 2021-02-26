@@ -24,17 +24,17 @@ const overlayBackdrop = {
     }
 };
 
-const overlayShadow = {
-    hidden: {boxShadow: "0px 0px 0px #111", scale: 1.05},
-    visible: { boxShadow: "0px 2px 11px #111", scale: 1,
+const companyCard = {
+    hidden: {scale: 1.05},
+    visible: {scale: 1,
         transition: {
             duration: 0.4, delay: 0.2
         }
     },
-    exit:{
-        boxShadow: "0px 0px 0px #111",
-        transition: {
-            duration: 0.05, delay: 0, ease: [.14,.8,.4,1]
+    exit: {
+        opacity: 0,
+        transititon: {
+            duration: 0.15, ease: [.14,.8,.4,1]
         }
     }
 };
@@ -145,7 +145,7 @@ const options = {
 }
 
 export function Company({ id, companies }) {
-    const { name, image, backgroundColor, website, videolink } = companies.find(item => item.id == id);
+    const {name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     const fallbackSrc = defImg;
     var color = '#efefef';
     if(backgroundColor > '#888888')
@@ -169,7 +169,7 @@ export function Company({ id, companies }) {
     <motion.div className="overlay-backdrop" variants={overlayBackdrop} initial="hidden" animate="visible" exit="exit"/>
     <motion.div className="company-content" layoutId={`company-container-${id}`}>
         <NavLink to="/companies" className="card-open-link">
-            <motion.div className="company" variants={overlayShadow} initial="hidden" animate="visible" exit="exit">
+            <motion.div className="company" variants={companyCard} initial="hidden" animate="visible" exit="exit" whileTap={{scale: 0.97}}>
                 <motion.div className="close-ico-wrap" variants={exitIcoCont} initial="hidden" animate="visible" exit="exit">
                     <motion.div className="close-ico" initial={{scale: 1}}>
                         <motion.div className="dash" style={{rotateZ: "-45deg"}} variants={exitIcoDash} initial="hidden" animate="visible" exit="exit" transition={{delay: 0.6, duration: 0.4, ease:[.14,.8,.4,1.25]}}></motion.div>
@@ -177,7 +177,7 @@ export function Company({ id, companies }) {
                     </motion.div>
                 </motion.div>
                 <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-                    <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = fallbackSrc}} alt="..."/>
+                    <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = fallbackSrc}} alt=""/>
                 </motion.div>
                 <motion.div layout className="company-name" style={{background: background, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
                     <motion.span>{name}</motion.span>
