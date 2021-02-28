@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HiArrowRight } from "react-icons/hi";
-import defImg from "./default.png"
+import defImg from "./media/default.png"
 
 const gridWrapper = {
     hidden: {},

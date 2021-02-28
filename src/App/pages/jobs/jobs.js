@@ -7,7 +7,7 @@ import IdleTimer from './../../components/idleTimer';
 import { globalTimeout } from './../../App';
 import "./jobs.css";
 import { HiViewGrid, HiViewList, HiPlus, HiX} from "react-icons/hi";
-import defImg from "./../../components/default.png";
+import defImg from "./../../components/media/default.png";
 
 const jobSettings = {
     hidden: {opacity: 0},

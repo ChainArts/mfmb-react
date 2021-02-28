@@ -5,7 +5,7 @@ import { HiHome, HiChevronLeft, HiChevronRight, HiCollection, HiUserGroup, HiTer
 import { FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
-import defImg from './../default.png';
+import defImg from './../media/default.png';
 
 const extendedMenu = {
     visible: {

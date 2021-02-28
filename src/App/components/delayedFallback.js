@@ -1,5 +1,5 @@
 import React from "react";
-import loading from "./loading_small.gif";
+import loading from "./media/loading_small.gif";
 
 export const DelayedFallback = () => {
 

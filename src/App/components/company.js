@@ -3,7 +3,8 @@ import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { HiChevronRight } from "react-icons/hi";
-import defImg from "./default.png";
+import defImg from "./media/default.png";
+import defVid from "./media/defVid.mp4";
 
 const overlayBackdrop = {
     hidden: {scaleX: 0, originX: 0},
@@ -40,10 +41,10 @@ const companyCard = {
 };
 
 const reactPlayer = {
-    hidden: {x: "-37rem", opacity: 0, scale: 0},
-    visible: { x:0, opacity:1, scale: 1,
+    hidden: {x: "-37rem", opacity: 0, scale: 0.5},
+    visible: { x: "0rem", opacity:1, scale: 1,
         transition: {
-            duration: 0.5, delay: 0.15, ease: [.14,.8,.4,1]
+            duration: 0.5, delay: 0.2, ease: [.14,.8,.4,1]
         },
         transitionEnd: {
             originY: 1
@@ -59,7 +60,7 @@ const reactPlayer = {
 
 const qrCode = {
     hidden: {x: "-37rem", opacity: 0, scale: 0.5},
-    visible: { x:0, opacity:1, scale: 1,
+    visible: { x: "0rem", opacity:1, scale: 1,
         transition: {
             duration: 0.5, delay: 0.3, ease: [.14,.8,.4,1]
         },
@@ -68,7 +69,7 @@ const qrCode = {
         }
     },
     exit:{
-        y: "30rem", opacity: 0, scaleY: 0,
+        y: 500, opacity: 0, scaleY: 0,
         transition: {
             duration: 0.3, ease: [.14,.8,.4,1]
         }
@@ -144,9 +145,20 @@ const options = {
     }
 }
 
+const vid = {
+    hidden: {opacity: 0},
+    visible: {opacity: 1,
+        transition: {
+            delay: 0.6,
+            duration: 0.3, ease: [.14,.8,.4,1]
+        }
+    }
+}
+
 export function Company({ id, companies }) {
     const {name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     const fallbackSrc = defImg;
+
     var color = '#efefef';
     if(backgroundColor > '#888888')
         color = '#2a2a2a';
@@ -159,7 +171,7 @@ export function Company({ id, companies }) {
         background = "linear-gradient(120deg, var(--prim-acc-color) 50%,var(--sec-acc-color) 100%)";
         color = '#EFEFEF'
     }
-        
+
     return (
     <>
     <motion.div
@@ -185,9 +197,12 @@ export function Company({ id, companies }) {
             </motion.div>
         </NavLink>
         <motion.div className="react-player grid-item" variants={reactPlayer} initial="hidden" animate="visible" exit="exit">
-            <video height="100%" width="auto" controls loop autoPlay muted style={{borderRadius: "10px"}}>
-                <source src={videolink}/>
-            </video>
+            <motion.div layout style={{width: "100%", height: "100%", textAlign: "center"}} variants={vid} initial="hidden" animate="visible">
+                <video controls height="100%" width="100%" loop autoPlay muted style={{borderRadius: "10px", background: "var(--base-layer)", verticalAlign: "middle"}}>
+                    <source src={videolink}/>
+                    <source src={defVid}/>
+                </video>
+            </motion.div>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
             <NavLink to="/jobs">

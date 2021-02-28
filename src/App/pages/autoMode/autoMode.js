@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import './automode.css';
 import { NavLink } from 'react-router-dom';
 import DelayedFallback from '../../components/delayedFallback';
-import defImg from "./../../components/default.png"
+import defImg from "./../../components/media/default.png"
 
 const gridWrapper = {
     hidden: {},
