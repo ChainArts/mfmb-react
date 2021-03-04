@@ -10,8 +10,7 @@
       "icon": "./build/icons/ms-icon-310x310.png"
     },
     "files": [
-      "public/**/*",
-      "node_modules/**/*"
+      "public/**/*"
     ]
   },
   "repository": {
@@ -38,6 +37,7 @@
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
     "react-particles-js": "^3.4.1",
+    "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.2",
     "sass": "^1.32.8",

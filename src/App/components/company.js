@@ -1,5 +1,6 @@
 import React from "react";
 import QRCode from 'qrcode.react';
+import ReactPlayer from 'react-player';
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { HiChevronRight } from "react-icons/hi";
@@ -198,10 +199,14 @@ export function Company({ id, companies }) {
         </NavLink>
         <motion.div className="react-player grid-item" variants={reactPlayer} initial="hidden" animate="visible" exit="exit">
             <motion.div layout style={{width: "100%", height: "100%", textAlign: "center"}} variants={vid} initial="hidden" animate="visible">
-                <video controls height="100%" width="100%" loop autoPlay muted style={{borderRadius: "10px", background: "var(--base-layer)", verticalAlign: "middle"}}>
-                    <source src={videolink}/>
-                    <source src={defVid}/>
-                </video>
+                <ReactPlayer 
+                    controls
+                    url = {videolink}
+                    onError = {(e)=>{e.target.onError = null; e.target.src = defVid; e.target.controls = false}}
+                    height="100%" width="100%" 
+                    loop playing muted 
+                    style={{borderRadius: "10px", background: "var(--second-layer-transparent)", verticalAlign: "middle"}}>
+                </ReactPlayer>
             </motion.div>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">

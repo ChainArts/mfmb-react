@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from "framer-motion";
+import { AnimateSharedLayout, motion } from "framer-motion";
 import './automode.css';
 import { NavLink } from 'react-router-dom';
 import DelayedFallback from '../../components/delayedFallback';
@@ -36,7 +36,7 @@ const gridItem = {
 };
 const VideoOverlay = (props) => {
     return(
-        <motion.div className="video-overlay-container">
+        <motion.div className="video-overlay-container .item-4">
             <motion.div className="video-overlay">
                 <video height="auto" width="auto" autoPlay muted style={{borderRadius: "10px"}}>
                     <source src= {props.videolink}/>
@@ -46,7 +46,7 @@ const VideoOverlay = (props) => {
     )
 }
 
-function AutoCard({ id, backgroundColor, image, videolink}) {
+function AutoCard({ id, backgroundColor, image, videolink, index}) {
     var background = backgroundColor;
 
     if(backgroundColor === "#FDFDFD")
@@ -55,20 +55,18 @@ function AutoCard({ id, backgroundColor, image, videolink}) {
     }
     return (
         <>  
-    <motion.li className="grid-item" variants={gridItem} style={{border: "2px solid " + background}}>
-        <div className="grid-container">
-        {id === "5" ? (
-            <VideoOverlay videolink = {videolink}/>):
-        (
-        <motion.div className="company-logo-full" layoutId={`company-logo-${id}`}>
-            <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="" loading="lazy"/>
-        </motion.div>
-        )
-        }
-      </div>
-    </motion.li>
-    </>
-  );
+        <motion.li className = {"auto-grid-item item-"+ index} variants={gridItem} style={{border: "2px solid " + background}}>
+            <div className="grid-container">
+                <AnimateSharedLayout>
+                    <VideoOverlay videolink = {videolink}/>
+                </AnimateSharedLayout>
+                <motion.div className="company-logo-full" layoutId={`company-logo-${id}`}>
+                    <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="" loading="lazy"/>
+                </motion.div>
+            </div>
+        </motion.li>
+        </>
+    );
 }
 
 function AutoMode() {
@@ -106,8 +104,8 @@ return(
     <NavLink to="/companies" className="auto-link"/>
     
         <motion.ul className="auto-grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
-            {companies.map(card => (
-                <AutoCard key={card.id} {...card}/>
+            {companies.map((card, index) => (
+                <AutoCard key={card.id} {...card} index={index}/>
             ))}
         </motion.ul>
         <VideoOverlay/>

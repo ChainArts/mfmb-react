@@ -23,7 +23,6 @@ const scrollChevron = {
     }
 }
 
-
 function AboutHero () {
     return(
         <>
