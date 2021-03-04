@@ -1,4 +1,6 @@
 console.log("hallo i bims da select");
+const homedir = require('os').homedir();
+var childProcess = require('child_process');
 var fs = require('fs');
 var mysql = require('mysql');
 var i = 0;
@@ -15,7 +17,7 @@ function Algorithm(credits, playbackTime, calculatedTime, prevSelected, companyI
     this.companyID = companyID;
 }
 function Media(id, image, name, backgroundColor, website, videolink, companyID, campaignID, contentLength, prevSelected) {
-    this.id = id;
+    this.id = String(id);
     this.image = image;
     this.name = name;
     this.backgroundColor = backgroundColor;
@@ -48,7 +50,7 @@ con.connect(function (err) {
                 i++;
             });
             var data = JSON.stringify(MediaData, null, 2);
-            fs.writeFile('./webserver/data.json', data, finished);
+            fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', data);
         }
     });
     query = "SELECT algorithm.Credits, algorithm.PlaybackTime, algorithm.CalculatedTime, algorithm.PrevSelected, algorithm.uid FROM Algorithm;";
@@ -63,7 +65,8 @@ con.connect(function (err) {
                 i++;
             });
             var data = JSON.stringify(AlgorithmData, null, 2);
-            fs.writeFile('./webserver/algorithmdata.json', data, finished);
+            
+            fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', data);
         }
     });
     con.end(function (err) {

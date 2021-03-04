@@ -3,6 +3,7 @@ const klawSync = require('klaw-sync');
 const fs = require('fs-extra');
 const homedir = require('os').homedir();
 const { promisify } = require('util');
+var childProcess = require('child_process');
 var mysql = require('mysql');
 var MediaData = [];
 
@@ -33,6 +34,30 @@ function File(path,mtime,fname,type,campaign,company,uid) {
   this.campaign = campaign;
   this.company = company;
   this.uid = uid;
+}
+
+function runScript(scriptPath, callback) {
+
+  // keep track of whether callback has been invoked to prevent multiple invocations
+  var invoked = false;
+
+  var process = childProcess.fork(scriptPath);
+
+  // listen for errors as they may prevent the exit event from firing
+  process.on('error', function (err) {
+      if (invoked) return;
+      invoked = true;
+      callback(err);
+  });
+
+  // execute the callback once the process has finished running
+  process.on('exit', function (code) {
+      if (invoked) return;
+      invoked = true;
+      var err = code === 0 ? null : new Error('exit code ' + code);
+      callback(err);
+  });
+
 }
 
 function arr_diff (array1, array2) {
@@ -172,19 +197,22 @@ var pushData = async function(){
         });
       });
 
-  
     con.end(function(err){
       if (err) {
           return console.log('error:' + err.message);
       }
       console.log('Close the database connection.');
+      fs.ensureDirSync(homedir + '/AppData/Roaming/MFMB/AutoData');
+      fs.writeJSONSync(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json',MediaData,{spaces:1});
   });
-fs.writeJSONSync('./updateData.json',MediaData,{spaces: 1});
 };
 
 pushData();
 
-
+runScript(__dirname + '/insertData.js', function (err) {
+  if (err) throw err;
+  console.log('finished running insertData.js');
+});
 
 
 

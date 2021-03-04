@@ -97,7 +97,7 @@ function Companies({ match }) {
 
 function App({location}) {
 
-    /*useEffect(() => {
+    useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
@@ -106,7 +106,7 @@ function App({location}) {
                 return res.json();
             })            
             .catch(err => console.error(err));
-    }, []);*/
+    }, []);
 
     return (
         <div className="App">

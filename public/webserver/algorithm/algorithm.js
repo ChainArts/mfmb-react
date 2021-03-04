@@ -1,6 +1,7 @@
-var fs = require('fs');
-var AlgorithmData = require('../algorithmdata.json');
-var MediaData = require('../data.json');
+var fs = require('fs-extra');
+const homedir = require('os').homedir();
+var AlgorithmData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json');
+var MediaData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json');
 var prevData = AlgorithmData.find(function (item) { return item.prevSelected == true; });
 var selection = [];
 var i = 0, prevId = 0, companyID = 0;
@@ -91,14 +92,14 @@ AlgorithmData[index].calculatedTime += Math.round(media.contentLength / weight(A
 AlgorithmData[index].playbackTime += media.contentLength;
 
 AlgorithmData = JSON.stringify(AlgorithmData, null, 2);
-fs.writeFile(__dirname + '/../algorithmdata.json', AlgorithmData, finished);
+fs.writeFile(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', AlgorithmData, finished);
 
 data = JSON.stringify(MediaData, null, 2);
-fs.writeFile(__dirname + '/../data.json', data, finished);
+fs.writeFile(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', data, finished);
 
 while (MediaData[4].companyID != companyID) {
     MediaData.unshift(MediaData.pop());
 }
 autoData = JSON.stringify(MediaData.slice(0, 9), null, 2);
-fs.writeFile(__dirname + '/../autodata.json', autoData, finished);
+fs.writeFile(homedir + '/AppData/Roaming/MFMB/AutoData/autodata.json', autoData, finished);
 

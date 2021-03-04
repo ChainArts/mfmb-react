@@ -1,3 +1,4 @@
+const homedir = require('os').homedir();
 var http = require('http');
 var childProcess = require('child_process');
 var fs = require('fs');
@@ -43,44 +44,31 @@ http.createServer(function (req, res) {
             if (err) throw err;
             console.log('finished running update_mysql.js');
         });
-        runScript(__dirname + '/update_media.js', function (err) {
-            if (err) throw err;
-            console.log('finished running update_media.js');
+        fs.readFile(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json', "utf8", (err, jsonString) => {
+            if (err) {
+              console.log("File read failed:", err);
+              return;
+            }
+            res.end(jsonString);
         });
-
-        runScript(__dirname + '/insertData.js', function (err) {
-            if (err) throw err;
-            console.log('finished running insertData.js');
-        });
-
-        runScript(__dirname + '/algorithm/select.js', function (err) {
-            if (err) throw err;
-            console.log('finished running select.js');
-        });
-        res.write('finished updating');
-        res.end();
     }
         
-    if(req.url === '/reset'){
-        runScript(__dirname + '/algorithm/select.js', function (err) {
-            if (err) throw err;
-            console.log('finished running select.js');
-        });
-        res.write('finished running select.js');
-        res.end();
-    }
-
     if(req.url === '/run'){
             runScript(__dirname + '/algorithm/algorithm.js', function (err) {
                 if (err) throw err;
                 console.log('finished running algorithm.js');
             });
-        res.write('finished running algorithm.js');
-        res.end();
+            fs.readFile(homedir + '/AppData/Roaming/MFMB/AutoData/autodata.json', "utf8", (err, jsonString) => {
+                if (err) {
+                  console.log("File read failed:", err);
+                  return;
+                }
+            res.end(jsonString);
+        });
     }
 
     if(req.url === '/getAutoData'){
-        fs.readFile(__dirname + "/autodata.json", "utf8", (err, jsonString) => {
+        fs.readFile(homedir + '/AppData/Roaming/MFMB/AutoData/autodata.json', "utf8", (err, jsonString) => {
             if (err) {
               console.log("File read failed:", err);
               return;
@@ -90,7 +78,7 @@ http.createServer(function (req, res) {
     }
 
     if(req.url === '/getData'){
-        fs.readFile(__dirname + "/data.json", "utf8", (err, jsonString) => {
+        fs.readFile(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', "utf8", (err, jsonString) => {
             if (err) {
               console.log("File read failed:", err);
               return;
