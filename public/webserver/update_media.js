@@ -209,7 +209,7 @@ var pushData = async function(){
 
 pushData();
 
-runScript(__dirname + '/insertData.js', function (err) {
+runScript(__dirname + '/checkContentLength.js', function (err) {
   if (err) throw err;
   console.log('finished running insertData.js');
 });
