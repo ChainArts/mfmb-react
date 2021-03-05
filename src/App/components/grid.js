@@ -22,34 +22,62 @@ const gridItem = {
         y: 0,
         opacity: 1,
         transition: {
+            staggerChildren: 0.25,
             duration: 0.8,
             ease: [.14,.8,.4,1]
         },
     },
-    exit: {
-        y: -50, opacity: 0,
-        transition: {
-            duration: 0.2,
-            ease: [.14,.8,.4,1]
-        },
-    }
+
 };
 
 const gridInfos = {
-    hidden: {opacity: 0},
-    visible: {opacity: 1,
+    hidden: {x: -50, opacity: 0},
+    visible: {x: 0, opacity: 1,
         transition:{
-            duration: 0.2,
+            staggerChildren: 0.4,
             ease: [.14,.8,.4,1]
         } 
-    }, 
-    exit: {
-        opacity: 0,
-        transition:{
-            duration: 0.2,
+    } 
+}
+
+const gridContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.2,
             ease: [.14,.8,.4,1]
         }
-    }   
+    }
+}
+
+const compLogo = {
+    hidden: {scale: 0.3, opacity: 0},
+    visible: {scale: 1, opacity: 1,
+        transition: {
+            duration: 0.6,
+            ease: [.14,.8,.4,1]
+        }
+    }
+}
+
+const compName = {
+    hidden: {x: 200, opacity: 0},
+    visible: {x: 0, opacity: 1,
+        transition: {
+            duration: 0.6,
+            ease: [.14,.8,.4,1]
+        }
+    }
+}
+
+const compSep = {
+    hidden: {scaleY: 0},
+    visible: {scaleY: 1,
+        transition: {
+            duration: 0.6,
+            ease: [.14,.8,.4,1]
+        }
+    }
 }
 
 function Card({ id, name, backgroundColor, image }) {
@@ -68,18 +96,22 @@ function Card({ id, name, backgroundColor, image }) {
     return (  
     <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} layoutId={`card-container-${id}`}>
     <NavLink to={"companies/"+id } className={"card-open-link"}>
-      <motion.div className="grid-container">
-        <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
-          <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="..." loading="lazy"/>
+        <motion.div className="grid-container" variants={gridContainer}>
+            <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
+                <motion.img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="..." loading="lazy" variants={compLogo}/>
+            </motion.div>
+            <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-name-${id}`}>
+                <motion.span variants={compName}>{name}</motion.span>
+                <motion.div variants={gridInfos} className="infos">
+                    <motion.div className="name-seperator" style={{backgroundColor: color}} variants={compSep}/>
+                    <motion.div style={{display: "flex"}} variants={compSep}>
+                        <span>INFOS</span>
+                        <HiArrowRight style={{fontSize: "1.4rem"}}/>
+                    </motion.div>
+                </motion.div>
+            </motion.div>
         </motion.div>
-        <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-name-${id}`}>
-            <motion.span>{name}</motion.span>
-            <motion.div variants={gridInfos} initial="hidden" animate="visible" exit="exit" className="infos">
-                <motion.div className="name-seperator" style={{backgroundColor: color}} />
-                <span>INFOS</span><HiArrowRight style={{fontSize: "1.4rem"}}/></motion.div>
-        </motion.div>
-      </motion.div>
-      </NavLink>
+    </NavLink>
     </motion.li>
   );
 }

@@ -337,6 +337,7 @@ iframe{
     max-width: 90%;
     max-height: 90%;
     pointer-events: none;
+    z-index: 2;
 }
 
 .company-name{
@@ -368,7 +369,7 @@ iframe{
     font-weight: 500;
 }
 
-.infos  span{
+.infos span{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
