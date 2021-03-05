@@ -2,11 +2,12 @@ console.log("hallo i bims da mysql");
 var mysql = require('mysql');
 var childProcess = require('child_process');
 const { promisify } = require('util');
-const selectStatements = ["SELECT * from fe_users","SELECT * from media","SELECT * from algorithm"];
-const insertStatements = ["INSERT INTO fe_users (uid, company) VALUES ? ON DUPLICATE KEY UPDATE company=VALUES(company)",
+const selectStatements = ["SELECT * from fe_users","SELECT * from media","SELECT * from algorithm","SELECT * from options"];
+const insertStatements = ["INSERT INTO fe_users VALUES ? ON DUPLICATE KEY UPDATE company=VALUES(company)",
                           "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)",
-                          "INSERT INTO algorithm VALUES ? ON DUPLICATE KEY UPDATE Credits=VALUES(Credits), PlaybackTime=VALUES(PlaybackTime), CalculatedTime=VALUES(CalculatedTime), PrevSelected=VALUES(PrevSelected), uid=VALUES(uid)"];
-const deleteStatements = ["DELETE FROM fe_users where uid = ?","DELETE FROM media where MediaID = ?","DELETE FROM algorithm where AlgorithmID = ?"];
+                          "INSERT INTO algorithm VALUES ? ON DUPLICATE KEY UPDATE Credits=VALUES(Credits), PlaybackTime=VALUES(PlaybackTime), CalculatedTime=VALUES(CalculatedTime), PrevSelected=VALUES(PrevSelected), uid=VALUES(uid)",
+                          "INSERT INTO options VALUES ? ON DUPLICATE KEY UPDATE PriorityMode=VALUES(PriorityMode)"];
+const deleteStatements = ["DELETE FROM fe_users where uid = ?","DELETE FROM media where MediaID = ?","DELETE FROM algorithm where AlgorithmID = ?","DELETE FROM options"];
 
 var server = mysql.createConnection({
     host: "192.168.8.13",
@@ -92,6 +93,13 @@ var ObjArrayToTwoDimArray = function(query_result,StatementIndex) {
                 x++;
             });
             break;
+
+        case 3:
+            query_result.forEach(function (option){
+                data[x] = [option.OptionID, option.PriorityMode];
+                x++;
+            });
+            break;
   }
   return data;
 }
@@ -117,7 +125,7 @@ var setClientAsync = async function(i,server_values) {
 };
 
 var processDataAsync = async function() {
-    for(var i = 0; i<3; i++){
+    for(var i = 0; i<4; i++){
         var data = [];
         try {
             data = await getServerAsync(i);

@@ -1,11 +1,13 @@
 var fs = require('fs-extra');
 const homedir = require('os').homedir();
-var AlgorithmData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json');
-var MediaData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json');
-var prevData = AlgorithmData.find(function (item) { return item.prevSelected == true; });
+var algorithmData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json');
+var mediaData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json');
+var optionData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/options.json');
+var prevData = algorithmData.find(function (item) { return item.prevSelected == true; });
+const prioritizedCompany = mediaData.find(function (item) { return item.name == "AD Space"; });
 var selection = [];
-var i = 0, prevId = 0, companyID = 0;
-var priorityMode = false;
+var i = 0, companyID = 0;
+var priorityMode = optionData[0].priorityMode;
 function sum(total, num) {
     return total + num;
 }
@@ -19,16 +21,14 @@ function finished(err) {
     console.log('Data written');
 }
 
-
-
-
-//if(!priorityMode)
-
+if(typeof prevData !== "undefined" && priorityMode && prevData.companyID != prioritizedCompany.companyID){
+    selection[0] = prioritizedCompany.companyID;
+}else{
 //create selection of companies with samllest and same calculatedTime
-AlgorithmData.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
-for (i = 0; i < AlgorithmData.length; i++) {                                                  
-    if (AlgorithmData[0].calculatedTime == AlgorithmData[i].calculatedTime) {
-        selection.push(AlgorithmData[i].companyID);
+algorithmData.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
+for (i = 0; i < algorithmData.length; i++) {                                                  
+    if (algorithmData[0].calculatedTime == algorithmData[i].calculatedTime) {
+        selection.push(algorithmData[i].companyID);
     }
 }
 
@@ -44,19 +44,22 @@ if (typeof prevData !== "undefined") {
 if (selection.length == 0) {
     selection = [];
 
-    for (i = 1; i < AlgorithmData.length; i++) {
-        if (AlgorithmData[1].calculatedTime == AlgorithmData[i].calculatedTime) {
-            selection[i - 1] = AlgorithmData[i].companyID;
+    for (i = 1; i < algorithmData.length; i++) {
+        if (algorithmData[1].calculatedTime == algorithmData[i].calculatedTime) {
+            selection[i - 1] = algorithmData[i].companyID;
         }
     }
 }
-AlgorithmData.sort(function (a, b) { return a.companyID - b.companyID; });
+algorithmData.sort(function (a, b) { return a.companyID - b.companyID; });
+}
+
+
 companyID = selection[Math.floor(Math.random() * selection.length)];
 console.log("id is " + companyID);
 
 
 var media_selection = [];
-MediaData.forEach(function (media){
+mediaData.forEach(function (media){
     if(media.companyID == companyID){media_selection.push(media)}
 });
 
@@ -78,28 +81,32 @@ var media = media_selection[Math.floor(Math.random() * media_selection.length)];
 
 
 if (typeof prevMedia !== "undefined") {
-    MediaData[MediaData.findIndex(function (item) { return item.prevSelected == true && item.companyID == prevMedia.companyID})].prevSelected = 0;
+    mediaData[mediaData.findIndex(function (item) { return item.prevSelected == true && item.companyID == prevMedia.companyID})].prevSelected = 0;
 }
-MediaData[MediaData.findIndex(function (item) { return item.companyID == media.companyID && item.campaignID == media.campaignID})].prevSelected = 1;
+mediaData[mediaData.findIndex(function (item) { return item.companyID == media.companyID && item.campaignID == media.campaignID})].prevSelected = 1;
 
 if (typeof prevData !== "undefined") {
-    AlgorithmData[AlgorithmData.findIndex(function (item) { return item.prevSelected == true; })].prevSelected = 0;
+    algorithmData[algorithmData.findIndex(function (item) { return item.prevSelected == true; })].prevSelected = 0;
 }
-AlgorithmData[AlgorithmData.findIndex(function (item) { return item.companyID == companyID; })].prevSelected = 1;
+algorithmData[algorithmData.findIndex(function (item) { return item.companyID == companyID; })].prevSelected = 1;
 
-index = AlgorithmData.findIndex(function (item) { return item.companyID == companyID});
-AlgorithmData[index].calculatedTime += Math.round(media.contentLength / weight(AlgorithmData[index].credits, AlgorithmData.map(function (a) { return a.credits; }).reduce(sum)));
-AlgorithmData[index].playbackTime += media.contentLength;
+index = algorithmData.findIndex(function (item) { return item.companyID == companyID});
+if(typeof prevData !== "undefined" && priorityMode && prevData.companyID != prioritizedCompany.companyID){
+    algorithmData[index].calculatedTime += Math.round(media.contentLength / (Math.ceil(algorithmData.length/2) * weight(algorithmData[index].credits, algorithmData.map(function (a) { return a.credits; }).reduce(sum))));
+}else{
+    algorithmData[index].calculatedTime += Math.round(media.contentLength / weight(algorithmData[index].credits, algorithmData.map(function (a) { return a.credits; }).reduce(sum)));
+}
+algorithmData[index].playbackTime += media.contentLength;
 
-AlgorithmData = JSON.stringify(AlgorithmData, null, 2);
-fs.writeFile(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', AlgorithmData, finished);
+algorithmData = JSON.stringify(algorithmData, null, 2);
+fs.writeFile(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', algorithmData, finished);
 
-data = JSON.stringify(MediaData, null, 2);
+data = JSON.stringify(mediaData, null, 2);
 fs.writeFile(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', data, finished);
 
-while (MediaData[4].companyID != companyID) {
-    MediaData.unshift(MediaData.pop());
+while (mediaData[4].companyID != companyID) {
+    mediaData.unshift(mediaData.pop());
 }
-autoData = JSON.stringify(MediaData.slice(0, 9), null, 2);
+autoData = JSON.stringify(mediaData.slice(0, 9), null, 2);
 fs.writeFile(homedir + '/AppData/Roaming/MFMB/AutoData/autodata.json', autoData, finished);
 

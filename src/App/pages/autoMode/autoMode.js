@@ -172,7 +172,7 @@ function AutoMode() {
             .catch(err => console.error(err));
     }, []);
 
-    /*useEffect(() => {
+    useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
@@ -184,7 +184,7 @@ function AutoMode() {
                 setCompanies(companies)
             })            
             .catch(err => console.error(err));
-    }, []);*/
+    }, []);
 
 return(
     <>

@@ -3,31 +3,8 @@ const homedir = require('os').homedir();
 var childProcess = require('child_process');
 var fs = require('fs');
 var mysql = require('mysql');
-var i = 0;
-var MediaData = [];
-var AlgorithmData = [];
-function finished(err) {
-    console.log('Data written');
-}
-function Algorithm(credits, playbackTime, calculatedTime, prevSelected, companyID) {
-    this.credits = credits;
-    this.playbackTime = playbackTime;
-    this.calculatedTime = calculatedTime;
-    this.prevSelected = prevSelected;
-    this.companyID = companyID;
-}
-function Media(id, image, name, backgroundColor, website, videolink, companyID, campaignID, contentLength, prevSelected) {
-    this.id = String(id);
-    this.image = image;
-    this.name = name;
-    this.backgroundColor = backgroundColor;
-    this.website = website;
-    this.videolink = videolink;
-    this.companyID = companyID;
-    this.campaignID = campaignID;
-    this.contentLength = contentLength;
-    this.prevSelected = prevSelected;
-}
+var resultData = [];
+
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -44,12 +21,10 @@ con.connect(function (err) {
             throw err;
         }
         else {
-            i = 0;
-            result.forEach(function (media) {
-                MediaData[i] = new Media(media.MediaID - 1, media.Image, media.company, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid-1, media.CampaignID, media.ContentLength, media.PrevSelected);
-                i++;
+            result.forEach(function (media, index) {
+                resultData[index] = {id: String(media.MediaID - 1), image: media.Image, name: media.company, backgroundColor: media.BackgroundColor, website: media.WebsiteLink, videolink: media.VideoLink, companyID: media.uid-1, campaignID: media.CampaignID, contentLength: media.ContentLength, prevSelected: media.PrevSelected};
             });
-            var data = JSON.stringify(MediaData, null, 2);
+            var data = JSON.stringify(resultData, null, 2);
             fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', data);
         }
     });
@@ -59,14 +34,27 @@ con.connect(function (err) {
             throw err;
         }
         else {
-            i = 0;
-            result.forEach(function (algorithm) {
-                AlgorithmData[i] = new Algorithm(algorithm.Credits, algorithm.PlaybackTime, algorithm.CalculatedTime, algorithm.PrevSelected, algorithm.uid - 1);
-                i++;
+            resultData = [];
+            result.forEach(function (algorithm, index) {
+                resultData[index] = {credits: algorithm.Credits, playbackTime: algorithm.PlaybackTime, calculatedTime: algorithm.CalculatedTime, prevSelected: algorithm.PrevSelected, companyID: algorithm.uid - 1};
             });
-            var data = JSON.stringify(AlgorithmData, null, 2);
+            var data = JSON.stringify(resultData, null, 2);
             
             fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', data);
+        }
+    });
+    query = "SELECT * FROM options";
+    con.query(query, function (err, result, fields) {
+        if (err) {
+            throw err;
+        }
+        else {
+            resultData = [];
+            result.forEach(function (options, index) {
+                resultData[index] = {optionID: options.OptionID,priorityMode: options.PriorityMode};
+            });
+            var data = JSON.stringify(resultData, null, 2);
+            fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/options.json', data);
         }
     });
     con.end(function (err) {
