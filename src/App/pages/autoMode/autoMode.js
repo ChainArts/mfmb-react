@@ -96,16 +96,18 @@ const video = {
     }
 }
 const VideoOverlay = (props) => {
+    
     return(
         <motion.div className="video-overlay-container .item-4">
             <motion.div className="video-overlay" variants={overlay} initial="hidden" animate="visible" style={{borderRadius: "10px"}}>
                 <motion.div className="video" variants={video} initial="hidden" animate="visible">
-                    <ReactPlayer 
+                    <ReactPlayer
                         url={defVid}
                         onError={(e)=>{e.target.onError = null; e.target.url = defVid;}}
-                        height="100%" width="auto" 
-                        loop playing muted 
-                        style={{borderRadius: "10px", background: "var(--second-layer-transparent)"}}>
+                        height="100%" width="auto"
+                        playing muted
+                        onEnded={e => window.location.reload()}
+                        style={{borderRadius: "10px", background: "transparent"}}>
                     </ReactPlayer>
                 </motion.div>
             </motion.div>
@@ -120,8 +122,13 @@ function AutoCard({ id, name, backgroundColor, image, videolink, index}) {
     {
         background = "var(--prim-acc-color)";
     }
+
+
     return (
-        <>  
+        <>
+        {index === 4 ? (<VideoOverlay video={videolink} style={{opacity: "1 !important"}}/>)
+
+        :(
         <motion.li className = {"auto-grid-item item-"+ index} variants={gridItem} style={{border: "2px solid " + background}}>
             <div className="grid-container">
                 <motion.div className="background-text-container">
@@ -138,9 +145,10 @@ function AutoCard({ id, name, backgroundColor, image, videolink, index}) {
                         <motion.div className="names" variants={bgText1}>{name} {name} {name} {name} {name}</motion.div>  
                     </motion.div>
                 </motion.div>
-                {index === 4 &&  <VideoOverlay video={videolink} style={{opacity: "1 !important"}}/>}
+                
             </div>
         </motion.li>
+        )}
         </>
     );
 }
@@ -198,7 +206,6 @@ return(
                 <AutoCard key={card.id} {...card} index={index}/>
             ))}
         </motion.ul>
-        <VideoOverlay/>
     </motion.div>
     )
     :
