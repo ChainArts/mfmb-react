@@ -76,7 +76,7 @@ const bgText2 = {
 
 const overlay = {
     hidden: {height: "0%", width: "0%"},
-    visible: {height: "32%", width: "32%",
+    visible: {height: "100%", width: "100%",
         transition: {
             delay: 2,
             duration: 0.8,

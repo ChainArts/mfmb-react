@@ -2,7 +2,7 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    z-index: 100;
+    z-index: 10001;
 }
 
 .auto-container{
@@ -103,12 +103,14 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px !important;
+    z-index: 10000;
 }
 
 .video-overlay{
     height: 100%;
     width: 100%;
-    background: var(--second-layer-transparent);
+    background: #051622aa;
+    backdrop-filter: blur(3px);
 }
 
 .video{
