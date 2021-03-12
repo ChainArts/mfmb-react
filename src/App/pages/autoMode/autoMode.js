@@ -51,10 +51,10 @@ const bgTextCont = {
 }
 
 const bgText1 = {
-    hidden: {x: -500, opacity: 0},
+    hidden: {x: -300, opacity: 0},
     visible: {
         x: -40,
-        opacity: 1,
+        opacity: 0.25,
         transition:{
             duration: 1,
             ease: [.14,.8,.4,1]
@@ -63,10 +63,10 @@ const bgText1 = {
 }
 
 const bgText2 = {
-    hidden: {x: 500, opacity: 0},
+    hidden: {x: 300, opacity: 0},
     visible: {
         x: 40,
-        opacity: 1,
+        opacity: 0.45,
         transition:{
             duration: 0.8,
             ease: [.14,.8,.4,1]
@@ -126,7 +126,7 @@ function AutoCard({ id, name, backgroundColor, image, videolink, index}) {
 
     return (
         <>
-        {index === 4 ? (<VideoOverlay video={videolink} style={{opacity: "1 !important"}}/>)
+        {index === 4 ? (<VideoOverlay video={videolink}/>)
 
         :(
         <motion.li className = {"auto-grid-item item-"+ index} variants={gridItem} style={{border: "2px solid " + background}}>
@@ -135,7 +135,7 @@ function AutoCard({ id, name, backgroundColor, image, videolink, index}) {
                     <motion.div className="company-logo-full" layoutId={`company-logo-${id}`}>
                         <motion.img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="" variants={compLogo}/>
                     </motion.div>
-                    <motion.div className="background-text" variants={bgTextCont}>
+                    <motion.div className="background-text" variants={bgTextCont} style={{color: background}}>
                         <motion.div className="names" variants={bgText1}>{name} {name} {name} {name} {name}</motion.div>
                         <motion.div className="names sec" variants={bgText2}>{name} {name} {name} {name} {name}</motion.div>
                         <motion.div className="names" variants={bgText1}>{name} {name} {name} {name} {name}</motion.div>

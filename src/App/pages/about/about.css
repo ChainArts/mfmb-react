@@ -41,16 +41,33 @@
     width: 80%;
 }
 
+.about-header-content{
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-header-content img{
+    height: 5rem;
+}
+
 .about-description{
     height: 78vh;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     font-size: 3rem;
     font-weight: 200;
     letter-spacing: 0.05em;
-    padding: 1rem 20rem 1rem 20rem;
+}
+
+.line1, .line2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .about-scroll-chevron{
@@ -85,6 +102,10 @@
     max-height: 25rem;
 }
 
+.transpar{
+    max-height: 100% !important;
+}
+
 .col-right, .col-left{
     width: 50%;
     padding: 0 1rem 0 1rem;
@@ -104,7 +125,20 @@
     flex-direction: column;
 }
 
-.person-content hr{
+.description {
+    width: 80%;
+    padding-left: 4rem;
+}
+
+.description p{
+    line-height: 1.8em;
+    font-size: 1.4rem;
+    white-space: pre-wrap;
+    margin-top: 5rem;
+    text-align: left;
+}
+
+hr{
     content: "";
     height: 6px;
     width: 5rem;
@@ -114,10 +148,12 @@
 .person-content h3{
     padding: 1rem 0 1rem 0;
     font-size: 3rem;
+    text-align: left;
 }
 
 .person-content p{
     font-size: 1.4rem;
+    text-align: left;
 }
 
 .slide-swiper-container{

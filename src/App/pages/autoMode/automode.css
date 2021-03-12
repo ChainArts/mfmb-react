@@ -32,7 +32,7 @@
 .item-1 { grid-area: item-1; }
 .item-2 { grid-area: item-2; }
 .item-3 { grid-area: item-3; }
-.item-4 { grid-area: item-4; opacity: 0 !important;}
+.item-4 { grid-area: item-4; }
 .item-5 { grid-area: item-5; }
 .item-6 { grid-area: item-6; }
 .item-7 { grid-area: item-7; }
@@ -66,12 +66,10 @@
     font-weight: 600;
     font-size: 3.5rem;
     line-height: 2;
-    color: #ffffff25;
 }
 
 .sec{
     transform: translateX(5rem);
-    color: #ffffff45;
 }
 
 .company-logo-full{

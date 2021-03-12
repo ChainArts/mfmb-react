@@ -66,6 +66,10 @@ function newApp() {
             }
         }
         })
+
+        win.webContents.on('killed', (e) => {
+            app.relaunch();
+        })
         
         win.once('ready-to-show', () => {
             win.maximize()
