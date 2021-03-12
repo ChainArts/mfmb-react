@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 import { NavLink } from 'react-router-dom';
 import DelayedFallback from '../../components/delayedFallback';
 import defImg from "./../../components/media/default.png"
-import defVid from "./../../components/media/defVid.mp4";
+import defVid from "./../../components/media/defVidHq.mp4";
 import './automode.css';
 
 const gridWrapper = {
