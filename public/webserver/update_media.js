@@ -1,18 +1,28 @@
-console.log("hallo i bims da media");
-const klawSync = require('klaw-sync');
-const fs = require('fs-extra');
-const homedir = require('os').homedir();
-const { promisify } = require('util');
-var childProcess = require('child_process');
-var mysql = require('mysql');
+const fs = require('fs-extra');                 //File-System module to read from and write to files
+const homedir = require('os').homedir();        //OS module to require user directory (homedir)
+const childProcess = require('child_process');  //child_process module to make sure cache isn't used when JS files are called.
+const mysql = require('mysql');                 //MySQL module to handle MySQL queries
+const promisify = require('util');              //util module to "promisify" MySQL queries
+const klawSync = require('klaw-sync');          //klaw-sync to recursivly walk a directory
+
+var settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');   //Settings from setup (ip address ...)
+
+var server_DocDir = '\\\\' + settings.server_IP + '\\Share\\MFMB\\'
+server_DocDir = server_DocDir.split('\\').join('/');
+var client_DocDir = homedir + "\\Documents\\MFMB\\";
+client_DocDir = client_DocDir.split('\\').join('/');
+
 var MediaData = [];
 
+//local MySQL client connection
 var con = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "",
-  database: "mfmb"
+  host: settings.client_IP,           //localhost
+  user: settings.client_MySQLuser,
+  password: settings.client_MySQLpassword,
+  database: settings.client_MySQLdatabase
 });
+
+//constructor for Media Object
 function Media(id, campaignID, active, image, backgroundColor, website, videolink, companyID, contentLength, prevSelected) {
   this.id = id;
   this.campaignID = campaignID;
@@ -26,9 +36,10 @@ function Media(id, campaignID, active, image, backgroundColor, website, videolin
   this.prevSelected = prevSelected;
 }
 
-function File(path,mtime,fname,type,campaign,company,uid) {
+//constructor for File Object
+function File(path,birthtime,fname,type,campaign,company,uid) {
   this.path = path;
-  this.mtime = mtime;
+  this.birthtime = birthtime;
   this.fname = fname;
   this.type = type;
   this.campaign = campaign;
@@ -36,6 +47,7 @@ function File(path,mtime,fname,type,campaign,company,uid) {
   this.uid = uid;
 }
 
+//runs JS file (creates a child process)
 function runScript(scriptPath, callback) {
 
   // keep track of whether callback has been invoked to prevent multiple invocations
@@ -60,6 +72,7 @@ function runScript(scriptPath, callback) {
 
 }
 
+//evaluates the differnce of two arrays
 function arr_diff (array1, array2) {
   var array = [], diff = [];
   for (var i = 0; i < array1.length; i++) {
@@ -79,12 +92,34 @@ function arr_diff (array1, array2) {
   return diff;
 }
 
-async function getDuration(path) {
-  getVideoDurationInSeconds(path).then((duration) => {
-    return duration;
-  });
+//deletes filename from given path
+function removeFilename (path){
+  var buffer = path.split('/');
+  buffer.pop();
+  path = buffer.join('/');
+  return path;
 }
 
+//formates path of given File object from \\ to /
+function format (obj){
+  var buffer = obj.path.split('\\');
+  while(buffer[0] != 'Companies'){
+    buffer.shift();
+    }
+    return buffer.join('/');
+}
+
+//extracts Information out of path (Companies/<company name>/<campaign number>/<media-type>/<filename>)
+function getInfo (obj,i){                   //i: 0 = Error; i: 1 = Filename; i: 2 = media-type; i: 3 = Campaign number; i: 4 = Company Name
+  if(0<i<5){
+    var buffer = format(obj).split('/');
+    return buffer[buffer.length - i];
+  }else{
+    return "error";
+  }
+}
+
+//compares client and server directory and removes differences
 function removeDeletedData (){
   const client_dir = klawSync(client_DocDir, {nofile: true});
   const server_dir = klawSync(server_DocDir, {nofile: true});
@@ -95,82 +130,9 @@ function removeDeletedData (){
   });
 }
 
-function removeFilename (path){
-  var buffer = path.split('/');
-  buffer.pop();
-  path = buffer.join('/');
-  return path;
-}
-
-function format (obj){
-  var buffer = obj.path.split('\\');
-  while(buffer[0] != 'Companies'){
-    buffer.shift();
-    }
-    return buffer.join('/');
-}
-
-function getInfo (obj,i){                   //i: 0 = Error; i: 1 = Filename; i: 2 = media-type; i: 3 = Campaign number; i: 4 = Company Name
-  if(0<i<5){
-    var buffer = format(obj).split('/');
-    return buffer[buffer.length - i];
-  }else{
-    return "error";
-  }
-
-}
-
-var server_DocDir = '\\\\192.168.8.13\\Share\\MFMB\\'
-var server_DocDir = server_DocDir.split('\\').join('/');
-var client_DocDir = homedir + "\\Documents\\MFMB\\";
-var client_DocDir = client_DocDir.split('\\').join('/');
-
-const server = klawSync(server_DocDir, {nodir: true});
-var serverFiles = [];
-server.forEach(function (obj, index){
-  serverFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4),0);
-});
-
-serverFiles.forEach(item =>{
-  fs.ensureDirSync(client_DocDir + removeFilename(item.path));
-  var files = fs.readdirSync(client_DocDir + removeFilename(item.path));
-  var length = files.length
-  if(!fs.pathExistsSync(client_DocDir + item.path) && length == 0){
-    fs.copySync(server_DocDir + item.path,client_DocDir + item.path);
-  }
-});
-
-
-const client = klawSync(client_DocDir, {nodir: true});
-var clientFiles = [];
-client.forEach(function (obj, index){
-  clientFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4),0);
-});
-
-
-serverFiles.forEach(item =>{
-  if(item.mtime > clientFiles[clientFiles.findIndex(function(file){ return removeFilename(item.path) == removeFilename(file.path)})].mtime){
-    console.log(item);
-    console.log(clientFiles[clientFiles.findIndex(function(file){ return removeFilename(item.path) == removeFilename(file.path)})]);
-    fs.copySync(server_DocDir + item.path, client_DocDir + removeFilename(item.path) + "/buffer-" + item.fname);
-    fs.removeSync(client_DocDir + clientFiles[clientFiles.findIndex(function(file){ return removeFilename(item.path) == removeFilename(file.path)})].path);
-    fs.renameSync(client_DocDir + removeFilename(item.path) + "/buffer-" + item.fname, client_DocDir + item.path)
-  }
-});
-
-
-const client_new = klawSync(client_DocDir, {nodir: true});
-var clientFiles = [];
-client_new.forEach(function (obj, index){
-  clientFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4));
-});
-
-
-removeDeletedData();
-
-
-
+//select data from database to complete Dataset before writing to buffer file
 var pushData = async function(){
+  //get uid from fe_users
     var select = "SELECT * FROM fe_users";
     var promisfyquery = promisify(con.query).bind(con);
     var result = await promisfyquery(select);
@@ -181,7 +143,7 @@ var pushData = async function(){
           }
       });
 });
-
+  //get mediaData and update video and image paths
     select = "SELECT * FROM media";
     result = await promisfyquery(select);
     result.forEach(function (media, index){
@@ -202,59 +164,64 @@ var pushData = async function(){
           return console.log('error:' + err.message);
       }
       console.log('Close the database connection.');
+      //write data in buffer file updateData.json
       fs.ensureDirSync(homedir + '/AppData/Roaming/MFMB/AutoData');
       fs.writeJSONSync(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json',MediaData,{spaces:1});
   });
 };
 
+
+//walk server direcotry and save every file as an object
+const server = klawSync(server_DocDir, {nodir: true});
+var serverFiles = [];
+server.forEach(function (obj, index){
+  serverFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4),0);
+});
+
+//copy new directories from server to client
+serverFiles.forEach(item =>{
+  fs.ensureDirSync(client_DocDir + removeFilename(item.path));            //ensure that directory exists
+  var files = fs.readdirSync(client_DocDir + removeFilename(item.path));  //reads all files in direcory
+  var length = files.length;                                              //gets the number ob files in directory
+  if(!fs.pathExistsSync(client_DocDir + item.path) && length == 0){       //if file does not exist and there is no file 
+    fs.copySync(server_DocDir + item.path,client_DocDir + item.path);     //then copy the file from server onto client
+  }
+});
+
+//walk client directory and save every file as an object
+const client = klawSync(client_DocDir, {nodir: true});
+var clientFiles = [];
+client.forEach(function (obj, index){
+  clientFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4),0);
+});
+
+//check for updated files
+serverFiles.forEach(item =>{
+  //compares birthtime of files
+  if(item.birthtime > clientFiles[clientFiles.findIndex(function(file){ return removeFilename(item.path) == removeFilename(file.path)})].birthtime){
+    //copy updated files from server with "buffer-" attribute, remove old File and remove "buffer-" attribute
+    fs.copySync(server_DocDir + item.path, client_DocDir + removeFilename(item.path) + "/buffer-" + item.fname);                                            
+    fs.removeSync(client_DocDir + clientFiles[clientFiles.findIndex(function(file){ return removeFilename(item.path) == removeFilename(file.path)})].path);
+    fs.renameSync(client_DocDir + removeFilename(item.path) + "/buffer-" + item.fname, client_DocDir + item.path)
+  }
+});
+
+//walk updated client directory and save every file as an object (delete old Dataset)
+const client_new = klawSync(client_DocDir, {nodir: true});
+var clientFiles = [];
+client_new.forEach(function (obj, index){
+  clientFiles[index] = new File(format(obj),obj.stats.birthtime,getInfo(obj,1),getInfo(obj,2),getInfo(obj,3),getInfo(obj,4),0);
+});
+
+
+removeDeletedData();
 pushData();
 
 runScript(__dirname + '/checkContentLength.js', function (err) {
   if (err) throw err;
-  console.log('finished running insertData.js');
+  console.log('finished running checkContentLength.js');
 });
 
 
-
-
-
-
-
-
-
-
-/*
-function removeDeletedData (server_dir,client_DocDir){
-  const client_dir = klawSync(client_DocDir + 'MFMB', {nofile: true});
-  var diff = arr_diff(server_dir.map(obj => format(obj)),client_dir.map(obj => format(obj)));
-  diff.forEach(element =>{
-    console.log(client_DocDir + element);
-    fs.removeSync(client_DocDir + element);
-  });
-}
-
-
-
-var server_paths = [];
-
-
-console.log(client_DocDir);
-
-var server_dir = klawSync('\\\\192.168.8.13\\Share\\MFMB', {nofile: true});
-
-
-var i =0;
-server_dir.forEach(function (item){
-  if(item.path.includes('video') || item.path.includes('image')){
-      server_paths = format(server_dir[i]);
-      console.log(client_DocDir + server_paths);
-      fs.ensureDirSync(client_DocDir + server_paths);
-  }
-    i++;
-});
-
-removeDeletedData(server_dir,client_DocDir);
-
-*/
 
 

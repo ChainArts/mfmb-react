@@ -1,17 +1,19 @@
-console.log("hallo i bims da insertData");
-const homedir = require('os').homedir();
-const fs = require('fs-extra')
-var mysql = require('mysql');
-var childProcess = require('child_process');
-const MediaData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json');
+const fs = require('fs-extra');                 //File-System module to read from and write to files
+const homedir = require('os').homedir();        //OS module to require user directory (homedir)
+const childProcess = require('child_process');  //child_process module to make sure cache isn't used when JS files are called.
+const mysql = require('mysql');                 //MySQL module to handle MySQL queries
+
+const settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');     //Settings from setup (ip address ...)
+const MediaData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json');  //read data from buffer file
 
 var con = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "",
-    database: "mfmb"
+    host: settings.client_IP,           //localhost
+    user: settings.client_MySQLuser,
+    password: settings.client_MySQLpassword,
+    database: settings.client_MySQLdatabase
 });
 
+//runs JS file (creates a child process)
 function runScript(scriptPath, callback) {
 
     // keep track of whether callback has been invoked to prevent multiple invocations
@@ -33,9 +35,9 @@ function runScript(scriptPath, callback) {
         var err = code === 0 ? null : new Error('exit code ' + code);
         callback(err);
     });
-
 }
 
+//insert/update data from buffer file into database
 con.connect(function (err) {
     if (err)
         throw err;

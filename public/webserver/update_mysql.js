@@ -1,7 +1,12 @@
-console.log("hallo i bims da mysql");
-var mysql = require('mysql');
-var childProcess = require('child_process');
-const { promisify } = require('util');
+const fs = require('fs-extra');                   //File-System module to read from and write to files
+const homedir = require('os').homedir();          //OS module to require user directory (homedir)
+const childProcess = require('child_process');    //child_process module to make sure cache isn't used when JS files are called.
+const mysql = require('mysql');                   //MySQL module to handle MySQL queries
+const promisify = require('util');                //util module to "promisify" MySQL queries
+
+var settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');   //Settings from setup (ip address ...)
+
+//select,insert and delete queries for each table
 const selectStatements = ["SELECT * from fe_users","SELECT * from media","SELECT * from algorithm","SELECT * from options"];
 const insertStatements = ["INSERT INTO fe_users VALUES ? ON DUPLICATE KEY UPDATE company=VALUES(company)",
                           "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)",
@@ -9,20 +14,23 @@ const insertStatements = ["INSERT INTO fe_users VALUES ? ON DUPLICATE KEY UPDATE
                           "INSERT INTO options VALUES ? ON DUPLICATE KEY UPDATE PriorityMode=VALUES(PriorityMode)"];
 const deleteStatements = ["DELETE FROM fe_users where uid = ?","DELETE FROM media where MediaID = ?","DELETE FROM algorithm where AlgorithmID = ?","DELETE FROM options"];
 
+//extern MySQL server connection
 var server = mysql.createConnection({
-    host: "192.168.8.13",
-    user: "mfmb",
-    password: "mfmb",
-    database: "mfmb"
+    host: settings.server_IP,
+    user: settings.server_MySQLuser,
+    password: settings.server_MySQLpassword,
+    database: settings.server_MySQLdatabase
 });
 
+//local MySQL client connection
 var client = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "",
-    database: "mfmb"
+    host: settings.client_IP,           //localhost
+    user: settings.client_MySQLuser,
+    password: settings.client_MySQLpassword,
+    database: settings.client_MySQLdatabase
 });
 
+//runs JS file (creates a child process)
 function runScript(scriptPath, callback) {
 
     // keep track of whether callback has been invoked to prevent multiple invocations
@@ -47,6 +55,8 @@ function runScript(scriptPath, callback) {
 
 }
 
+//evaluates the differnce of two arrays
+//because queries are stored in 2 dim arrays only IDs are compared [i][0] 
 function arr_diff (array1, array2) {
 
     var array = [], diff = [];
@@ -69,6 +79,7 @@ function arr_diff (array1, array2) {
     return diff;
 }
 
+//converts the array of objects from the mysql query into a 2 drim array
 var ObjArrayToTwoDimArray = function(query_result,StatementIndex) {
     var data = [];
     var x = 0; 
@@ -104,20 +115,23 @@ var ObjArrayToTwoDimArray = function(query_result,StatementIndex) {
   return data;
 }
 
+//selects data from external server 
 var getServerAsync = async function(i) {
     var promisfyserver = promisify(server.query).bind(server);
-    var result = await promisfyserver(selectStatements[i]);
+    var result = await promisfyserver(selectStatements[i]);     //the correct table is selected by the index i
     return ObjArrayToTwoDimArray(result,i);
 };
 
+//inserts/updates data from server on client, compares them, and deletes differences
 var setClientAsync = async function(i,server_values) {
     var promisfyclient = promisify(client.query).bind(client);
     var ins_message = await promisfyclient(insertStatements[i], [server_values]);
     console.log(ins_message.affectedRows + " Rows checked");
+
     var sel_ObjArray = await promisfyclient(selectStatements[i]);
     var client_values = ObjArrayToTwoDimArray(sel_ObjArray,i);
-    diff = arr_diff(client_values,server_values);
 
+    diff = arr_diff(client_values,server_values);
     diff.forEach(async function(item){
         var del_message = await promisfyclient(deleteStatements[i], item);
         console.log(del_message.affectedRows + " Rows deleted\n");

@@ -1,8 +1,8 @@
-const { getVideoDurationInSeconds } = require('get-video-duration')
-const homedir = require('os').homedir();
-var childProcess = require('child_process');
-var fs = require('fs-extra');
-var dur;
+const fs = require('fs-extra');                                   //File-System module to read from and write to files
+const homedir = require('os').homedir();                          //OS module to require user directory (homedir)
+const childProcess = require('child_process');                    //child_process module to make sure cache isn't used when JS files are called.
+const getVideoDurationInSeconds = require('get-video-duration')   //get-video-duration module to get video duartions in seconds
+
 
 function runScript(scriptPath, callback) {
 
@@ -28,7 +28,15 @@ function runScript(scriptPath, callback) {
 
 }
 
+//read data from buffer file updateData.json
+async function read () {
+  var data = await fs.readJson(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json', { throws: false,})
+  write(data)
+}
+
+//update contentLength and write it to buffer file
 async function write (data) {
+  var dur;
   try {
     for(var i = 0; i < data.length; i++){
       try{  
@@ -39,18 +47,13 @@ async function write (data) {
         data[i].contentLength = Math.round(dur);
 }
     await fs.writeJson(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json', data, {spaces: 1 })
-    runScript(__dirname + '/insertData.js', function (err) {
-      if (err) throw err;
-      console.log('finished running checkContentLength.js');
-    });
   } catch (err) {
     console.error(err)
   }
-}
-
-async function read () {
-  var data = await fs.readJson(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json', { throws: false,})
-  write(data)
+  runScript(__dirname + '/insertData.js', function (err) {
+    if (err) throw err;
+    console.log('finished running insertData.js');
+  });
 }
 
 read();
