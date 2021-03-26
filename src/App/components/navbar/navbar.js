@@ -72,7 +72,7 @@ const navitem = {
     hidden: {opacity:0, x: "-16vw"},
     open: {
         opacity:1,
-        x: 0,
+        x: "0vw",
         transition: {
             duration: 0.3,
             ease: [.14,.8,.4,1]
@@ -163,7 +163,7 @@ const Navbar = () => {
             <motion.div className="menu-overlay" variants = {navoverlay} initial = "hidden" animate = "open" exit="exit">
                 <div className="menu-overlay-main mobile-maxWidth">
                     <nav className="main-nav">
-                        <motion.ul className="menu-list" variants = {navwrapper} initial="hidden">
+                        <motion.ul className="menu-list" variants = {navwrapper}>
                             <NavLink to="/companies" exact activeClassName="current-page-item">
                                 <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiHome/> Home</motion.li>
                             </NavLink>
