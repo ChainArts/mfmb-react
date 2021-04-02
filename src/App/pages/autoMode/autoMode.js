@@ -96,17 +96,16 @@ const video = {
     }
 }
 const VideoOverlay = (props) => {
-    
     return(
         <motion.div className="video-overlay-container .item-4">
             <motion.div className="video-overlay" variants={overlay} initial="hidden" animate="visible" style={{borderRadius: "10px"}}>
                 <motion.div className="video" variants={video} initial="hidden" animate="visible">
                     <ReactPlayer
-                        url={defVid}
-                        onError={(e)=>{e.target.onError = null; e.target.url = defVid;}}
+                        url={props.video}
+                        onError={(e)=>{e.target.onError = null; e.target.src = defVid;}}
                         height="100%" width="auto"
                         playing muted
-                        onEnded={e => window.location.reload()}
+                        onEnded={(e) => window.location.reload()}
                         style={{borderRadius: "10px", background: "transparent"}}>
                     </ReactPlayer>
                 </motion.div>
