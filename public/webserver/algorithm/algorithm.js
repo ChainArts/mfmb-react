@@ -6,58 +6,54 @@ var mediaData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.j
 var optionData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/options.json');          //Data to evaluate if priorityMode is o nor not
 var settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');           //Settings from setup (ip address ...)
 
-var prevData = algorithmData.find(function (item) { return item.prevSelected == true; });
-const prioritizedCompany = mediaData.find(function (item) { return item.name == settings.prioritizedCompany; });
-const priorityMode = optionData[0].priorityMode;        //array for advancements in the futur
+const prioritizedCompany = mediaData.find(item => item.name == settings.prioritizedCompany);
+const priorityMode = optionData[0].priorityMode;        //array for advancements in the future
+var prevData = algorithmData.find(item => item.prevSelected == true);
 
 var selection = [];
 var media_selection = [];
-var i = 0, selectedID = 0;
 
 //Callback function for reduce() function
 function sum(total, num) {
     return total + num;
 }
 //calculated factor for calculatedTime
-function weight(money, sum) {
-    return (money / sum) * 10;
+function weight(credits, sum) {
+    return (credits / sum) * 10;
 }
 //check for priorityMode
 if(typeof prevData !== "undefined" && priorityMode && prevData.companyID != prioritizedCompany.companyID){
     selection[0] = prioritizedCompany.companyID;
 }else{
 //create selection of companies with samllest and same calculatedTime
-algorithmData.sort(function (a, b) { return a.calculatedTime - b.calculatedTime; });
-for (i = 0; i < algorithmData.length; i++) {                                                  
-    if (algorithmData[0].calculatedTime == algorithmData[i].calculatedTime) {
-        selection.push(algorithmData[i].companyID);
+algorithmData.sort((a, b) => a.calculatedTime - b.calculatedTime);
+algorithmData.forEach((data,i,array)=>{                                                  
+    if (array[0].calculatedTime == data.calculatedTime) {
+        selection.push(data.companyID);
     }
-}
+});
 
 //remove previous companyID from the selection
 if (typeof prevData !== "undefined") {
-    for (i = 0; i < selection.length; i++) {
-        if (selection[i] == prevData.companyID) {
-            selection.splice(i, 1);
+    selection.forEach((data,i,array) => {
+        if (data == prevData.companyID) {
+            array.splice(i, 1);
         }
-    }
-
+    });
 }
 //if selection only consists of the previous selected ID it ends up empty
 if (selection.length == 0) {
-    selection = [];
-
-    for (i = 1; i < algorithmData.length; i++) {
-        if (algorithmData[1].calculatedTime == algorithmData[i].calculatedTime) {
-            selection.push(algorithmData[i].companyID);
+    algorithmData.forEach((data,i,array) => {
+        if (array[1].calculatedTime == data.calculatedTime) {
+            selection.push(data.companyID);
         }
-    }
+    });
 }
-algorithmData.sort(function (a, b) { return a.companyID - b.companyID; });
+algorithmData.sort((a, b) => a.companyID - b.companyID);
 }
 
 //randomly selected ID of selection
-selectedID = selection[Math.floor(Math.random() * selection.length)];   
+var selectedID = selection[Math.floor(Math.random() * selection.length)];   
 console.log("id is " + selectedID);
 
 
@@ -69,14 +65,13 @@ mediaData.forEach(function (media){
 
 //if there is more than one active, remove the previous one from selection
 if(media_selection.length > 1){
-    var prevMedia = media_selection.find(function (item) { return item.prevSelected == true});
-
+    var prevMedia = media_selection.find(item => item.prevSelected == true);
     if (typeof prevMedia !== "undefined") {
-        for (i = 0; i < media_selection.length; i++) {
-            if (media_selection[i].id == prevMedia.id) {
-                media_selection.splice(i, 1);
+        media_selection.forEach((media,i,array) => {
+            if (media.id == prevMedia.id) {
+                array.splice(i, 1);
             }
-        }
+        });
     }
 }
 
@@ -85,22 +80,22 @@ var media = media_selection[Math.floor(Math.random() * media_selection.length)];
 
 //update prevSelected flags
 if (typeof prevMedia !== "undefined") {
-    mediaData[mediaData.findIndex(function (item) { return item.prevSelected == true && item.companyID == prevMedia.companyID})].prevSelected = 0;
+    mediaData[mediaData.findIndex(item => item.prevSelected == true && item.companyID == prevMedia.companyID)].prevSelected = 0;
 }
-mediaData[mediaData.findIndex(function (item) { return item.companyID == media.companyID && item.campaignID == media.campaignID})].prevSelected = 1;
+mediaData[mediaData.findIndex(item => item.companyID == media.companyID && item.campaignID == media.campaignID)].prevSelected = 1;
 
 if (typeof prevData !== "undefined") {
-    algorithmData[algorithmData.findIndex(function (item) { return item.prevSelected == true; })].prevSelected = 0;
+    algorithmData[algorithmData.findIndex(item => item.prevSelected == true)].prevSelected = 0;
 }
-algorithmData[algorithmData.findIndex(function (item) { return item.companyID == selectedID; })].prevSelected = 1;
+algorithmData[algorithmData.findIndex(item => item.companyID == selectedID)].prevSelected = 1;
 
 //update calculatedTime and playbackTime
 //if priorityMode is active the calculatedTime is adjusted for the prioritized Company
-index = algorithmData.findIndex(function (item) { return item.companyID == selectedID});
+var index = algorithmData.findIndex(item => item.companyID == selectedID);
 if(typeof prevData !== "undefined" && priorityMode && prevData.companyID != prioritizedCompany.companyID){
-    algorithmData[index].calculatedTime += Math.round(media.contentLength / (Math.ceil(algorithmData.length/2) * weight(algorithmData[index].credits, algorithmData.map(function (a) { return a.credits; }).reduce(sum))));
+    algorithmData[index].calculatedTime += Math.round(media.contentLength / (Math.round(algorithmData.length/2) * weight(algorithmData[index].credits, algorithmData.map(a => a.credits).reduce(sum))));
 }else{
-    algorithmData[index].calculatedTime += Math.round(media.contentLength / weight(algorithmData[index].credits, algorithmData.map(function (a) { return a.credits; }).reduce(sum)));
+    algorithmData[index].calculatedTime += Math.round(media.contentLength / weight(algorithmData[index].credits, algorithmData.map(a => a.credits).reduce(sum)));
 }
 algorithmData[index].playbackTime += media.contentLength;
 
