@@ -36,7 +36,7 @@ class IdleTimer {
         localStorage.setItem("_expiredTime", Date.now() + this.timeout * 1000);
       }, 300);
     }
-  
+    //Track Interactions to reset timeout
     tracker() {
       window.addEventListener("mousemove", this.eventHandler);
       window.addEventListener("scroll", this.eventHandler);

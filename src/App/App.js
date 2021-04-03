@@ -19,8 +19,8 @@ import AutoMode from './pages/autoMode/autoMode';
 import Jobs from './pages/jobs/jobs';
 import About from './pages/about/about';
 
-//Dev Purposes
-export const globalTimeout = Infinity;
+//Sets timeout till automatic redirect
+export const globalTimeout = 180;
 
 function Companies({ match }) {
     const [companies, setCompanies] = useState(null);
@@ -97,7 +97,7 @@ function Companies({ match }) {
 
 function App({location}) {
 
-    useEffect(() => {
+   useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };

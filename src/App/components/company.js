@@ -210,7 +210,7 @@ export function Company({ id, companies }) {
             </motion.div>
         </motion.div>
         <motion.div className="company-options grid-item" variants={qrCode} initial="hidden" animate="visible" exit="exit">
-            <NavLink to="/jobs">
+            <NavLink to={{pathname: '/jobs', jobProps: {filter: name, setFilter: true}}}>
                 <motion.div layout className="option" variants={options} initial="hidden" animate="visible" whileTap={{scale: 0.85}} style={{color: color, background: background}}>
                         <span>Jobs</span>
                         <HiChevronRight style={{fontSize: "1.6rem", lineHeight: "0"}}/>
