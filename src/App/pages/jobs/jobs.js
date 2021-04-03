@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimateSharedLayout, AnimatePresence, motion, } from 'framer-motion';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import IdleTimer from './../../components/idleTimer';
@@ -215,6 +215,19 @@ const Job = () => {
 var jobs = Array.from(Array(20)).map(x=>Math.random())
 
 export function Jobs () {
+    let location = useLocation();
+    let isFilter;
+
+    if(!location.jobProps)
+    {
+        isFilter = false
+    }
+    else {
+        isFilter = true
+    }
+
+    
+
     const [isGrid, setIsGrid] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [refreshKey, setRefreshKey] = useState(1);
@@ -266,10 +279,10 @@ export function Jobs () {
         <motion.div className="filter-container" variants={jobSettingsItem}>
             <SimpleBar scrollbarMaxSize={300} style={{height: "100%"}}>
                 <motion.ul className="filter-list" variants={filterList}>
-                    <motion.li className="filter-item" variants={filterItem}>
-                        <span>Filter #1</span>
+                {isFilter &&<motion.li className="filter-item" variants={filterItem}>
+                         <span>{location.jobProps.filter}</span>
                         <HiX style={{fontSize: "1.5rem", cursor: "pointer"}}/>
-                    </motion.li>
+                    </motion.li>}
                 </motion.ul>
             </SimpleBar>
         </motion.div>
