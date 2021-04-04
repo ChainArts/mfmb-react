@@ -1,4 +1,4 @@
-const fs = require('fs');                     //File-System module to read from and write to files
+const fs = require('fs-extra');                     //File-System module to read from and write to files
 const homedir = require('os').homedir();    //OS module to require user directory (homedir)
 const mysql = require('mysql');               //MySQL module to handle MySQL queries
 

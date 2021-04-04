@@ -1,7 +1,7 @@
 const fs = require('fs-extra');                                   //File-System module to read from and write to files
 const homedir = require('os').homedir();                          //OS module to require user directory (homedir)
 const childProcess = require('child_process');                    //child_process module to make sure cache isn't used when JS files are called.
-const getVideoDurationInSeconds = require('get-video-duration')   //get-video-duration module to get video duartions in seconds
+const { getVideoDurationInSeconds } = require('get-video-duration')   //get-video-duration module to get video duartions in seconds
 
 
 function runScript(scriptPath, callback) {

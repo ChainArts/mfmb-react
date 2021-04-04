@@ -2,7 +2,7 @@ const fs = require('fs-extra');                   //File-System module to read f
 const homedir = require('os').homedir();          //OS module to require user directory (homedir)
 const childProcess = require('child_process');    //child_process module to make sure cache isn't used when JS files are called.
 const mysql = require('mysql');                   //MySQL module to handle MySQL queries
-const promisify = require('util');                //util module to "promisify" MySQL queries
+const { promisify } = require('util');                //util module to "promisify" MySQL queries
 
 var settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');   //Settings from setup (ip address ...)
 
