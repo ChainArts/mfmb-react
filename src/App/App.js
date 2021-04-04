@@ -96,17 +96,30 @@ function Companies({ match }) {
 }
 
 function App({location}) {
+ 
+    const [updateActive, setUpdateActive] = useState(0);
 
-   useEffect(() => {
+    useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
         };
-        fetch('http://localhost:5500/update', requestOptions)
+
+        let updateInterval = setTimeout (() => {
+            setUpdateActive(1)
+            fetch('http://localhost:5500/update', requestOptions)
             .then(function(res){
                 return res.json();
             })            
             .catch(err => console.error(err));
-    }, []);
+        }, 900000); /*Update every 15 minutes*/
+        return () => {
+            clearInterval(updateInterval);
+            setUpdateActive(0);
+        }
+       
+        }, [updateActive]);
+
+
 
     return (
         <div className="App">
