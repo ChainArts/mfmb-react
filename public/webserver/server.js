@@ -34,23 +34,15 @@ const PORT = 5500;
 http.createServer(function (req, res) {
     res.setHeader("Content-Type", "application/json");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-    //console.log(req.headers);
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
         
     if(req.url === '/update'){
         runScript(__dirname + '/update_mysql.js', function (err) {
             if (err) throw err;
             console.log('finished running update_mysql.js');
         });
-        fs.readFile(homedir + '/AppData/Roaming/MFMB/AutoData/updateData.json', "utf8", (err, jsonString) => {
-            if (err) {
-              console.log("File read failed:", err);
-              return;
-            }
-            res.end(jsonString);
-        });
+        res.writeHead(200);
+        res.end();
     }
         
     if(req.url === '/run'){
@@ -63,6 +55,7 @@ http.createServer(function (req, res) {
                   console.log("File read failed:", err);
                   return;
                 }
+            res.writeHead(200);
             res.end(jsonString);
         });
     }
@@ -73,6 +66,7 @@ http.createServer(function (req, res) {
               console.log("File read failed:", err);
               return;
             }
+            res.writeHead(200);
             res.end(jsonString);
           });
     }
@@ -83,6 +77,7 @@ http.createServer(function (req, res) {
               console.log("File read failed:", err);
               return;
             }
+            res.writeHead(200);
             res.end(jsonString);
           });
     }
