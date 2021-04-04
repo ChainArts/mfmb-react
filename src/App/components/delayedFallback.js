@@ -1,4 +1,3 @@
-import React from "react";
 import loading from "./media/loading_small.gif";
 
 export const DelayedFallback = () => {

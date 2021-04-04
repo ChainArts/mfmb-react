@@ -170,7 +170,7 @@ const Navbar = () => {
                             <NavLink to="/automode" activeClassName="current-page-item">
                                 <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiTerminal/> Auto-Mode</motion.li>
                             </NavLink>
-                            <NavLink to={{pathname: '/jobs', jobProps: {setFilter: false}}} activeClassName="current-page-item">
+                            <NavLink to='/jobs' activeClassName="current-page-item">
                                 <motion.li variants={navitem} whileTap={{scale: 0.85}} onClick={toggleOpen}><HiCollection/> Jobs</motion.li>
                             </NavLink>
                             <NavLink to="/about" activeClassName="current-page-item">
