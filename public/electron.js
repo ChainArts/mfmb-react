@@ -1,9 +1,5 @@
 const {app, BrowserWindow, globalShortcut} = require('electron');
-const url = require("url");
-const path = require("path");
 const isDev = require("electron-is-dev");
-const ipcMain = require("electron").ipcMain;
-const cors = require("cors");
 
 let { fork } = require('child_process');
 let server = fork(__dirname + "/webserver/server.js");
@@ -87,22 +83,7 @@ function newApp() {
       loading.show()
       loading.focus()
     })
-
-    ipcMain.handle('minimize-event', () => {
-        win.minimize()
-    })
-
-    ipcMain.handle('maximize-event', () => {
-        win.maximize()
-    })
-
-    ipcMain.handle('unmaximize-event', () => {
-        win.unmaximize()
-    })
 }
-ipcMain.handle('close-event', () => {
-  app.quit()
-})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
