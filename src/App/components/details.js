@@ -156,7 +156,7 @@ const vid = {
     }
 }
 
-export function Company({ id, companies }) {
+export function Details({ id, companies }) {
     const {name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
     const fallbackSrc = defImg;
 
@@ -241,4 +241,4 @@ export function Company({ id, companies }) {
   );
 }
 
-export default Company
+export default Details

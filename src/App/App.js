@@ -11,7 +11,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import ParticleBackground from "./components/particleBackground";
 import DelayedFallback from './components/delayedFallback';
-import Company from "./components/company";
+import Details from "./components/details";
 import Grid from './components/grid'
 import Navbar from './components/navbar/navbar';
 import IdleTimer from './components/idleTimer';
@@ -83,7 +83,7 @@ function Companies({ match }) {
                 <SimpleBar className={location.pathname !== '/companies'  ? "content-wrapper simple-hidden":"content-wrapper"} scrollbarMaxSize={300}>
                     <Grid selectedId={id} companies={companies}/>
                     <AnimatePresence exitBeforeEnter>
-                        {id && <Company id={id} key="company" companies={companies}/>}
+                        {id && <Details id={id} key="company" companies={companies}/>}
                     </AnimatePresence>
                 </SimpleBar>)
                 :
