@@ -6,7 +6,6 @@ import 'swiper/swiper.scss';
 import "./about.css";
 import SimpleBar from 'simplebar-react';
 import IdleTimer from './../../components/idleTimer';
-import LoremIpsum from 'react-lorem-ipsum';
 import { globalTimeout } from './../../App';
 import {HiChevronDown} from 'react-icons/hi';
 import defImg from './../../components/media/default.png'
@@ -105,7 +104,8 @@ function AboutDescription () {
                 <div className="description">
                     <hr/>
                     <p>
-                        <LoremIpsum/>
+                        Ein simples und attraktives Portal für Informationen von diversen Firmen, welches im Zuge einer Diplomarbeit entstanden ist. Das Interface ist optimiert für einen Touchscreen, welches anschließend auf der Videowall dargestellt wird. <br/><br/> 
+                        Der Automatische Modus wird nach 3 Minuten inaktivität ausgelöst. Hier werden Anzeigen je nach Sponsor-Betrag angezeigt. Diese Anzeigen können über eine Oberfläche spezifisch designed für Firmen, erstellt werden.
                     </p>
                 </div>
             </div>
