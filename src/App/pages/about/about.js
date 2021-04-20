@@ -175,7 +175,7 @@ function CompanyPortal () {
         <>
         <span>Firmen Portal</span>
         <div className = "slide-swiper-container">
-            <Swiper speed={300} slidesPerView={2} spaceBetween={100} loop={true} style = {{backgroundColor: "var(--second-layer-transparent)", padding: "1rem", borderRadius: "1rem"}}> 
+            <Swiper speed={300} slidesPerView={2} spaceBetween={0} loop={true} style = {{backgroundColor: "var(--second-layer-transparent)", padding: "1rem", borderRadius: "1rem"}}> 
                 <SwiperSlide><img src={dashLogin} alt=""/></SwiperSlide>
                 <SwiperSlide><img src={dashDash} alt=""/></SwiperSlide>
                 <SwiperSlide><img src={dashAdmin} alt=""/></SwiperSlide>

@@ -158,10 +158,11 @@ hr{
 
 .slide-swiper-container{
     width: 100%;
-    padding: 5rem 0 5rem 0;
+    padding: 5rem;
 }
 
 .slide-swiper-container img {
-    max-height: 25rem;
+    max-height: 24.5rem;
     border-radius: 10px;
+    border: solid 2px var(--sec-acc-color-dark);
 }
