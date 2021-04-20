@@ -157,7 +157,7 @@ const vid = {
 }
 
 export function Details({ id, companies }) {
-    const {name, image, backgroundColor, website, videolink } = companies.find(item => item.id === id);
+    const {name, image, backgroundColor, website, videolink, content } = companies.find(item => item.id === id);
     const fallbackSrc = defImg;
 
     var color = '#efefef';
@@ -231,7 +231,7 @@ export function Details({ id, companies }) {
         <motion.div className="grid-seperator" style={{backgroundColor: accentColor}} variants={gridSeperator} initial="hidden" animate="visible" exit="exit"/>
         <motion.div className="content-container grid-item" layout variants={iframeCont} initial="hidden" animate="visible" exit="exit">
             <motion.div className="iframe-container" initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.8, duration: 0.3}}>
-                <iframe title="test" src="" width="100%" height="100%" scrolling="yes">Loading...</iframe>
+                <iframe title="test" src={content + "#toolbar=0"} width="100%" height="100%" scrolling="yes">Loading...</iframe>
             </motion.div>
         </motion.div>
         </motion.div>

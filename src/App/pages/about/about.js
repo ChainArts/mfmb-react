@@ -43,9 +43,6 @@ const word = {
     }
 }
 
-
-
-
 const scrollChevron = {
     animate: {
         opacity: [0, 1, 1, 0],
@@ -184,7 +181,6 @@ function CompanyPortal () {
         </>
     )
 }
-
 
 export function About () {
     const [isTimeout, setIsTimeout] = useState(false);
