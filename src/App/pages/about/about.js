@@ -12,6 +12,11 @@ import {HiChevronDown} from 'react-icons/hi';
 import defImg from './../../components/media/default.png'
 import htlLogo from './../../components/media/HTL_Hollabrunn_Logo.png'
 import transp from './../../components/media/transparent.png'
+import dashLogin from './../../components/media/dash_login.png'
+import dashDash from './../../components/media/dash_dash.png'
+import dashUser from './../../components/media/dash_user.png'
+import dashEdit from './../../components/media/dash_edit.png'
+import dashAdmin from './../../components/media/dash_admin.png'
 
 const headerWrapper = {
     hidden: {},
@@ -171,11 +176,11 @@ function CompanyPortal () {
         <span>Firmen Portal</span>
         <div className = "slide-swiper-container">
             <Swiper speed={300} slidesPerView={3} spaceBetween={500} loop={true}>
-                <SwiperSlide><img src="https://picsum.photos/id/1/1280/720" alt=""/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/2/1280/720" alt=""/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/3/1280/720" alt=""/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/4/1280/720" alt=""/></SwiperSlide>
-                <SwiperSlide><img src="https://picsum.photos/id/5/1280/720" alt=""/></SwiperSlide>
+                <SwiperSlide><img src={dashLogin} alt=""/></SwiperSlide>
+                <SwiperSlide><img src={dashDash} alt=""/></SwiperSlide>
+                <SwiperSlide><img src={dashAdmin} alt=""/></SwiperSlide>
+                <SwiperSlide><img src={dashUser} alt=""/></SwiperSlide>
+                <SwiperSlide><img src={dashEdit} alt=""/></SwiperSlide>
             </Swiper>
         </div>
         </>
