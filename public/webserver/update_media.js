@@ -217,11 +217,18 @@ client_new.forEach(function (obj, index){
 removeDeletedData();
 pushData();
 
+//checkContentLength (does not work in built app)
+/*
 runScript(__dirname + '/checkContentLength.js', function (err) {
   if (err) throw err;
   console.log('finished running checkContentLength.js');
 });
+*/
 
+runScript(__dirname + '/insertData.js', function (err) {
+  if (err) throw err;
+  console.log('finished running insertData.js');
+});
 
 
 
