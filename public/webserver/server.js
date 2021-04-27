@@ -27,16 +27,14 @@ function runScript(scriptPath, callback) {
 
 }
 
-
-
 const PORT = 5500;
 
 http.createServer(function (req, res) {
     res.setHeader("Content-Type", "application/json");
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
         
-    if(req.url === '/update'){
+    if(req.url === '/update' && req.socket.remoteAddress == '::1'){
         runScript(__dirname + '/update_mysql.js', function (err) {
             if (err) throw err;
             console.log('finished running update_mysql.js');
@@ -45,7 +43,7 @@ http.createServer(function (req, res) {
         res.end();
     }
         
-    if(req.url === '/run'){
+    if(req.url === '/run' && req.socket.remoteAddress == '::1'){
             runScript(__dirname + '/algorithm/algorithm.js', function (err) {
                 if (err) throw err;
                 console.log('finished running algorithm.js');
@@ -60,7 +58,7 @@ http.createServer(function (req, res) {
         });
     }
 
-    if(req.url === '/getAutoData'){
+    if(req.url === '/getAutoData' && req.socket.remoteAddress == '::1'){
         fs.readFile(homedir + '/AppData/Roaming/MFMB/AutoData/autodata.json', "utf8", (err, jsonString) => {
             if (err) {
               console.log("File read failed:", err);
@@ -71,7 +69,7 @@ http.createServer(function (req, res) {
           });
     }
 
-    if(req.url === '/getData'){
+    if(req.url === '/getData' && req.socket.remoteAddress == '::1'){
         fs.readFile(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', "utf8", (err, jsonString) => {
             if (err) {
               console.log("File read failed:", err);
@@ -85,3 +83,4 @@ http.createServer(function (req, res) {
 }).listen(PORT);
 
 console.log("Server started at localhost:" + PORT);
+

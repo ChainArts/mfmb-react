@@ -4,7 +4,7 @@ const childProcess = require('child_process');    //child_process module to make
 const mysql = require('mysql');                   //MySQL module to handle MySQL queries
 const { promisify } = require('util');                //util module to "promisify" MySQL queries
 
-var settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');   //Settings from setup (ip address ...)
+const settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');   //Settings from setup (ip address ...)
 
 //select,insert and delete queries for each table
 const selectStatements = ["SELECT * from fe_users","SELECT * from media","SELECT * from algorithm","SELECT * from options"];
@@ -82,33 +82,28 @@ function arr_diff (array1, array2) {
 //converts the array of objects from the mysql query into a 2 drim array
 var ObjArrayToTwoDimArray = function(query_result,StatementIndex) {
     var data = [];
-    var x = 0; 
     switch(StatementIndex){
         case 0:
-            query_result.forEach(function (users){
+            query_result.forEach((users, x) => {
                 data[x] = [users.uid,users.company];
-                x++;
             });
         break;
           
         case 1:
-            query_result.forEach(function (media){
+            query_result.forEach((media, x) => {
                 data[x] = [media.MediaID, media.CampaignID, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid, media.ContentLength, media.PrevSelected];
-                x++;
             });
             break;
     
         case 2:
-            query_result.forEach(function (algorithm){
+            query_result.forEach((algorithm, x) => {
                 data[x] = [algorithm.AlgorithmID, algorithm.Credits, algorithm.PlaybackTime, algorithm.CalculatedTime, algorithm.PrevSelected, algorithm.uid];
-                x++;
             });
             break;
 
         case 3:
-            query_result.forEach(function (option){
+            query_result.forEach((option, x) => {
                 data[x] = [option.OptionID, option.PriorityMode];
-                x++;
             });
             break;
   }
@@ -139,8 +134,9 @@ var setClientAsync = async function(i,server_values) {
 };
 
 var processDataAsync = async function() {
+    var data = [];
     for(var i = 0; i<4; i++){
-        var data = [];
+        data = [];
         try {
             data = await getServerAsync(i);
             await setClientAsync(i,data);
@@ -160,7 +156,6 @@ var processDataAsync = async function() {
         }
         console.log('Client-Database connection closed');
     });
-
 };
 
 processDataAsync();
@@ -168,6 +163,4 @@ runScript(__dirname + '/update_media.js', function (err) {
     if (err) throw err;
     console.log('finished running update_media.js');
 });
-
-
 

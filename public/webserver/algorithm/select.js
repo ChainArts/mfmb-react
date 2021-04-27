@@ -27,8 +27,7 @@ con.connect(function (err) {
             result.forEach(function (media, index) {
                 resultData[index] = {id: String(media.MediaID - 1), image: media.Image, name: media.company, backgroundColor: media.BackgroundColor, website: media.WebsiteLink, videolink: media.VideoLink, companyID: media.uid-1, campaignID: media.CampaignID, contentLength: media.ContentLength, prevSelected: media.PrevSelected};
             });
-            var data = JSON.stringify(resultData, null, 2);
-            fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', data);
+            fs.writeJSONSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', resultData,{spaces:1});
         }
     });
     //select query for AlgorithmData (algorithmdata.json) from algorithm table
@@ -42,8 +41,7 @@ con.connect(function (err) {
             result.forEach(function (algorithm, index) {
                 resultData[index] = {credits: algorithm.Credits, playbackTime: algorithm.PlaybackTime, calculatedTime: algorithm.CalculatedTime, prevSelected: algorithm.PrevSelected, companyID: algorithm.uid - 1};
             });
-            var data = JSON.stringify(resultData, null, 2);
-            fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', data);
+            fs.writeJSONSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', resultData,{spaces:1});
         }
     });
     //select query for optionData (options.json) from options table
@@ -57,8 +55,7 @@ con.connect(function (err) {
             result.forEach(function (options, index) {
                 resultData[index] = {optionID: options.OptionID,priorityMode: options.PriorityMode};
             });
-            var data = JSON.stringify(resultData, null, 2);
-            fs.writeFileSync(homedir + '/AppData/Roaming/MFMB/AutoData/options.json', data);
+            fs.writeJSONSync(homedir + '/AppData/Roaming/MFMB/AutoData/options.json', resultData,{spaces:1});
         }
     });
     con.end(function (err) {

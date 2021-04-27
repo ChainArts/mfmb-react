@@ -5,7 +5,7 @@ const mysql = require('mysql');                 //MySQL module to handle MySQL q
 const { promisify } = require('util');              //util module to "promisify" MySQL queries
 const klawSync = require('klaw-sync');          //klaw-sync to recursivly walk a directory
 
-var settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');   //Settings from setup (ip address ...)
+const settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/settings.json');   //Settings from setup (ip address ...)
 
 var server_DocDir = '\\\\' + settings.server_IP + '\\Share\\MFMB\\'
 server_DocDir = server_DocDir.split('\\').join('/');
