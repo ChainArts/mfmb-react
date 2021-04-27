@@ -17,7 +17,7 @@
     "type": "git",
     "url": "https://gitlab.com/ChainArts/mfmb-react"
   },
-  "version": "0.5.0",
+  "version": "1.0.0",
   "private": true,
   "main": "./public/electron.js",
   "homepage": "./",

@@ -25,8 +25,12 @@ You will also see any lint errors in the console.
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.<br />
-Creates an installable package from that build folder in dist
+Creates an installable package from said `build` folder in the `dist` folder
 
 ### `npm run release`
 
 Builds a finished bundle + installer ready to deploy to production
+
+## Install
+
+Find the install file in the dist folder and execute it. The application should start, as soon as the setup is finished.
