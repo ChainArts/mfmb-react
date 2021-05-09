@@ -95,8 +95,41 @@ const video = {
         }
     }
 }
+
+const infoBox = {
+    hidden: {x: 300, opacity: 0},
+    visible: {x: 0, opacity: 0.8,
+        transition: {
+            duration: 0.3,
+            delay: 3.3,
+            ease: [.14,.8,.4,1],
+            staggerChildren: 0.15,
+            delayChildren: 2.9,
+        }
+    }
+}
+
+const seperator = {
+    hidden: {scaleX: 0},
+    visible: {scaleX: 1,
+    transition: {
+        duration: 0.4,
+        ease: [.14,.8,.4,1]
+        }
+    }
+}
+
+const title = {
+    hidden: {opacity: 0},
+    visible: {opacity: 1},
+    transition: {
+        duration: 0.2,
+        ease: [.14,.8,.4,1]
+    }
+}
 const VideoOverlay = (props) => {
     return(
+        <>
         <motion.div className="video-overlay-container .item-4">
             <motion.div className="video-overlay" variants={overlay} initial="hidden" animate="visible" style={{borderRadius: "10px"}}>
                 <motion.div className="video" variants={video} initial="hidden" animate="visible">
@@ -111,10 +144,16 @@ const VideoOverlay = (props) => {
                 </motion.div>
             </motion.div>
         </motion.div>
+        <motion.div className="name-overlay-container" variants={infoBox}>
+            <motion.span style={{fontSize: "1.2rem", fontWeight: 400}} variants={title}>{props.name}</motion.span>
+            <motion.span className="name-overlay-seperator" variants={seperator}/>
+            <motion.span style={{fontWeight: 300}} variants={title}>{props.title}</motion.span>
+        </motion.div>
+        </>
     )
 }
 
-function AutoCard({ id, name, backgroundColor, image, videolink, index}) {
+function AutoCard({ id, name, title, backgroundColor, image, videolink, index}) {
     var background = backgroundColor;
 
     if(backgroundColor === "#FDFDFD")
@@ -125,7 +164,7 @@ function AutoCard({ id, name, backgroundColor, image, videolink, index}) {
 
     return (
         <>
-        {index === 4 ? (<VideoOverlay video={videolink}/>)
+        {index === 4 ? (<VideoOverlay video={videolink} name={name} title={title}/>)
 
         :(
         <motion.li className = {"auto-grid-item item-"+ index} variants={gridItem} style={{border: "2px solid " + background}}>
