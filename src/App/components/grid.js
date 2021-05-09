@@ -80,7 +80,7 @@ const compSep = {
     }
 }
 
-function Card({ id, name, backgroundColor, image }) {
+function Card({ id, name, title, backgroundColor, image }) {
     var color = '#efefef';
     var background = backgroundColor;
 
@@ -94,14 +94,17 @@ function Card({ id, name, backgroundColor, image }) {
     }
 
     return (  
-    <motion.li className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} layoutId={`card-container-${id}`}>
+    <motion.li layout className="grid-item" variants={gridItem} whileTap={{scale: 0.97}} layoutId={`card-container-${id}`}>
     <NavLink to={"companies/"+id } className={"card-open-link"}>
         <motion.div className="grid-container" variants={gridContainer}>
             <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
                 <motion.img src={image} onError={(e)=>{e.target.onError = null; e.target.src = defImg}} alt="..." loading="lazy" variants={compLogo}/>
             </motion.div>
-            <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-name-${id}`}>
-                <motion.span variants={compName}>{name}</motion.span>
+            <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-header-${id}`}>
+                <motion.span layoutId={`company-title-${id}`} variants={compName} className="comp-title">
+                    <motion.span style={{fontWeight: "400"}}>{name}</motion.span>
+                    <motion.span style={{fontSize: "1.2rem"}}>{title}</motion.span>
+                </motion.span>
                 <motion.div variants={gridInfos} className="infos">
                     <motion.div className="name-seperator" style={{backgroundColor: color}} variants={compSep}/>
                     <motion.div style={{display: "flex"}} variants={compSep}>

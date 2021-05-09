@@ -119,8 +119,6 @@ function App({location}) {
        
         }, [updateActive]);
 
-
-
     return (
         <div className="App">
             <ParticleBackground/>

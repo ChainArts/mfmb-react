@@ -172,7 +172,7 @@ function ReactPlayerFrame(props){
 }
 
 export function Details({ id, companies }) {
-    const {name, image, backgroundColor, website, videolink, content} = companies.find(item => item.id === id);
+    const {name, title, image, backgroundColor, website, videolink, content} = companies.find(item => item.id === id);
     const fallbackSrc = defImg;
 
     var color = '#efefef';
@@ -207,8 +207,11 @@ export function Details({ id, companies }) {
                 <motion.div className="company-logo" layoutId={`company-logo-${id}`}>
                     <img src={image} onError={(e)=>{e.target.onError = null; e.target.src = fallbackSrc}} alt=""/>
                 </motion.div>
-                <motion.div layout className="company-name" style={{background: background, color: color, justifyContent: "center"}} layoutId={`company-name-${id}`}>
-                    <motion.span>{name}</motion.span>
+                <motion.div layout className="company-name" style={{background: background, color: color}} layoutId={`company-header-${id}`}>
+                    <motion.span layoutId={`company-title-${id}`} className="comp-title" style={{textAlign: "center", maxWidth: "100%"}}>
+                        <motion.span style={{fontWeight: "400", maxWidth: "100%"}}>{name}</motion.span>
+                        <motion.span style={{fontSize: "1.2rem", maxWidth: "100%"}}>{title}</motion.span>
+                    </motion.span>
                 </motion.div>
             </motion.div>
         </NavLink>

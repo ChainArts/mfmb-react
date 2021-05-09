@@ -369,6 +369,12 @@ iframe{
     white-space: nowrap;
 }
 
+.comp-title{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .infos{
     height: 100%;
     display: flex;
