@@ -226,7 +226,7 @@ function AutoMode() {
         return () => {
             return () => clearTimeout(timer);
         }
-    }, []);
+    }, [refreshTrigger]);
 
     useEffect(() => {
         const requestOptions = {
@@ -240,7 +240,7 @@ function AutoMode() {
                 setCompanies(companies)
             })            
             .catch(err => console.error(err));
-    }, []);
+    }, [refreshTrigger]);
 
     useEffect(() => {
         const requestOptions = {
@@ -254,7 +254,7 @@ function AutoMode() {
                 setCompanies(companies)
             })            
             .catch(err => console.error(err));
-    }, []);
+    }, [refreshTrigger]);
 
 return(
     <>
