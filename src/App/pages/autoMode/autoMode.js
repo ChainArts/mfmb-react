@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ReactPlayer from 'react-player';
 import { NavLink } from 'react-router-dom';
 import DelayedFallback from '../../components/delayedFallback';
 import defImg from "./../../components/media/default.png"
 import defVid from "./../../components/media/defVidHq.mp4";
 import './automode.css';
+
+const autoContainer = {
+    hidden: {},
+    visible: {},
+    exit: {opacity: 0,
+        transition: {
+            duration: 0.5,
+            ease: [.14,.8,.4,1]
+        }
+        
+    }
+}
 
 const gridWrapper = {
     hidden: {},
@@ -128,6 +140,16 @@ const title = {
     }
 }
 const VideoOverlay = (props) => {
+    const [play, setPlay] = useState(false)
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setPlay(true);
+        }, 3000);
+
+        return () => clearTimeout(timeout);
+    },[])
+
     return(
         <>
         <motion.div className="video-overlay-container .item-4">
@@ -137,8 +159,8 @@ const VideoOverlay = (props) => {
                         url={props.video}
                         onError={(e)=>{e.target.onError = null; e.target.src = defVid;}}
                         height="100%" width="auto"
-                        playing muted
-                        onEnded={(e) => window.location.reload()}
+                        playing={play} muted
+                        onEnded={(e) => props.refresh(Math.random())}
                         style={{borderRadius: "10px", background: "transparent"}}>
                     </ReactPlayer>
                 </motion.div>
@@ -153,7 +175,7 @@ const VideoOverlay = (props) => {
     )
 }
 
-function AutoCard({ id, name, title, backgroundColor, image, videolink, index}) {
+function AutoCard({ id, name, title, backgroundColor, image, videolink, index, refresh}) {
     var background = backgroundColor;
 
     if(backgroundColor === "#FDFDFD")
@@ -164,7 +186,7 @@ function AutoCard({ id, name, title, backgroundColor, image, videolink, index}) 
 
     return (
         <>
-        {index === 4 ? (<VideoOverlay video={videolink} name={name} title={title}/>)
+        {index === 4 ? (<VideoOverlay video={videolink} name={name} title={title} refresh={refresh}/>)
 
         :(
         <motion.li className = {"auto-grid-item item-"+ index} variants={gridItem} style={{border: "2px solid " + background}}>
@@ -194,6 +216,8 @@ function AutoCard({ id, name, title, backgroundColor, image, videolink, index}) 
 function AutoMode() {
     const [companies, setCompanies] = useState(null);
     const [imageHasLoaded, setImageHasLoaded] = useState(false);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+
 
     useEffect((imageHasLoaded) => {
         const timer = setTimeout(() => {
@@ -234,14 +258,14 @@ function AutoMode() {
 
 return(
     <>
+    <AnimatePresence exitBeforeEnter>
     {imageHasLoaded && companies && companies.length>0 ?
     (
-    <motion.div className="auto-container">
+    <motion.div className="auto-container" variants = {autoContainer} initial = "hidden" animate = "visible" exit="exit" key={refreshTrigger}>
     <NavLink to="/companies" className="auto-link"/>
-    
         <motion.ul className="auto-grid" variants = {gridWrapper} initial = "hidden" animate = "visible">
             {companies.map((card, index) => (
-                <AutoCard key={card.id} {...card} index={index}/>
+                <AutoCard key={card.id} {...card} index={index} refresh={setRefreshTrigger}/>
             ))}
         </motion.ul>
     </motion.div>
@@ -249,6 +273,7 @@ return(
     :
     (<DelayedFallback/>)
 }
+    </AnimatePresence>
     </>
     )
 }
