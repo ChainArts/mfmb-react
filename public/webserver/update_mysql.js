@@ -9,7 +9,7 @@ const settings = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/setti
 //select,insert and delete queries for each table
 const selectStatements = ["SELECT * from fe_users","SELECT * from media","SELECT * from algorithm","SELECT * from options"];
 const insertStatements = ["INSERT INTO fe_users VALUES ? ON DUPLICATE KEY UPDATE company=VALUES(company)",
-                          "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Title=VALUES(Title), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)",
+                          "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Title=VALUES(Title), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), Content=VALUES(Content), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)",
                           "INSERT INTO algorithm VALUES ? ON DUPLICATE KEY UPDATE Credits=VALUES(Credits), PlaybackTime=VALUES(PlaybackTime), CalculatedTime=VALUES(CalculatedTime), PrevSelected=VALUES(PrevSelected), uid=VALUES(uid)",
                           "INSERT INTO options VALUES ? ON DUPLICATE KEY UPDATE PriorityMode=VALUES(PriorityMode)"];
 const deleteStatements = ["DELETE FROM fe_users where uid = ?","DELETE FROM media where MediaID = ?","DELETE FROM algorithm where AlgorithmID = ?","DELETE FROM options"];
@@ -91,7 +91,7 @@ var ObjArrayToTwoDimArray = function(query_result,StatementIndex) {
           
         case 1:
             query_result.forEach((media, x) => {
-                data[x] = [media.MediaID, media.CampaignID, media.Title, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid, media.ContentLength, media.PrevSelected];
+                data[x] = [media.MediaID, media.CampaignID, media.Title, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.Content, media.uid, media.ContentLength, media.PrevSelected];
             });
             break;
     

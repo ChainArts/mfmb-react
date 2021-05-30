@@ -45,7 +45,7 @@ con.connect(function (err) {
     var query = "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)";
     var values = [];
     MediaData.forEach( function(media,index) {
-        values[index] = [media.id,media.campaignID,media.active,media.image,media.backgroundColor,media.website,media.videolink,media.companyID,media.contentLength,media.prevSelected];
+        values[index] = [media.id,media.campaignID,media.title,media.active,media.image,media.backgroundColor,media.website,media.videolink,media.content,media.companyID,media.contentLength,media.prevSelected];
     });
     con.query(query, [values], function (err, result) {
         if (err) throw err;

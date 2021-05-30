@@ -23,7 +23,7 @@ var con = mysql.createConnection({
 });
 
 //constructor for Media Object
-function Media(id, campaignID, title, active, image, backgroundColor, website, videolink, companyID, contentLength, prevSelected) {
+function Media(id, campaignID, title, active, image, backgroundColor, website, videolink, content, companyID, contentLength, prevSelected) {
   this.id = id;
   this.campaignID = campaignID;
   this.title = title;
@@ -32,6 +32,7 @@ function Media(id, campaignID, title, active, image, backgroundColor, website, v
   this.backgroundColor = backgroundColor;
   this.website = website;
   this.videolink = videolink;
+  this.content = content;
   this.companyID = companyID;
   this.contentLength = contentLength;
   this.prevSelected = prevSelected;
