@@ -227,7 +227,7 @@ function AutoMode() {
             return () => clearTimeout(timer);
         }
     }, [refreshTrigger]);
-
+/*
     useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
@@ -241,7 +241,7 @@ function AutoMode() {
             })            
             .catch(err => console.error(err));
     }, [refreshTrigger]);
-
+*/
     useEffect(() => {
         const requestOptions = {
             headers: {'Content-Type': 'application/json', 'Accept':'application/json'},

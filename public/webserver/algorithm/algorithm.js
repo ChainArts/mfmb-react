@@ -1,4 +1,5 @@
 const fs = require('fs-extra');               //File-System module to read from and write to files
+const { isConditionalExpression } = require('typescript');
 const homedir = require('os').homedir();    //OS module to require user directory (homedir)
 
 var algorithmData = fs.readJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json'); //Data to determine the next selected company which media will be displayed
@@ -54,7 +55,7 @@ algorithmData.sort((a, b) => a.companyID - b.companyID);
 
 //randomly selected ID of selection
 var selectedID = selection[Math.floor(Math.random() * selection.length)];   
-console.log("id is " + selectedID);
+console.log("companyID is " + selectedID);
 
 
 //create selection of media the company has activated
@@ -66,6 +67,7 @@ mediaData.forEach(function (media){
 //if there is more than one active, remove the previous one from selection
 if(media_selection.length > 1){
     var prevMedia = media_selection.find(item => item.prevSelected == true);
+    
     if (typeof prevMedia !== "undefined") {
         media_selection.forEach((media,i,array) => {
             if (media.id == prevMedia.id) {
@@ -77,6 +79,7 @@ if(media_selection.length > 1){
 
 //randomly select media from media selection
 var media = media_selection[Math.floor(Math.random() * media_selection.length)];
+console.log("mediaID is " + media.id);
 
 //update prevSelected flags
 if (typeof prevMedia !== "undefined") {
@@ -103,8 +106,9 @@ algorithmData[index].playbackTime += media.contentLength;
 fs.writeJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/algorithmdata.json', algorithmData, {spaces:1});
 fs.writeJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', mediaData, {spaces:1});
 //shift array so selected Media is on 4th position (Auto-Mode)
-while (mediaData[4].companyID != selectedID) {
+while (mediaData[4].id != media.id) {
     mediaData.unshift(mediaData.pop());
 }
+console.log(mediaData.slice(0, 9));
 fs.writeJsonSync(homedir + '/AppData/Roaming/MFMB/AutoData/autodata.json', mediaData.slice(0, 9), {spaces:1});
 

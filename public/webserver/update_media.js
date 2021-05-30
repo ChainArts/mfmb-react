@@ -23,9 +23,10 @@ var con = mysql.createConnection({
 });
 
 //constructor for Media Object
-function Media(id, campaignID, active, image, backgroundColor, website, videolink, companyID, contentLength, prevSelected) {
+function Media(id, campaignID, title, active, image, backgroundColor, website, videolink, companyID, contentLength, prevSelected) {
   this.id = id;
   this.campaignID = campaignID;
+  this.title = title;
   this.active = active;
   this.image = image;
   this.backgroundColor = backgroundColor;
@@ -147,7 +148,7 @@ var pushData = async function(){
     select = "SELECT * FROM media";
     result = await promisfyquery(select);
     result.forEach(function (media, index){
-      MediaData[index] = new Media(media.MediaID, media.CampaignID, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid, media.ContentLength, media.PrevSelected);
+      MediaData[index] = new Media(media.MediaID, media.CampaignID, media.Title, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid, media.ContentLength, media.PrevSelected);
         clientFiles.forEach(function (file){
           if(file.campaign == MediaData[index].campaignID && file.uid == MediaData[index].companyID){
             if(file.type == "video"){
