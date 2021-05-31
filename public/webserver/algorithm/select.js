@@ -18,14 +18,14 @@ con.connect(function (err) {
         throw err;
     console.log("Connected");
     //select query for MediaData (data.json) from media table inner joined to fe_users
-    var query = "SELECT media.MediaID, media.Image, fe_users.company, media.Title, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.Content media.uid, media.CampaignID, media.ContentLength, media.PrevSelected FROM media INNER JOIN fe_users on media.uid=fe_users.uid where media.Active = 1";
+    var query = "SELECT media.MediaID, media.Image, fe_users.company, media.Title, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.Content, media.uid, media.CampaignID, media.ContentLength, media.PrevSelected FROM media INNER JOIN fe_users on media.uid=fe_users.uid where media.Active = 1";
     con.query(query, function (err, result, fields) {
         if (err) {
             throw err;
         }
         else {
             result.forEach(function (media, index) {
-                resultData[index] = {id: String(media.MediaID - 1), image: media.Image, name: media.company, title: media.Title, backgroundColor: media.BackgroundColor, website: media.WebsiteLink, videolink: media.VideoLink, content = media.Content, companyID: media.uid-1, campaignID: media.CampaignID, contentLength: media.ContentLength, prevSelected: media.PrevSelected};
+                resultData[index] = {id: String(media.MediaID - 1), image: media.Image, name: media.company, title: media.Title, backgroundColor: media.BackgroundColor, website: media.WebsiteLink, videolink: media.VideoLink, content: media.Content, companyID: media.uid-1, campaignID: media.CampaignID, contentLength: media.ContentLength, prevSelected: media.PrevSelected};
             });
             fs.writeJSONSync(homedir + '/AppData/Roaming/MFMB/AutoData/data.json', resultData,{spaces:1});
         }

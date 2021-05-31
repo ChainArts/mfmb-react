@@ -157,7 +157,6 @@ var processDataAsync = async function() {
         console.log('Client-Database connection closed');
     });
 };
-
 processDataAsync();
 runScript(__dirname + '/update_media.js', function (err) {
     if (err) throw err;

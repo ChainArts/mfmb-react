@@ -42,7 +42,7 @@ con.connect(function (err) {
     if (err)
         throw err;
     console.log("Connected");
-    var query = "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)";
+    var query = "INSERT INTO media VALUES ? ON DUPLICATE KEY UPDATE CampaignID=VALUES(CampaignID), Title=VALUES(Title), Active=VALUES(Active), Image=VALUES(Image), BackgroundColor=VALUES(BackgroundColor), WebsiteLink=VALUES(WebsiteLink), VideoLink=VALUES(VideoLink), Content=VALUES(Content), uid=VALUES(uid), ContentLength=VALUES(ContentLength), PrevSelected=VALUES(PrevSelected)";
     var values = [];
     MediaData.forEach( function(media,index) {
         values[index] = [media.id,media.campaignID,media.title,media.active,media.image,media.backgroundColor,media.website,media.videolink,media.content,media.companyID,media.contentLength,media.prevSelected];

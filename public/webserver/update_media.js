@@ -149,13 +149,15 @@ var pushData = async function(){
     select = "SELECT * FROM media";
     result = await promisfyquery(select);
     result.forEach(function (media, index){
-      MediaData[index] = new Media(media.MediaID, media.CampaignID, media.Title, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.uid, media.ContentLength, media.PrevSelected);
+      MediaData[index] = new Media(media.MediaID, media.CampaignID, media.Title, media.Active, media.Image, media.BackgroundColor, media.WebsiteLink, media.VideoLink, media.Content, media.uid, media.ContentLength, media.PrevSelected);
         clientFiles.forEach(function (file){
           if(file.campaign == MediaData[index].campaignID && file.uid == MediaData[index].companyID){
             if(file.type == "video"){
               MediaData[index].videolink = client_DocDir + file.path;
             }else if(file.type == "image"){
               MediaData[index].image = client_DocDir + file.path;
+            }else if(file.type == "content"){
+              MediaData[index].content = client_DocDir + file.path;
             }
           }
         });
