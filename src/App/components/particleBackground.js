@@ -25,7 +25,7 @@ export const ParticleBackground = () => {
                 "enable": true,
                 "random": "true",
 	            "direction": "top",
-                "speed": 1,
+                "speed": 0.5,
                 "out_mode": "out",
 	        },
 	        "size": {
