@@ -1,11 +1,15 @@
 import React from 'react';
-import Particles from 'react-particles-js';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 export const ParticleBackground = () => {
-    
+    const particlesInit = async (main) => {
+        await loadFull(main);
+    }
     return(
     <Particles style={{position: "absolute", height: "100%", color: "var(--sec-acc-color)"}}
-    params={{
+    init={particlesInit}
+    options={{
 	    "particles": {
             "color": "#deb992",
 	        "number": {
@@ -18,9 +22,10 @@ export const ParticleBackground = () => {
 	            "enable": false
 	        },
 	        "move": {
+                "enable": true,
                 "random": "true",
 	            "direction": "top",
-                "speed": 0.15,
+                "speed": 1,
                 "out_mode": "out",
 	        },
 	        "size": {
